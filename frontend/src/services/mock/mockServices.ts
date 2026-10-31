@@ -371,7 +371,7 @@ export const mockSubscriptionService = {
 
     if (params?.customerId) {
       const cid = (params.customerId || '').toLowerCase()
-      filtered = filtered.filter((s) => s.customerId.toLowerCase() === cid || s.customerEmail?.toLowerCase() === cid || s.customerId === `cust_${params.customerId}`)
+      filtered = filtered.filter((s) => (s.customerId && s.customerId.toLowerCase() === cid) || (s.customerEmail && s.customerEmail.toLowerCase() === cid) || s.customerId === `cust_${params.customerId}`)
     }
 
     if (params?.search) {
@@ -583,7 +583,7 @@ export const mockInvoiceService = {
 
     if (params?.customerId) {
       const cid = (params.customerId || '').toLowerCase()
-      filtered = filtered.filter((i) => i.customerId.toLowerCase() === cid || i.customerEmail?.toLowerCase() === cid || i.customerId === `cust_${params.customerId}`)
+      filtered = filtered.filter((i) => (i.customerId && i.customerId.toLowerCase() === cid) || (i.customerEmail && i.customerEmail.toLowerCase() === cid) || i.customerId === `cust_${params.customerId}`)
     }
 
     if (params?.isOverdue !== undefined) {

@@ -156,8 +156,17 @@ export const subscriptionService = {
     limit?: number
   }): Promise<PaginatedResponse<Subscription>> => {
     if (ENV.USE_MOCK) return mockSubscriptionService.listSubscriptions(params)
-    const res = await apiClient.get<any>('/subscriptions', { params })
-    return wrapPaginated<Subscription>(res.data)
+    const endpoint = params?.customerId ? '/portal/subscriptions' : '/subscriptions'
+    try {
+      const res = await apiClient.get<any>(endpoint, { params })
+      return wrapPaginated<Subscription>(res.data)
+    } catch (err: any) {
+      if (err.response?.status === 403 && endpoint === '/subscriptions') {
+        const fallbackRes = await apiClient.get<any>('/portal/subscriptions', { params })
+        return wrapPaginated<Subscription>(fallbackRes.data)
+      }
+      throw err
+    }
   },
   getSubscription: async (id: string): Promise<Subscription> => {
     if (ENV.USE_MOCK) return mockSubscriptionService.getSubscription(id)
@@ -208,8 +217,17 @@ export const invoiceService = {
     limit?: number
   }): Promise<PaginatedResponse<Invoice>> => {
     if (ENV.USE_MOCK) return mockInvoiceService.listInvoices(params)
-    const res = await apiClient.get<any>('/invoices', { params })
-    return wrapPaginated<Invoice>(res.data)
+    const endpoint = params?.customerId ? '/portal/invoices' : '/invoices'
+    try {
+      const res = await apiClient.get<any>(endpoint, { params })
+      return wrapPaginated<Invoice>(res.data)
+    } catch (err: any) {
+      if (err.response?.status === 403 && endpoint === '/invoices') {
+        const fallbackRes = await apiClient.get<any>('/portal/invoices', { params })
+        return wrapPaginated<Invoice>(fallbackRes.data)
+      }
+      throw err
+    }
   },
   getInvoice: async (id: string): Promise<Invoice> => {
     if (ENV.USE_MOCK) return mockInvoiceService.getInvoice(id)
