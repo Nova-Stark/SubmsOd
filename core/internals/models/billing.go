@@ -29,13 +29,13 @@ const (
 type Invoice struct {
 	ID             string        `gorm:"primaryKey;size:36" json:"id"`
 	InvoiceNumber  string        `gorm:"uniqueIndex;not null;size:50" json:"invoice_number"`
-	SubscriptionID string        `gorm:"not null;index;size:36" json:"subscription_id"`
+	SubscriptionID string        `gorm:"not null;size:36;uniqueIndex:idx_sub_billing_cycle" json:"subscription_id"`
 	Subscription   *Subscription `gorm:"foreignKey:SubscriptionID" json:"subscription,omitempty"`
 	CustomerID     string        `gorm:"not null;index;size:36" json:"customer_id"`
 	Customer       *User         `gorm:"foreignKey:CustomerID" json:"customer,omitempty"`
 	Status         InvoiceStatus `gorm:"not null;default:'DRAFT';size:20" json:"status"`
 
-	BillingPeriodStart time.Time `gorm:"not null;index:idx_unique_sub_cycle,unique" json:"billing_period_start"`
+	BillingPeriodStart time.Time `gorm:"not null;uniqueIndex:idx_sub_billing_cycle" json:"billing_period_start"`
 	BillingPeriodEnd   time.Time `gorm:"not null" json:"billing_period_end"`
 	DueDate            time.Time `gorm:"not null;index" json:"due_date"`
 
