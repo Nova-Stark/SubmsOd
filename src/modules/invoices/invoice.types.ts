@@ -109,7 +109,7 @@ export interface CalculateInvoiceResponse {
 }
 
 export const GenerateInvoicePdfRequestSchema = z.object({
-  invoiceNumber: z.string().min(1, 'Invoice number is required'),
+  invoiceNumber: z.string().min(1, 'Invoice number is required').optional(),
   invoice_number: z.string().min(1, 'Invoice number is required').optional(),
   issueDate: z.string().optional(),
   issue_date: z.string().optional(),
@@ -119,7 +119,7 @@ export const GenerateInvoicePdfRequestSchema = z.object({
   lines: z.array(z.object({
     productId: z.string().optional(),
     product_id: z.string().optional(),
-    productName: z.string().min(1),
+    productName: z.string().min(1).optional(),
     product_name: z.string().optional(),
     unitPrice: z.number().int().nonnegative().optional(),
     unit_price: z.number().int().nonnegative().optional(),
@@ -136,7 +136,13 @@ export const GenerateInvoicePdfRequestSchema = z.object({
   final_total: z.number().int().nonnegative().optional(),
   currency: z.string().default('INR'),
   notes: z.string().optional(),
-}).transform((data) => ({
+}).refine(
+  (data) => Boolean(data.invoiceNumber || data.invoice_number),
+  { message: 'invoice_number or invoiceNumber is required', path: ['invoice_number'] }
+).refine(
+  (data) => data.lines.every((line) => Boolean(line.productName || line.product_name)),
+  { message: 'product_name or productName is required for each line', path: ['lines'] }
+).transform((data) => ({
   invoiceNumber: data.invoiceNumber || (data.invoice_number as string),
   issueDate: data.issueDate ?? data.issue_date ?? new Date().toISOString().split('T')[0],
   dueDate: data.dueDate ?? data.due_date ?? new Date(Date.now() + 15 * 86400000).toISOString().split('T')[0],
