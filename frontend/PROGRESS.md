@@ -40,18 +40,24 @@
   - Template bundles (e.g. *Growth Tech Bundle (Odoo Edition)*, 30 days validity).
   - 1-click modal converting templates into live subscriptions.
 
+### Hour 3–5: Customer Portal View
+- **Customer Subscriptions View** (`/portal/subscriptions` & `/portal/subscriptions/:id`):
+  - Filtered to authenticated customer account (e.g. Acme Corp).
+  - Expandable contract cards with itemized order lines, variant pricing, tax totals.
+  - Self-serve **Pause Subscription** action gated by plan flag `allowPause: true`.
+  - Self-serve **Renew Subscription** action gated by plan flag `allowRenew: true` (extends contract expiry by 1 full year).
+  - Toast notifications and state engine updates on transition actions.
+- **Customer Invoices & Receipts View** (`/portal/invoices` & `/portal/invoices/:id`):
+  - Filtered to customer account with status tabs (`ALL`, `DRAFT`, `CONFIRMED`, `PAID`, `CANCELLED`).
+  - Overdue badge highlights and outstanding amount indicators.
+  - Itemized lines, GST calculation, payments history list.
+  - 1-click **Print / Download Receipt** action triggering print stylesheet.
+
 ---
 
 ## 2. Next Up on the Schedule
 
-### Hour 3–5: Customer Portal View (Current Task)
-- `/portal/subscriptions`: View customer-specific subscriptions.
-- `/portal/subscriptions/:id`: Customer self-serve actions:
-  - **Pause Subscription**: Only visible if plan flag `allowPause: true`.
-  - **Renew Subscription**: Only visible if plan flag `allowRenew: true` (extends expiry by 1 year).
-- `/portal/invoices`: View customer invoices, payment status pills, and download/print receipt view.
-
-### Hour 5–6: Finance Lead Dashboard (Admin Only)
+### Hour 5–6: Finance Lead Dashboard (Admin Only) (Current Task)
 - `/admin/dashboard`:
   - KPI Cards: Active Subscriptions, Revenue Collected, Outstanding AR, Overdue Invoices.
   - Visual Revenue Chart (historical & projected).

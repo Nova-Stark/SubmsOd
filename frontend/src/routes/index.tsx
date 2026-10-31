@@ -34,7 +34,15 @@ const QuotationTemplatesView = lazy(() =>
   import('@/features/quotation-templates/QuotationTemplatesView').then((m) => ({ default: m.QuotationTemplatesView }))
 )
 
-// Placeholders (lazy for consistent splitting)
+// Customer Portal Views (Hour 3-5)
+const CustomerSubscriptionsView = lazy(() =>
+  import('@/features/customer-portal/CustomerSubscriptionsView').then((m) => ({ default: m.CustomerSubscriptionsView }))
+)
+const CustomerInvoicesView = lazy(() =>
+  import('@/features/customer-portal/CustomerInvoicesView').then((m) => ({ default: m.CustomerInvoicesView }))
+)
+
+// Placeholders for subsequent hours
 const FinanceDashboardPlaceholder = lazy(() =>
   import('@/features/dashboard/FinanceDashboardPlaceholder').then((m) => ({ default: m.FinanceDashboardPlaceholder }))
 )
@@ -49,9 +57,6 @@ const TaxesPlaceholder = lazy(() =>
 )
 const StaffPlaceholder = lazy(() =>
   import('@/features/staff/StaffPlaceholder').then((m) => ({ default: m.StaffPlaceholder }))
-)
-const CustomerPortalPlaceholder = lazy(() =>
-  import('@/features/customer-portal/CustomerPortalPlaceholder').then((m) => ({ default: m.CustomerPortalPlaceholder }))
 )
 
 // Shared loading fallback for lazy routes
@@ -110,8 +115,10 @@ export const AppRoutes: React.FC = () => {
 
           {/* Customer Portal (Customer Only) */}
           <Route element={<RoleGuard allowedRoles={['CUSTOMER']} />}>
-            <Route path="/portal/subscriptions" element={<Suspense fallback={<RouteFallback />}><CustomerPortalPlaceholder /></Suspense>} />
-            <Route path="/portal/invoices" element={<Suspense fallback={<RouteFallback />}><InvoicesPlaceholder /></Suspense>} />
+            <Route path="/portal/subscriptions" element={<Suspense fallback={<RouteFallback />}><CustomerSubscriptionsView /></Suspense>} />
+            <Route path="/portal/subscriptions/:id" element={<Suspense fallback={<RouteFallback />}><CustomerSubscriptionsView /></Suspense>} />
+            <Route path="/portal/invoices" element={<Suspense fallback={<RouteFallback />}><CustomerInvoicesView /></Suspense>} />
+            <Route path="/portal/invoices/:id" element={<Suspense fallback={<RouteFallback />}><CustomerInvoicesView /></Suspense>} />
           </Route>
         </Route>
       </Route>
