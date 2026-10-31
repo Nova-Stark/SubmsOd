@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { AuthProvider } from '@/features/auth/AuthContext'
 import { ToastProvider } from '@/components/feedback/Toast'
+import { ErrorBoundary } from '@/components/common/ErrorBoundary'
 import { AppRoutes } from '@/routes'
 
 const queryClient = new QueryClient({
@@ -21,7 +22,9 @@ export const App: React.FC = () => {
       <BrowserRouter>
         <AuthProvider>
           <ToastProvider>
-            <AppRoutes />
+            <ErrorBoundary>
+              <AppRoutes />
+            </ErrorBoundary>
           </ToastProvider>
         </AuthProvider>
       </BrowserRouter>
