@@ -68,25 +68,30 @@ func NewRouter() *gin.Engine {
 				portal.GET("/invoices", handlers.ListCustomerInvoices)
 			}
 
-			// Staff & Admin Subscriptions & Invoicing Management
-			staff := protected.Group("")
-			staff.Use(middleware.RequireRole(string(models.RoleAdmin), string(models.RoleStaff)))
+			// Company Internal Routes (Staff & Admin Only)
+			internal := protected.Group("")
+			internal.Use(middleware.RequireRole(string(models.RoleAdmin), string(models.RoleStaff)))
 			{
-				staff.GET("/quotation-templates", handlers.ListQuotationTemplates)
-				staff.POST("/quotation-templates", handlers.CreateQuotationTemplate)
-				staff.POST("/quotations/from-template", handlers.CreateDraftFromTemplate)
+				// Subscriptions
+				internal.GET("/quotation-templates", handlers.ListQuotationTemplates)
+				internal.POST("/quotation-templates", handlers.CreateQuotationTemplate)
+				internal.POST("/quotations/from-template", handlers.CreateDraftFromTemplate)
 
-				staff.GET("/subscriptions", handlers.ListSubscriptions)
-				staff.POST("/subscriptions", handlers.CreateSubscriptionDraft)
-				staff.POST("/subscriptions/:id/send-quote", handlers.SendQuote)
-				staff.POST("/subscriptions/:id/activate", handlers.ActivateSubscription)
+				internal.GET("/subscriptions", handlers.ListSubscriptions)
+				internal.POST("/subscriptions", handlers.CreateSubscriptionDraft)
+				internal.POST("/subscriptions/:id/send-quote", handlers.SendQuote)
+				internal.POST("/subscriptions/:id/activate", handlers.ActivateSubscription)
 
 				// Billing & Invoices
-				staff.POST("/billing/run", handlers.TriggerBatchBilling)
-				staff.GET("/invoices", handlers.ListInvoices)
-				staff.POST("/invoices/:id/confirm", handlers.ConfirmInvoice)
-				staff.POST("/invoices/:id/cancel", handlers.CancelInvoice)
-				staff.POST("/invoices/:id/payments", handlers.LogPayment)
+				internal.POST("/billing/run", handlers.TriggerBatchBilling)
+				internal.GET("/invoices", handlers.ListInvoices)
+				internal.POST("/invoices/:id/confirm", handlers.ConfirmInvoice)
+				internal.POST("/invoices/:id/cancel", handlers.CancelInvoice)
+				internal.POST("/invoices/:id/payments", handlers.LogPayment)
+
+				// Finance Analytics & Ledger
+				internal.GET("/finance/summary", handlers.GetFinanceSummary)
+				internal.GET("/finance/reports", handlers.GetFinanceReports)
 			}
 
 			// Admin-only operations
