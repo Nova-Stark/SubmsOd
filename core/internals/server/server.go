@@ -99,6 +99,7 @@ func NewRouter() *gin.Engine {
 			admin.Use(middleware.RequireRole(string(models.RoleAdmin)))
 			{
 				admin.POST("/staff", handlers.CreateStaff)
+				admin.POST("/seed-fixtures", handlers.SeedFixtures)
 
 				// Catalog Management
 				admin.POST("/catalog/products", handlers.CreateProduct)

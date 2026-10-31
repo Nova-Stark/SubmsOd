@@ -304,3 +304,16 @@ func CreateStaff(c *gin.Context) {
 		},
 	})
 }
+
+func SeedFixtures(c *gin.Context) {
+	count, err := database.LoadFixtures(database.DB, "../fixtures/seed-data.json")
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to load fixtures: " + err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message":       "Deterministic fixture dataset loaded successfully",
+		"records_count": count,
+	})
+}

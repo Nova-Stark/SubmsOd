@@ -75,6 +75,7 @@ Every protected endpoint requires an `Authorization: Bearer <JWT_TOKEN>` header.
 | `/api/v1/auth/reset-password` | POST | Public | Submit reset token + new password |
 | `/api/v1/users/me` | DELETE | Any Auth | Soft-delete own account |
 | `/api/v1/admin/staff` | POST | `ADMIN` | Create internal staff account |
+| `/api/v1/admin/seed-fixtures` | POST | `ADMIN` | Load 347 realistic deterministic fixture records from `fixtures/seed-data.json` |
 
 *Password Policy*: >8 characters, at least 1 uppercase, 1 lowercase, 1 special character.
 
