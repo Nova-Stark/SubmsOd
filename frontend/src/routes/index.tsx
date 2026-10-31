@@ -13,14 +13,19 @@ import { ResetPasswordPage } from '@/features/auth/ResetPasswordPage'
 import { Forbidden403Page } from './Forbidden403Page'
 import { NotFound404Page } from './NotFound404Page'
 
-// Placeholders for subsequent hours
-import { FinanceDashboardPlaceholder } from '@/features/dashboard/FinanceDashboardPlaceholder'
-import { SubscriptionsPlaceholder } from '@/features/subscriptions/SubscriptionsPlaceholder'
-import { QuotationTemplatesPlaceholder } from '@/features/quotation-templates/QuotationTemplatesPlaceholder'
-import { InvoicesPlaceholder } from '@/features/invoices/InvoicesPlaceholder'
 // Core Catalog Views
 import { ProductCatalogView } from '@/features/products/ProductCatalogView'
 import { PlanManagerView } from '@/features/plans/PlanManagerView'
+
+// Core Subscription & Quotation Views
+import { SubscriptionListView } from '@/features/subscriptions/SubscriptionListView'
+import { SubscriptionForm } from '@/features/subscriptions/SubscriptionForm'
+import { SubscriptionDetailView } from '@/features/subscriptions/SubscriptionDetailView'
+import { QuotationTemplatesView } from '@/features/quotation-templates/QuotationTemplatesView'
+
+// Placeholders for subsequent hours
+import { FinanceDashboardPlaceholder } from '@/features/dashboard/FinanceDashboardPlaceholder'
+import { InvoicesPlaceholder } from '@/features/invoices/InvoicesPlaceholder'
 import { DiscountsPlaceholder } from '@/features/discounts/DiscountsPlaceholder'
 import { TaxesPlaceholder } from '@/features/taxes/TaxesPlaceholder'
 import { StaffPlaceholder } from '@/features/staff/StaffPlaceholder'
@@ -61,9 +66,10 @@ export const AppRoutes: React.FC = () => {
 
           {/* Staff & Admin Operational Views */}
           <Route element={<RoleGuard allowedRoles={['STAFF', 'ADMIN']} />}>
-            <Route path="/staff/subscriptions" element={<SubscriptionsPlaceholder />} />
-            <Route path="/staff/subscriptions/new" element={<SubscriptionsPlaceholder />} />
-            <Route path="/staff/quotation-templates" element={<QuotationTemplatesPlaceholder />} />
+            <Route path="/staff/subscriptions" element={<SubscriptionListView />} />
+            <Route path="/staff/subscriptions/new" element={<SubscriptionForm />} />
+            <Route path="/staff/subscriptions/:id" element={<SubscriptionDetailView />} />
+            <Route path="/staff/quotation-templates" element={<QuotationTemplatesView />} />
             <Route path="/staff/invoices" element={<InvoicesPlaceholder />} />
             <Route path="/staff/products" element={<ProductCatalogView />} />
             <Route path="/staff/plans" element={<PlanManagerView />} />
@@ -82,4 +88,3 @@ export const AppRoutes: React.FC = () => {
     </Routes>
   )
 }
-
