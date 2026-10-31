@@ -156,7 +156,16 @@ export const subscriptionService = {
   },
   transitionSubscription: async (id: string, action: SubscriptionAction): Promise<Subscription> => {
     if (ENV.USE_MOCK) return mockSubscriptionService.transitionSubscription(id, action)
-    const res = await apiClient.patch<Subscription>(`/subscriptions/${id}/transition`, { action })
+    const actionEndpointMap: Record<SubscriptionAction, string> = {
+      send_quotation: 'send-quote',
+      confirm: 'confirm',
+      activate: 'activate',
+      pause: 'pause',
+      renew: 'renew',
+      close: 'close',
+    }
+    const endpoint = actionEndpointMap[action] || action
+    const res = await apiClient.post<Subscription>(`/subscriptions/${id}/${endpoint}`)
     return res.data
   },
   listQuotationTemplates: async (): Promise<QuotationTemplate[]> => {
@@ -194,7 +203,8 @@ export const invoiceService = {
   },
   updateInvoiceStatus: async (id: string, status: InvoiceStatus): Promise<Invoice> => {
     if (ENV.USE_MOCK) return mockInvoiceService.updateInvoiceStatus(id, status)
-    const res = await apiClient.patch<Invoice>(`/invoices/${id}/status`, { status })
+    const endpoint = status === 'CONFIRMED' ? 'confirm' : status === 'CANCELLED' ? 'cancel' : 'status'
+    const res = await apiClient.post<Invoice>(`/invoices/${id}/${endpoint}`)
     return res.data
   },
   recordPayment: async (invoiceId: string, payment: Omit<Payment, 'id' | 'invoiceId' | 'createdAt'>): Promise<{ invoice: Invoice; payment: Payment }> => {
@@ -217,12 +227,12 @@ export const invoiceService = {
 export const dashboardService = {
   getFinanceKpis: async (): Promise<FinanceKpis> => {
     if (ENV.USE_MOCK) return mockDashboardService.getFinanceKpis()
-    const res = await apiClient.get<FinanceKpis>('/analytics/kpis')
+    const res = await apiClient.get<FinanceKpis>('/finance/summary')
     return res.data
   },
   getRevenueChart: async (period?: string): Promise<RevenueDataPoint[]> => {
     if (ENV.USE_MOCK) return mockDashboardService.getRevenueChart()
-    const res = await apiClient.get<RevenueDataPoint[]>('/analytics/revenue-chart', { params: { period } })
+    const res = await apiClient.get<RevenueDataPoint[]>('/finance/reports', { params: { period } })
     return res.data
   },
 }
