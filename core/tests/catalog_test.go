@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
-	"os"
 	"testing"
 	"time"
 
@@ -81,7 +80,6 @@ func TestCatalogEngineCalculations(t *testing.T) {
 
 func TestCatalogAPIEndpoints(t *testing.T) {
 	router := setupTestDB(t)
-	defer os.Remove("data/test_brightloop.db")
 
 	adminToken, err := auth.GenerateJWT("admin-1", "admin@brightloop.local", string(models.RoleAdmin))
 	if err != nil {

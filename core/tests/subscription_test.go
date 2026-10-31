@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
-	"os"
 	"testing"
 	"time"
 
@@ -87,7 +86,6 @@ func TestSubscriptionStateMachineRules(t *testing.T) {
 
 func TestSubscriptionLifecycleFlowAPI(t *testing.T) {
 	router := setupTestDB(t)
-	defer os.Remove("data/test_brightloop.db")
 
 	// Seed customer
 	customer := models.User{

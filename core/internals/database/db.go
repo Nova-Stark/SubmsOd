@@ -53,6 +53,9 @@ func InitDB(dbPath string) *gorm.DB {
 		&models.QuotationTemplateLine{},
 		&models.Subscription{},
 		&models.SubscriptionLine{},
+		&models.Invoice{},
+		&models.InvoiceLine{},
+		&models.Payment{},
 	)
 	if err != nil {
 		log.Fatalf("failed to auto-migrate database: %v", err)

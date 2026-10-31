@@ -56,14 +56,19 @@ func NewRouter() *gin.Engine {
 			protected.POST("/subscriptions/:id/close", handlers.CloseSubscription)
 			protected.POST("/subscriptions/:id/renew", handlers.RenewSubscription)
 
+			// Invoices - Read and Print (Customer Owner or Staff/Admin)
+			protected.GET("/invoices/:id", handlers.GetInvoice)
+			protected.GET("/invoices/:id/print", handlers.PrintInvoiceHTML)
+
 			// Customer Portal Routes
 			portal := protected.Group("/portal")
 			portal.Use(middleware.RequireRole(string(models.RoleCustomer), string(models.RoleAdmin), string(models.RoleStaff)))
 			{
 				portal.GET("/subscriptions", handlers.ListCustomerSubscriptions)
+				portal.GET("/invoices", handlers.ListCustomerInvoices)
 			}
 
-			// Staff & Admin Subscriptions Management
+			// Staff & Admin Subscriptions & Invoicing Management
 			staff := protected.Group("")
 			staff.Use(middleware.RequireRole(string(models.RoleAdmin), string(models.RoleStaff)))
 			{
@@ -75,6 +80,13 @@ func NewRouter() *gin.Engine {
 				staff.POST("/subscriptions", handlers.CreateSubscriptionDraft)
 				staff.POST("/subscriptions/:id/send-quote", handlers.SendQuote)
 				staff.POST("/subscriptions/:id/activate", handlers.ActivateSubscription)
+
+				// Billing & Invoices
+				staff.POST("/billing/run", handlers.TriggerBatchBilling)
+				staff.GET("/invoices", handlers.ListInvoices)
+				staff.POST("/invoices/:id/confirm", handlers.ConfirmInvoice)
+				staff.POST("/invoices/:id/cancel", handlers.CancelInvoice)
+				staff.POST("/invoices/:id/payments", handlers.LogPayment)
 			}
 
 			// Admin-only operations

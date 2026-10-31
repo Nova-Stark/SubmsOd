@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"net/http"
 	"net/http/httptest"
-	"os"
 	"sync"
 	"testing"
 	"time"
@@ -18,7 +17,6 @@ import (
 
 func TestConcurrentGoroutineIntegration(t *testing.T) {
 	router := setupTestDB(t)
-	defer os.Remove("data/test_brightloop.db")
 
 	// Seed product
 	prod := models.Product{
@@ -191,7 +189,7 @@ func TestConcurrentGoroutineIntegration(t *testing.T) {
 
 	// Verify total subscriptions in database matches worker count
 	var activeCount int64
-	database.DB.Model(&models.Subscription{}).Where("status = ?", models.StatusActive).Count(&activeCount)
+	database.DB.Model(&models.Subscription{}).Where("status = ? AND plan_id = ?", models.StatusActive, plan.ID).Count(&activeCount)
 	if activeCount != int64(numWorkers) {
 		t.Fatalf("expected %d active subscriptions, got %d", numWorkers, activeCount)
 	}

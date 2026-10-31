@@ -3,10 +3,12 @@ package tests
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"os"
 	"testing"
+	"time"
 
 	"submsod/internals/auth"
 	"submsod/internals/database"
@@ -17,10 +19,19 @@ import (
 
 func setupTestDB(t *testing.T) *gin.Engine {
 	gin.SetMode(gin.TestMode)
-	testDBPath := "data/test_brightloop.db"
-	_ = os.Remove(testDBPath)
+	testDBPath := fmt.Sprintf("data/test_%d_%d.db", os.Getpid(), time.Now().UnixNano())
 
 	database.InitDB(testDBPath)
+	t.Cleanup(func() {
+		if database.DB != nil {
+			if sqlDB, err := database.DB.DB(); err == nil {
+				_ = sqlDB.Close()
+			}
+		}
+		_ = os.Remove(testDBPath)
+		_ = os.Remove(testDBPath + "-wal")
+		_ = os.Remove(testDBPath + "-shm")
+	})
 	return server.NewRouter()
 }
 
@@ -47,7 +58,6 @@ func TestPasswordRules(t *testing.T) {
 
 func TestAuthFlow(t *testing.T) {
 	router := setupTestDB(t)
-	defer os.Remove("data/test_brightloop.db")
 
 	// 1. Signup Customer
 	signupBody, _ := json.Marshal(map[string]string{
