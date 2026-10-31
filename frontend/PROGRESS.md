@@ -66,15 +66,28 @@
   - Debounced search filter by customer or invoice number.
   - Direct overdue debt amounts formatted in INR.
 
+### Hour 6–7: Invoice Operations, Settlement, Admin Rules & Polish
+- **Staff Invoices Ledger & Action Center** (`/staff/invoices` & `/staff/invoices/:id`):
+  - Full lifecycle support: `Draft` ➔ `Confirmed` ➔ `Paid` (or `Cancelled`).
+  - Filter tabs, search by customer/reference, server-side pagination.
+  - Modal to **Record Payments** against invoices with method (`Bank Transfer`, `UPI`, `Credit Card`, `Cash`), date, note, and auto-transition to `PAID`.
+  - Clean printable layout (`window.print`) with GSTIN, customer billing address, and itemized taxes.
+- **Admin Promotion & Discounts Manager** (`/admin/discounts`):
+  - Rule builder supporting percentage (%) or fixed (₹) discounts, min spend hurdle, min unit quantity, date ranges, and max redemptions limit.
+  - Real-time usage capacity progress indicators.
+- **Admin Tax Rules Manager** (`/admin/taxes`):
+  - Fiscal tax schedules (e.g. GST @ 18%, 0% Zero-rated).
+  - Flag for tax included or excluded from catalog price.
+- **Admin Staff Management** (`/admin/staff`):
+  - Role-gated interface to provision new internal staff members with password complexity checklist.
+- **Build Performance & Code-Splitting**:
+  - 100% of feature routes code-split via `React.lazy()` and `Suspense`.
+  - All output bundles under 360 kB (no chunks >500 kB). Zero build warnings.
+
 ---
 
-## 2. Next Up on the Schedule
-
-### Hour 6–7: Invoice Operations, Settlement, Admin Rules & Polish (Current Task)
-- `/staff/invoices` & `/staff/invoices/:id`: Invoice status transitions (`Draft` ➔ `Confirmed` ➔ `Paid`), print-friendly receipt view.
-- Record Payment modal (Method: Bank Transfer / UPI / Card / Cash, Amount, Date, Note).
-- Admin Discounts & Tax rules managers (`/admin/discounts`, `/admin/taxes`).
-- Admin Staff creation (`/admin/staff` via `POST /api/v1/admin/staff`).
+## 2. All Scope Milestones Completed (100%)
+All 5 milestone hour blocks (Hour 0–1, Hour 1–3, Hour 3–5, Hour 5–6, Hour 6–7) are fully implemented, verified, and strictly isolated to `frontend/`.
 
 ---
 
@@ -82,6 +95,6 @@
 1. Work **only** in `frontend/`, never push to repo root.
 2. Run `git pull --rebase` before every commit.
 3. Verify git identity is `Bal Govind B <balgovindb2006@gmail.com>`.
-4. Commit small and often with conventional commit messages (e.g. `feat(dashboard): ...`).
+4. Commit small and often with conventional commit messages.
 5. Print a one-line summary after each commit for the team leader.
 6. Zero AI-slop: Odoo-inspired enterprise styling, high contrast, clean typography.

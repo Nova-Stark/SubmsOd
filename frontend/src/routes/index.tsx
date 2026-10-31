@@ -34,30 +34,27 @@ const QuotationTemplatesView = lazy(() =>
   import('@/features/quotation-templates/QuotationTemplatesView').then((m) => ({ default: m.QuotationTemplatesView }))
 )
 
-// Customer Portal Views (Hour 3-5)
+// Feature views
+const FinanceDashboardView = lazy(() =>
+  import('@/features/dashboard/FinanceDashboardView').then((m) => ({ default: m.FinanceDashboardView }))
+)
+const InvoiceListView = lazy(() =>
+  import('@/features/invoices/InvoiceListView').then((m) => ({ default: m.InvoiceListView }))
+)
 const CustomerSubscriptionsView = lazy(() =>
   import('@/features/customer-portal/CustomerSubscriptionsView').then((m) => ({ default: m.CustomerSubscriptionsView }))
 )
 const CustomerInvoicesView = lazy(() =>
   import('@/features/customer-portal/CustomerInvoicesView').then((m) => ({ default: m.CustomerInvoicesView }))
 )
-
-// Placeholders for subsequent hours
-// Finance Lead Dashboard (Hour 5-6)
-const FinanceDashboardView = lazy(() =>
-  import('@/features/dashboard/FinanceDashboardView').then((m) => ({ default: m.FinanceDashboardView }))
+const DiscountsManagerView = lazy(() =>
+  import('@/features/discounts/DiscountsManagerView').then((m) => ({ default: m.DiscountsManagerView }))
 )
-const InvoicesPlaceholder = lazy(() =>
-  import('@/features/invoices/InvoicesPlaceholder').then((m) => ({ default: m.InvoicesPlaceholder }))
+const TaxesManagerView = lazy(() =>
+  import('@/features/taxes/TaxesManagerView').then((m) => ({ default: m.TaxesManagerView }))
 )
-const DiscountsPlaceholder = lazy(() =>
-  import('@/features/discounts/DiscountsPlaceholder').then((m) => ({ default: m.DiscountsPlaceholder }))
-)
-const TaxesPlaceholder = lazy(() =>
-  import('@/features/taxes/TaxesPlaceholder').then((m) => ({ default: m.TaxesPlaceholder }))
-)
-const StaffPlaceholder = lazy(() =>
-  import('@/features/staff/StaffPlaceholder').then((m) => ({ default: m.StaffPlaceholder }))
+const StaffManagerView = lazy(() =>
+  import('@/features/staff/StaffManagerView').then((m) => ({ default: m.StaffManagerView }))
 )
 
 // Shared loading fallback for lazy routes
@@ -98,9 +95,9 @@ export const AppRoutes: React.FC = () => {
             <Route path="/admin/dashboard" element={<Suspense fallback={<RouteFallback />}><FinanceDashboardView /></Suspense>} />
             <Route path="/admin/products/new" element={<Suspense fallback={<RouteFallback />}><ProductCatalogView /></Suspense>} />
             <Route path="/admin/plans/new" element={<Suspense fallback={<RouteFallback />}><PlanManagerView /></Suspense>} />
-            <Route path="/admin/discounts" element={<Suspense fallback={<RouteFallback />}><DiscountsPlaceholder /></Suspense>} />
-            <Route path="/admin/taxes" element={<Suspense fallback={<RouteFallback />}><TaxesPlaceholder /></Suspense>} />
-            <Route path="/admin/staff" element={<Suspense fallback={<RouteFallback />}><StaffPlaceholder /></Suspense>} />
+            <Route path="/admin/discounts" element={<Suspense fallback={<RouteFallback />}><DiscountsManagerView /></Suspense>} />
+            <Route path="/admin/taxes" element={<Suspense fallback={<RouteFallback />}><TaxesManagerView /></Suspense>} />
+            <Route path="/admin/staff" element={<Suspense fallback={<RouteFallback />}><StaffManagerView /></Suspense>} />
           </Route>
 
           {/* Staff & Admin Operational Views */}
@@ -109,7 +106,8 @@ export const AppRoutes: React.FC = () => {
             <Route path="/staff/subscriptions/new" element={<Suspense fallback={<RouteFallback />}><SubscriptionForm /></Suspense>} />
             <Route path="/staff/subscriptions/:id" element={<Suspense fallback={<RouteFallback />}><SubscriptionDetailView /></Suspense>} />
             <Route path="/staff/quotation-templates" element={<Suspense fallback={<RouteFallback />}><QuotationTemplatesView /></Suspense>} />
-            <Route path="/staff/invoices" element={<Suspense fallback={<RouteFallback />}><InvoicesPlaceholder /></Suspense>} />
+            <Route path="/staff/invoices" element={<Suspense fallback={<RouteFallback />}><InvoiceListView /></Suspense>} />
+            <Route path="/staff/invoices/:id" element={<Suspense fallback={<RouteFallback />}><InvoiceListView /></Suspense>} />
             <Route path="/staff/products" element={<Suspense fallback={<RouteFallback />}><ProductCatalogView /></Suspense>} />
             <Route path="/staff/plans" element={<Suspense fallback={<RouteFallback />}><PlanManagerView /></Suspense>} />
           </Route>
