@@ -48,6 +48,35 @@ func NewRouter() *gin.Engine {
 				catalogGroup.GET("/taxes", handlers.ListTaxes)
 			}
 
+			// Subscriptions - Operations allowed for Customer (self-service) and Staff/Admin
+			protected.GET("/subscriptions/:id", handlers.GetSubscription)
+			protected.POST("/subscriptions/:id/confirm", handlers.ConfirmSubscription)
+			protected.POST("/subscriptions/:id/pause", handlers.PauseSubscription)
+			protected.POST("/subscriptions/:id/resume", handlers.ResumeSubscription)
+			protected.POST("/subscriptions/:id/close", handlers.CloseSubscription)
+			protected.POST("/subscriptions/:id/renew", handlers.RenewSubscription)
+
+			// Customer Portal Routes
+			portal := protected.Group("/portal")
+			portal.Use(middleware.RequireRole(string(models.RoleCustomer), string(models.RoleAdmin), string(models.RoleStaff)))
+			{
+				portal.GET("/subscriptions", handlers.ListCustomerSubscriptions)
+			}
+
+			// Staff & Admin Subscriptions Management
+			staff := protected.Group("")
+			staff.Use(middleware.RequireRole(string(models.RoleAdmin), string(models.RoleStaff)))
+			{
+				staff.GET("/quotation-templates", handlers.ListQuotationTemplates)
+				staff.POST("/quotation-templates", handlers.CreateQuotationTemplate)
+				staff.POST("/quotations/from-template", handlers.CreateDraftFromTemplate)
+
+				staff.GET("/subscriptions", handlers.ListSubscriptions)
+				staff.POST("/subscriptions", handlers.CreateSubscriptionDraft)
+				staff.POST("/subscriptions/:id/send-quote", handlers.SendQuote)
+				staff.POST("/subscriptions/:id/activate", handlers.ActivateSubscription)
+			}
+
 			// Admin-only operations
 			admin := protected.Group("/admin")
 			admin.Use(middleware.RequireRole(string(models.RoleAdmin)))
