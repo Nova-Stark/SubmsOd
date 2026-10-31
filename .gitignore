@@ -1,5 +1,12 @@
 .codegraph/
 .agents/
 *.db
-
 *.exe
+
+# Node & TypeScript artifacts
+node_modules/
+dist/
+coverage/
+*.log
+.env
+
