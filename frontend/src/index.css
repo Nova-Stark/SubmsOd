@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  --color-odoo-purple: #714b67;
+  --color-odoo-purple-hover: #5d3d54;
+  --color-odoo-purple-light: #f5eff3;
+  --color-odoo-purple-border: #d4b8cc;
+  --color-odoo-purple-dark: #4a2f44;
+
+  --color-odoo-teal: #017e84;
+  --color-odoo-teal-hover: #01656a;
+  --color-odoo-teal-light: #e6f3f4;
+  --color-odoo-teal-border: #a4d4d6;
+
+  --color-brand-primary: #714b67;
+  --color-brand-accent: #017e84;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background-color: #f8fafc;
+  color: #1e293b;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Print styles for invoices */
+@media print {
+  body {
+    background-color: #ffffff !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}
