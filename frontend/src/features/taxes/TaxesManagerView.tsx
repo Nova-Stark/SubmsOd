@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 import { catalogService } from '@/services'
 import { Card, CardContent } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
@@ -11,16 +14,44 @@ import { useToast } from '@/components/feedback/Toast'
 import { formatTaxRate } from '@/lib/formatters'
 import { Coins, Plus, Check } from 'lucide-react'
 
+const taxSchema = z.object({
+  name: z.string().min(2, 'Tax name must be at least 2 characters').max(50, 'Tax name cannot exceed 50 characters'),
+  ratePercent: z
+    .string()
+    .min(1, 'Rate is required')
+    .refine((v) => !isNaN(parseFloat(v)) && parseFloat(v) >= 0 && parseFloat(v) <= 100, {
+      message: 'Rate must be between 0% and 100%',
+    }),
+  computation: z.enum(['PERCENTAGE', 'FIXED']),
+  isIncluded: z.boolean(),
+})
+
+type TaxFormData = z.infer<typeof taxSchema>
+
 export const TaxesManagerView: React.FC = () => {
   const queryClient = useQueryClient()
   const { success, error: toastError } = useToast()
   const [showModal, setShowModal] = useState(false)
 
-  // Form states
-  const [name, setName] = useState('')
-  const [ratePercent, setRatePercent] = useState('18')
-  const [computation, setComputation] = useState<'PERCENTAGE' | 'FIXED'>('PERCENTAGE')
-  const [isIncluded, setIsIncluded] = useState(false)
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    setValue,
+    formState: { errors, isValid },
+  } = useForm<TaxFormData>({
+    resolver: zodResolver(taxSchema),
+    mode: 'onChange',
+    defaultValues: {
+      name: '',
+      ratePercent: '18',
+      computation: 'PERCENTAGE',
+      isIncluded: false,
+    },
+  })
+
+  const isIncludedWatch = watch('isIncluded')
 
   const { data: taxes = [], isLoading } = useQuery({
     queryKey: ['taxes'],
@@ -28,42 +59,35 @@ export const TaxesManagerView: React.FC = () => {
   })
 
   const createTaxMutation = useMutation({
-    mutationFn: () =>
+    mutationFn: (data: TaxFormData) =>
       catalogService.createTax({
-        name,
-        rate: Math.round(parseFloat(ratePercent) * 100),
-        computation,
-        isIncludedInPrice: isIncluded,
+        name: data.name,
+        rate: Math.round(parseFloat(data.ratePercent) * 100),
+        computation: data.computation,
+        isIncludedInPrice: data.isIncluded,
       }),
     onSuccess: (newTax) => {
       queryClient.invalidateQueries({ queryKey: ['taxes'] })
       success(`Tax rule "${newTax.name}" created successfully!`)
       setShowModal(false)
-      setName('')
-      setRatePercent('18')
-      setIsIncluded(false)
+      reset()
     },
     onError: (err: unknown) => {
       toastError((err as { message?: string })?.message || 'Failed to create tax rule.')
     },
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!name.trim()) {
-      toastError('Tax rule name is required.')
-      return
-    }
-    createTaxMutation.mutate()
+  const onSubmit = (data: TaxFormData) => {
+    createTaxMutation.mutate(data)
   }
 
   return (
     <div className="space-y-6 max-w-5xl mx-auto">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-xl font-bold text-slate-900 tracking-tight">Tax Rules & Calculation</h1>
+          <h1 className="text-xl font-bold text-slate-900 tracking-tight">Tax Schedules & Rules</h1>
           <p className="text-xs text-slate-500 mt-0.5">
-            Admin Only: Configure GST, VAT, and inclusive/exclusive price calculation schedules
+            Admin Only: Configure GST, VAT, and fiscal tax rates applied to subscription order lines
           </p>
         </div>
         <Button variant="primary" onClick={() => setShowModal(true)}>
@@ -73,114 +97,139 @@ export const TaxesManagerView: React.FC = () => {
 
       <Card>
         <CardContent className="p-0">
-          {isLoading ? (
-            <div className="p-6"><SkeletonLoader rows={4} /></div>
-          ) : taxes.length === 0 ? (
-            <div className="p-8">
-              <EmptyState
-                icon={Coins}
-                title="No Tax Rules Defined"
-                description="Click 'Add Tax Rule' above to establish system-wide tax schedules."
-              />
+          <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50/50">
+            <div className="flex items-center gap-2">
+              <Coins className="w-4 h-4 text-slate-600" />
+              <h2 className="text-xs font-semibold text-slate-800 uppercase tracking-wide">
+                Configured Fiscal Tax Rules ({taxes.length})
+              </h2>
             </div>
+            <span className="text-[11px] text-slate-500">Standard GST 18% applied by default</span>
+          </div>
+
+          {isLoading ? (
+            <div className="p-6">
+              <SkeletonLoader rows={3} />
+            </div>
+          ) : taxes.length === 0 ? (
+            <EmptyState
+              icon={Coins}
+              title="No Tax Rules Defined"
+              description="Add your first tax rate to ensure compliant invoicing and automated order line tax computation."
+              actionLabel="Add Tax Rule"
+              onAction={() => setShowModal(true)}
+            />
           ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse text-xs">
-                <thead className="bg-slate-50 border-b border-slate-200 text-[11px] font-semibold text-slate-500 uppercase">
-                  <tr>
-                    <th className="py-3 px-4">Tax Schedule Name</th>
-                    <th className="py-3 px-4">Computation Type</th>
-                    <th className="py-3 px-4 text-right">Applicable Rate</th>
-                    <th className="py-3 px-4 text-center">Tax Included in Price</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100">
-                  {taxes.map((tax) => (
-                    <tr key={tax.id} className="hover:bg-slate-50/50">
-                      <td className="py-3 px-4 font-semibold text-slate-900">{tax.name}</td>
-                      <td className="py-3 px-4 text-slate-600">{tax.computation}</td>
-                      <td className="py-3 px-4 text-right font-mono font-bold text-[#714b67]">
-                        {formatTaxRate(tax.rate)}
-                      </td>
-                      <td className="py-3 px-4 text-center">
-                        {tax.isIncludedInPrice ? (
-                          <span className="inline-flex items-center gap-1 text-emerald-700 text-[11px] font-medium">
-                            <Check className="w-3.5 h-3.5" /> Included
+            <div className="divide-y divide-slate-100">
+              {taxes.map((tax) => (
+                <div key={tax.id} className="p-4 sm:px-6 flex items-center justify-between hover:bg-slate-50 transition-colors">
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-lg bg-teal-50 text-[#017e84] flex items-center justify-center font-bold text-xs">
+                      %
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-bold text-slate-900">{tax.name}</span>
+                        {tax.isIncludedInPrice && (
+                          <span className="text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-medium">
+                            Included in Price
                           </span>
-                        ) : (
-                          <span className="text-slate-400 text-[11px]">Excluded (Added at checkout)</span>
                         )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                      </div>
+                      <span className="text-[11px] text-slate-500">
+                        Type: {tax.computation} • Rate Schedule: {formatTaxRate(tax.rate)}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="text-right">
+                    <span className="text-sm font-bold font-mono text-[#017e84]">
+                      {formatTaxRate(tax.rate)}
+                    </span>
+                  </div>
+                </div>
+              ))}
             </div>
           )}
         </CardContent>
       </Card>
 
-      {/* Add Tax Modal */}
+      {/* Create Tax Modal */}
       <Modal
         isOpen={showModal}
-        onClose={() => setShowModal(false)}
+        onClose={() => {
+          setShowModal(false)
+          reset()
+        }}
         title="Add Fiscal Tax Rule"
       >
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <Input
-            label="Tax Schedule Name"
-            type="text"
-            placeholder="e.g. GST @ 18% (Standard SaaS Rate)"
-            required
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-
-          <div className="grid grid-cols-2 gap-3">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <div>
             <Input
-              label="Tax Rate Percentage (%)"
-              type="number"
-              step="0.01"
-              min="0"
-              max="100"
+              label="Tax Rule Name"
+              type="text"
+              placeholder="e.g. GST 18% (Standard Rate)"
               required
-              value={ratePercent}
-              onChange={(e) => setRatePercent(e.target.value)}
+              error={errors.name?.message}
+              {...register('name')}
             />
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <Input
+                label="Tax Rate (%)"
+                type="number"
+                step="0.01"
+                min="0"
+                max="100"
+                required
+                error={errors.ratePercent?.message}
+                {...register('ratePercent')}
+              />
+            </div>
             <div>
               <label className="text-xs font-semibold text-slate-700 block mb-1.5">Computation</label>
               <select
-                value={computation}
-                onChange={(e) => setComputation(e.target.value as 'PERCENTAGE' | 'FIXED')}
+                {...register('computation')}
                 className="w-full text-xs h-9 rounded-md border border-slate-300 px-3 bg-white"
               >
-                <option value="PERCENTAGE">Percentage (%)</option>
+                <option value="PERCENTAGE">Percentage of Price</option>
                 <option value="FIXED">Fixed Amount</option>
               </select>
             </div>
           </div>
 
-          <label className="flex items-center gap-2 cursor-pointer pt-1">
-            <input
-              type="checkbox"
-              checked={isIncluded}
-              onChange={(e) => setIsIncluded(e.target.checked)}
-              className="rounded border-slate-300 text-[#714b67] focus:ring-[#714b67]"
-            />
-            <span className="text-xs text-slate-700">Tax is already included in catalog sales price</span>
-          </label>
+          <div className="pt-2">
+            <label className="flex items-center gap-2 text-xs text-slate-700 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={isIncludedWatch}
+                onChange={(e) => setValue('isIncluded', e.target.checked, { shouldValidate: true })}
+                className="rounded border-slate-300 text-[#017e84] focus:ring-[#017e84]"
+              />
+              <span>Tax is already included in catalog sales price (Tax-Inclusive)</span>
+            </label>
+          </div>
 
           <div className="flex items-center justify-end gap-2 pt-3 border-t border-slate-200">
-            <Button type="button" variant="outline" onClick={() => setShowModal(false)}>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => {
+                setShowModal(false)
+                reset()
+              }}
+            >
               Cancel
             </Button>
             <Button
               type="submit"
-              variant="primary"
+              variant="teal"
               isLoading={createTaxMutation.isPending}
-              disabled={!name.trim()}
+              disabled={!isValid}
             >
-              <Coins className="w-4 h-4" /> Save Tax Schedule
+              <Check className="w-4 h-4" /> Save Tax Rule
             </Button>
           </div>
         </form>

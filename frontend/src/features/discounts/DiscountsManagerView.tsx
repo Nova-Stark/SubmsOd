@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 import { catalogService } from '@/services'
 import { Card, CardContent } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
@@ -11,25 +14,98 @@ import { useToast } from '@/components/feedback/Toast'
 import { formatCurrency, formatDate } from '@/lib/formatters'
 import { Percent, Plus, Tag, Calendar } from 'lucide-react'
 
+const discountSchema = z
+  .object({
+    code: z
+      .string()
+      .min(2, 'Code must be at least 2 characters')
+      .max(30, 'Code cannot exceed 30 characters')
+      .regex(/^[A-Za-z0-9_-]+$/, 'Code can only contain letters, numbers, and hyphens'),
+    type: z.enum(['PERCENTAGE', 'FIXED']),
+    value: z
+      .string()
+      .min(1, 'Value is required')
+      .refine((v) => !isNaN(parseFloat(v)) && parseFloat(v) > 0, {
+        message: 'Value must be greater than 0',
+      }),
+    minSpend: z
+      .string()
+      .refine((v) => !v || (!isNaN(parseFloat(v)) && parseFloat(v) >= 0), {
+        message: 'Minimum spend must be 0 or higher',
+      }),
+    minQty: z
+      .string()
+      .refine((v) => !v || (!isNaN(parseInt(v, 10)) && parseInt(v, 10) >= 1), {
+        message: 'Minimum quantity must be at least 1',
+      }),
+    startDate: z.string().min(1, 'Start date is required'),
+    endDate: z.string().min(1, 'End date is required'),
+    maxUsage: z
+      .string()
+      .refine((v) => !v || (!isNaN(parseInt(v, 10)) && parseInt(v, 10) >= 1), {
+        message: 'Max usage must be at least 1',
+      }),
+    target: z.enum(['SUBSCRIPTION', 'PRODUCT']),
+  })
+  .refine((data) => data.endDate >= data.startDate, {
+    message: 'End date must be on or after start date',
+    path: ['endDate'],
+  })
+  .refine(
+    (data) => {
+      if (data.type === 'PERCENTAGE') {
+        return parseFloat(data.value || '0') <= 100
+      }
+      return true
+    },
+    {
+      message: 'Percentage discount cannot exceed 100%',
+      path: ['value'],
+    }
+  )
+
+type DiscountFormData = z.infer<typeof discountSchema>
+
+const getDefaultDates = () => {
+  const start = new Date().toISOString().split('T')[0]
+  const endD = new Date()
+  endD.setMonth(endD.getMonth() + 2)
+  return {
+    startDate: start,
+    endDate: endD.toISOString().split('T')[0],
+  }
+}
+
 export const DiscountsManagerView: React.FC = () => {
   const queryClient = useQueryClient()
   const { success, error: toastError } = useToast()
   const [showModal, setShowModal] = useState(false)
 
-  // Form states
-  const [code, setCode] = useState('')
-  const [type, setType] = useState<'PERCENTAGE' | 'FIXED'>('PERCENTAGE')
-  const [value, setValue] = useState('15')
-  const [minSpend, setMinSpend] = useState('1000')
-  const [minQty, setMinQty] = useState('1')
-  const [startDate, setStartDate] = useState(new Date().toISOString().split('T')[0])
-  const [endDate, setEndDate] = useState(() => {
-    const d = new Date()
-    d.setMonth(d.getMonth() + 2)
-    return d.toISOString().split('T')[0]
+  const defaultDates = getDefaultDates()
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors, isValid },
+  } = useForm<DiscountFormData>({
+    resolver: zodResolver(discountSchema),
+    mode: 'onChange',
+    defaultValues: {
+      code: '',
+      type: 'PERCENTAGE',
+      value: '15',
+      minSpend: '1000',
+      minQty: '1',
+      startDate: defaultDates.startDate,
+      endDate: defaultDates.endDate,
+      maxUsage: '100',
+      target: 'SUBSCRIPTION',
+    },
   })
-  const [maxUsage, setMaxUsage] = useState('100')
-  const [target, setTarget] = useState<'SUBSCRIPTION' | 'PRODUCT'>('SUBSCRIPTION')
+
+  const watchType = watch('type')
 
   const { data: discounts = [], isLoading } = useQuery({
     queryKey: ['discounts'],
@@ -37,129 +113,139 @@ export const DiscountsManagerView: React.FC = () => {
   })
 
   const createDiscountMutation = useMutation({
-    mutationFn: () => {
+    mutationFn: (data: DiscountFormData) => {
       const parsedValue =
-        type === 'PERCENTAGE'
-          ? Math.round(parseFloat(value) * 100) // 15% -> 1500
-          : Math.round(parseFloat(value) * 100) // ₹500 -> 50000 paise
+        data.type === 'PERCENTAGE'
+          ? Math.round(parseFloat(data.value) * 100) // 15% -> 1500
+          : Math.round(parseFloat(data.value) * 100) // ₹500 -> 50000 paise
 
       return catalogService.createDiscount({
-        code: code.trim().toUpperCase(),
-        type,
+        code: data.code.trim().toUpperCase(),
+        type: data.type,
         value: parsedValue,
-        minSpend: Math.round(parseFloat(minSpend || '0') * 100),
-        minQty: parseInt(minQty || '1', 10),
-        startDate,
-        endDate,
-        maxUsage: parseInt(maxUsage || '100', 10),
-        target,
+        minSpend: Math.round(parseFloat(data.minSpend || '0') * 100),
+        minQty: parseInt(data.minQty || '1', 10),
+        startDate: data.startDate,
+        endDate: data.endDate,
+        maxUsage: parseInt(data.maxUsage || '100', 10),
+        target: data.target,
       })
     },
     onSuccess: (newDisc) => {
       queryClient.invalidateQueries({ queryKey: ['discounts'] })
       success(`Coupon code "${newDisc.code}" created successfully!`)
       setShowModal(false)
-      setCode('')
-      setValue('15')
-      setMinSpend('1000')
+      reset()
     },
     onError: (err: unknown) => {
-      toastError((err as { message?: string })?.message || 'Failed to create discount coupon.')
+      toastError((err as { message?: string })?.message || 'Failed to create discount.')
     },
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!code.trim()) {
-      toastError('Coupon code is required.')
-      return
-    }
-    createDiscountMutation.mutate()
+  const onSubmit = (data: DiscountFormData) => {
+    createDiscountMutation.mutate(data)
   }
 
   return (
     <div className="space-y-6 max-w-5xl mx-auto">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-xl font-bold text-slate-900 tracking-tight">Discounts & Promotion Rules</h1>
+          <h1 className="text-xl font-bold text-slate-900 tracking-tight">Promotions & Discounts</h1>
           <p className="text-xs text-slate-500 mt-0.5">
-            Admin Only: Configure coupon codes, spend hurdles, and usage capacity
+            Admin Only: Manage coupon codes, volume incentives, and subscription-level price reductions
           </p>
         </div>
         <Button variant="primary" onClick={() => setShowModal(true)}>
-          <Plus className="w-4 h-4" /> Create Discount Rule
+          <Plus className="w-4 h-4" /> Create Coupon / Discount
         </Button>
       </div>
 
       <Card>
         <CardContent className="p-0">
-          {isLoading ? (
-            <div className="p-6"><SkeletonLoader rows={4} /></div>
-          ) : discounts.length === 0 ? (
-            <div className="p-8">
-              <EmptyState
-                icon={Percent}
-                title="No Discount Rules Found"
-                description="Click 'Create Discount Rule' above to establish promotional incentives."
-              />
+          <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50/50">
+            <div className="flex items-center gap-2">
+              <Tag className="w-4 h-4 text-slate-600" />
+              <h2 className="text-xs font-semibold text-slate-800 uppercase tracking-wide">
+                Configured Promotion Rules ({discounts.length})
+              </h2>
             </div>
+            <span className="text-[11px] text-slate-500">Auto-validated in Subscription Form</span>
+          </div>
+
+          {isLoading ? (
+            <div className="p-6">
+              <SkeletonLoader rows={4} />
+            </div>
+          ) : discounts.length === 0 ? (
+            <EmptyState
+              icon={Tag}
+              title="No Discount Rules"
+              description="Create promotional coupon codes to offer price reductions on subscriptions and products."
+              actionLabel="Create First Discount"
+              onAction={() => setShowModal(true)}
+            />
           ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse text-xs">
-                <thead className="bg-slate-50 border-b border-slate-200 text-[11px] font-semibold text-slate-500 uppercase">
-                  <tr>
-                    <th className="py-3 px-4">Coupon Code</th>
-                    <th className="py-3 px-4">Type & Benefit</th>
-                    <th className="py-3 px-4">Qualification Hurdles</th>
-                    <th className="py-3 px-4">Validity Window</th>
-                    <th className="py-3 px-4 text-center">Usage Burn</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100">
-                  {discounts.map((disc) => (
-                    <tr key={disc.id} className="hover:bg-slate-50/50">
-                      <td className="py-3 px-4">
-                        <div className="font-mono font-bold text-slate-900 flex items-center gap-1.5">
-                          <Tag className="w-3.5 h-3.5 text-[#714b67]" /> {disc.code}
+            <div className="divide-y divide-slate-100">
+              {discounts.map((disc) => {
+                const isExpired = new Date(disc.endDate) < new Date()
+                const isLimitReached = disc.currentUsage >= disc.maxUsage
+
+                return (
+                  <div key={disc.id} className="p-4 sm:px-6 flex items-center justify-between hover:bg-slate-50 transition-colors">
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-lg bg-purple-50 text-[#714b67] flex items-center justify-center font-bold text-sm">
+                        <Percent className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-bold font-mono text-slate-900">{disc.code}</span>
+                          <span className="text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-medium">
+                            {disc.target}
+                          </span>
+                          {isExpired ? (
+                            <span className="text-[10px] bg-rose-50 text-rose-600 px-1.5 py-0.5 rounded font-semibold border border-rose-200">
+                              Expired
+                            </span>
+                          ) : isLimitReached ? (
+                            <span className="text-[10px] bg-amber-50 text-amber-700 px-1.5 py-0.5 rounded font-semibold border border-amber-200">
+                              Limit Reached
+                            </span>
+                          ) : (
+                            <span className="text-[10px] bg-emerald-50 text-emerald-700 px-1.5 py-0.5 rounded font-semibold border border-emerald-200">
+                              Active
+                            </span>
+                          )}
                         </div>
-                        <div className="text-[11px] text-slate-500 mt-0.5">
-                          Target: <span className="font-medium text-slate-700">{disc.target}</span>
+
+                        <div className="flex items-center gap-3 text-xs text-slate-500 mt-1">
+                          <span>
+                            Min Spend: <strong>{formatCurrency(disc.minSpend)}</strong>
+                          </span>
+                          <span>•</span>
+                          <span>
+                            Min Qty: <strong>{disc.minQty}</strong>
+                          </span>
+                          <span>•</span>
+                          <span className="flex items-center gap-1 text-slate-400">
+                            <Calendar className="w-3 h-3" /> {formatDate(disc.startDate)} → {formatDate(disc.endDate)}
+                          </span>
                         </div>
-                      </td>
-                      <td className="py-3 px-4">
-                        <span className="font-bold text-emerald-700">
-                          {disc.type === 'PERCENTAGE'
-                            ? `${(disc.value / 100).toFixed(0)}% Off`
-                            : `${formatCurrency(disc.value)} Off`}
-                        </span>
-                      </td>
-                      <td className="py-3 px-4 text-slate-600">
-                        <div>Min Spend: <span className="font-mono font-medium">{formatCurrency(disc.minSpend)}</span></div>
-                        <div className="text-[11px] text-slate-400">Min Qty: {disc.minQty} units</div>
-                      </td>
-                      <td className="py-3 px-4 font-mono text-slate-500">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-3 h-3 text-slate-400" />
-                          <span>{formatDate(disc.startDate)} → {formatDate(disc.endDate)}</span>
-                        </div>
-                      </td>
-                      <td className="py-3 px-4 text-center">
-                        <div className="font-mono font-bold text-slate-800">
-                          {disc.currentUsage} / {disc.maxUsage}
-                        </div>
-                        <div className="w-20 bg-slate-200 rounded-full h-1.5 mx-auto mt-1 overflow-hidden">
-                          <div
-                            className="bg-[#714b67] h-full rounded-full"
-                            style={{
-                              width: `${Math.min(100, Math.round((disc.currentUsage / disc.maxUsage) * 100))}%`,
-                            }}
-                          />
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                      </div>
+                    </div>
+
+                    <div className="text-right">
+                      <div className="text-sm font-bold font-mono text-[#714b67]">
+                        {disc.type === 'PERCENTAGE'
+                          ? `${(disc.value / 100).toFixed(0)}% OFF`
+                          : `-${formatCurrency(disc.value)}`}
+                      </div>
+                      <div className="text-[11px] text-slate-500 mt-0.5">
+                        Used: <strong>{disc.currentUsage}</strong> / {disc.maxUsage}
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           )}
         </CardContent>
@@ -168,105 +254,135 @@ export const DiscountsManagerView: React.FC = () => {
       {/* Create Modal */}
       <Modal
         isOpen={showModal}
-        onClose={() => setShowModal(false)}
-        title="Create Promotional Discount Rule"
+        onClose={() => {
+          setShowModal(false)
+          reset()
+        }}
+        title="Create Promotional Discount"
       >
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <Input
-            label="Coupon Code"
-            type="text"
-            placeholder="e.g. DIWALI2026"
-            required
-            value={code}
-            onChange={(e) => setCode(e.target.value.toUpperCase())}
-          />
-
-          <div className="grid grid-cols-2 gap-3">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="text-xs font-semibold text-slate-700 block mb-1.5">Benefit Type</label>
+              <Input
+                label="Coupon Code"
+                type="text"
+                placeholder="e.g. DIWALI2026"
+                required
+                error={errors.code?.message}
+                {...register('code')}
+              />
+            </div>
+            <div>
+              <label className="text-xs font-semibold text-slate-700 block mb-1.5">Discount Target</label>
               <select
-                value={type}
-                onChange={(e) => setType(e.target.value as 'PERCENTAGE' | 'FIXED')}
+                {...register('target')}
                 className="w-full text-xs h-9 rounded-md border border-slate-300 px-3 bg-white"
               >
-                <option value="PERCENTAGE">Percentage (%) Off</option>
-                <option value="FIXED">Fixed Amount (₹) Off</option>
+                <option value="SUBSCRIPTION">Whole Subscription Contract</option>
+                <option value="PRODUCT">Specific Product Lines Only</option>
               </select>
             </div>
-            <Input
-              label={type === 'PERCENTAGE' ? 'Discount Percentage (%)' : 'Discount Amount (₹)'}
-              type="number"
-              step="any"
-              min="1"
-              required
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-            />
           </div>
 
-          <div className="grid grid-cols-3 gap-3">
-            <Input
-              label="Min Spend (₹)"
-              type="number"
-              step="any"
-              min="0"
-              value={minSpend}
-              onChange={(e) => setMinSpend(e.target.value)}
-            />
-            <Input
-              label="Min Units Qty"
-              type="number"
-              min="1"
-              value={minQty}
-              onChange={(e) => setMinQty(e.target.value)}
-            />
-            <Input
-              label="Max Redemptions"
-              type="number"
-              min="1"
-              value={maxUsage}
-              onChange={(e) => setMaxUsage(e.target.value)}
-            />
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="text-xs font-semibold text-slate-700 block mb-1.5">Calculation Type</label>
+              <select
+                {...register('type')}
+                className="w-full text-xs h-9 rounded-md border border-slate-300 px-3 bg-white"
+              >
+                <option value="PERCENTAGE">Percentage (%)</option>
+                <option value="FIXED">Fixed Amount (₹)</option>
+              </select>
+            </div>
+            <div>
+              <Input
+                label={watchType === 'PERCENTAGE' ? 'Discount Value (%)' : 'Discount Value (₹)'}
+                type="number"
+                step="0.01"
+                min="0.01"
+                max={watchType === 'PERCENTAGE' ? '100' : undefined}
+                required
+                error={errors.value?.message}
+                {...register('value')}
+              />
+            </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
-            <Input
-              label="Active From"
-              type="date"
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
-            />
-            <Input
-              label="Valid Until"
-              type="date"
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
-            />
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <Input
+                label="Minimum Spend (₹)"
+                type="number"
+                step="1"
+                min="0"
+                error={errors.minSpend?.message}
+                {...register('minSpend')}
+              />
+            </div>
+            <div>
+              <Input
+                label="Minimum Quantity"
+                type="number"
+                step="1"
+                min="1"
+                error={errors.minQty?.message}
+                {...register('minQty')}
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <Input
+                label="Start Date"
+                type="date"
+                required
+                error={errors.startDate?.message}
+                {...register('startDate')}
+              />
+            </div>
+            <div>
+              <Input
+                label="End Date"
+                type="date"
+                required
+                error={errors.endDate?.message}
+                {...register('endDate')}
+              />
+            </div>
           </div>
 
           <div>
-            <label className="text-xs font-semibold text-slate-700 block mb-1.5">Apply Target</label>
-            <select
-              value={target}
-              onChange={(e) => setTarget(e.target.value as 'SUBSCRIPTION' | 'PRODUCT')}
-              className="w-full text-xs h-9 rounded-md border border-slate-300 px-3 bg-white"
-            >
-              <option value="SUBSCRIPTION">Whole Subscription Order</option>
-              <option value="PRODUCT">Specific Product Lines</option>
-            </select>
+            <Input
+              label="Maximum Allowed Redemptions"
+              type="number"
+              step="1"
+              min="1"
+              required
+              error={errors.maxUsage?.message}
+              {...register('maxUsage')}
+            />
           </div>
 
           <div className="flex items-center justify-end gap-2 pt-3 border-t border-slate-200">
-            <Button type="button" variant="outline" onClick={() => setShowModal(false)}>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => {
+                setShowModal(false)
+                reset()
+              }}
+            >
               Cancel
             </Button>
             <Button
               type="submit"
               variant="primary"
               isLoading={createDiscountMutation.isPending}
-              disabled={!code.trim() || !value}
+              disabled={!isValid}
             >
-              <Percent className="w-4 h-4" /> Save Discount Rule
+              <Plus className="w-4 h-4" /> Save Discount Rule
             </Button>
           </div>
         </form>
