@@ -30,7 +30,7 @@ apiClient.interceptors.response.use(
     const normalizedError: ApiError = {
       code: errorData?.code || `HTTP_${error.response?.status || 'UNKNOWN'}`,
       message: errorData?.message || errorData?.error || error.message || 'An unexpected error occurred',
-      fieldErrors: errorData?.fieldErrors || {},
+      fieldErrors: errorData?.fieldErrors,
     }
 
     if (error.response?.status === 401) {
