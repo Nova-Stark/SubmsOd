@@ -134,7 +134,7 @@ export const PlanManagerView: React.FC = () => {
                     {formatCurrency(plan.price)}
                   </span>
                   <span className="text-xs text-slate-500 font-sans ml-1">
-                    / {plan.billingPeriod.toLowerCase().replace('ly', '')}
+                    / {plan.billingPeriod === 'DAILY' ? 'day' : plan.billingPeriod.toLowerCase().replace('ly', '')}
                   </span>
                 </div>
               </CardHeader>
