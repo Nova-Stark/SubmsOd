@@ -18,8 +18,9 @@ import { FinanceDashboardPlaceholder } from '@/features/dashboard/FinanceDashboa
 import { SubscriptionsPlaceholder } from '@/features/subscriptions/SubscriptionsPlaceholder'
 import { QuotationTemplatesPlaceholder } from '@/features/quotation-templates/QuotationTemplatesPlaceholder'
 import { InvoicesPlaceholder } from '@/features/invoices/InvoicesPlaceholder'
-import { ProductsPlaceholder } from '@/features/products/ProductsPlaceholder'
-import { PlansPlaceholder } from '@/features/plans/PlansPlaceholder'
+// Core Catalog Views
+import { ProductCatalogView } from '@/features/products/ProductCatalogView'
+import { PlanManagerView } from '@/features/plans/PlanManagerView'
 import { DiscountsPlaceholder } from '@/features/discounts/DiscountsPlaceholder'
 import { TaxesPlaceholder } from '@/features/taxes/TaxesPlaceholder'
 import { StaffPlaceholder } from '@/features/staff/StaffPlaceholder'
@@ -51,8 +52,8 @@ export const AppRoutes: React.FC = () => {
           {/* Admin-only Routes (Finance Lead & System Controls) */}
           <Route element={<RoleGuard allowedRoles={['ADMIN']} />}>
             <Route path="/admin/dashboard" element={<FinanceDashboardPlaceholder />} />
-            <Route path="/admin/products/new" element={<ProductsPlaceholder />} />
-            <Route path="/admin/plans/new" element={<PlansPlaceholder />} />
+            <Route path="/admin/products/new" element={<ProductCatalogView />} />
+            <Route path="/admin/plans/new" element={<PlanManagerView />} />
             <Route path="/admin/discounts" element={<DiscountsPlaceholder />} />
             <Route path="/admin/taxes" element={<TaxesPlaceholder />} />
             <Route path="/admin/staff" element={<StaffPlaceholder />} />
@@ -64,8 +65,8 @@ export const AppRoutes: React.FC = () => {
             <Route path="/staff/subscriptions/new" element={<SubscriptionsPlaceholder />} />
             <Route path="/staff/quotation-templates" element={<QuotationTemplatesPlaceholder />} />
             <Route path="/staff/invoices" element={<InvoicesPlaceholder />} />
-            <Route path="/staff/products" element={<ProductsPlaceholder />} />
-            <Route path="/staff/plans" element={<PlansPlaceholder />} />
+            <Route path="/staff/products" element={<ProductCatalogView />} />
+            <Route path="/staff/plans" element={<PlanManagerView />} />
           </Route>
 
           {/* Customer Portal (Customer Only) */}
@@ -81,3 +82,4 @@ export const AppRoutes: React.FC = () => {
     </Routes>
   )
 }
+
