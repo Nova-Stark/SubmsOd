@@ -8,7 +8,9 @@ Monolithic Go + Gin backend with GORM & SQLite in `core/`.
 3. **Product Variants**: E.g. Brand: Odoo (+560 extra price).
 4. **Subscription Lifecycle**: `Draft` -> `Quotation` -> `Confirmed` -> `Active` -> `Closed` (plus `Paused`).
 5. **Invoice Lifecycle**: `Draft` -> `Confirmed` -> `Paid` / `Cancelled`.
-6. **Batch Billing**: Idempotent recurring invoice generation based on plan frequencies (`daily`, `weekly`, `monthly`, `yearly`).
+6. **Batch Billing**: Idempotent recurring invoice generation based on plan frequencies (`monthly`, `yearly`) using composite unique index `(subscription_id, billing_period_start)`.
 7. **Discounts**: Admin-defined, fixed/percentage, product or subscription scope, min purchase/quantity, usage limits and date windows.
 8. **Payments & AR**: Multi-method logging, invoice settlement, overdue invoice aging buckets.
-9. **Finance Analytics**: Active subscriptions, collected revenue, outstanding AR, overdue list, sub-second responses.
+9. **Finance Analytics**: Active subscriptions, collected revenue, outstanding AR, overdue list, sub-second responses (<2ms).
+10. **Developer Guide**: Comprehensive reference in `core/DEVELOPER_GUIDE.md`.
+
