@@ -9,7 +9,8 @@
     "dev": "tsx watch src/server.ts",
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "generate:fixtures": "tsx src/fixtures/generator.ts"
   },
   "dependencies": {
     "express": "^4.21.2",

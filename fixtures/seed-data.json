@@ -1,0 +1,6609 @@
+{
+  "products": [
+    {
+      "id": "prod-crm-001",
+      "name": "Brightloop CRM Core",
+      "type": "SOFTWARE",
+      "sales_price": 15000,
+      "cost_price": 5000,
+      "notes": "Customer Relationship Management core license",
+      "variants": [
+        {
+          "id": "var-crm-apac",
+          "variant_name": "Region: APAC Cloud",
+          "price_extra": 2000
+        },
+        {
+          "id": "var-crm-us",
+          "variant_name": "Region: US East",
+          "price_extra": 3500
+        },
+        {
+          "id": "var-crm-self",
+          "variant_name": "Deployment: Self-Hosted",
+          "price_extra": -2000
+        }
+      ]
+    },
+    {
+      "id": "prod-erp-002",
+      "name": "Brightloop ERP Enterprise",
+      "type": "SOFTWARE",
+      "sales_price": 50000,
+      "cost_price": 18000,
+      "notes": "Enterprise Resource Planning full suite",
+      "variants": [
+        {
+          "id": "var-erp-odoo",
+          "variant_name": "Brand: Odoo Connector",
+          "price_extra": 56000
+        },
+        {
+          "id": "var-erp-sap",
+          "variant_name": "Brand: SAP Bridge",
+          "price_extra": 85000
+        }
+      ]
+    },
+    {
+      "id": "prod-addon-ai-003",
+      "name": "Brightloop AI Copilot Add-on",
+      "type": "ADDON",
+      "sales_price": 12000,
+      "cost_price": 4000,
+      "notes": "Automated workflow intelligence and summarization",
+      "variants": [
+        {
+          "id": "var-ai-unlimited",
+          "variant_name": "Tier: Unlimited Tokens",
+          "price_extra": 15000
+        }
+      ]
+    },
+    {
+      "id": "prod-svc-support-004",
+      "name": "24/7 Dedicated Support SLA",
+      "type": "SERVICE",
+      "sales_price": 25000,
+      "cost_price": 10000,
+      "notes": "Guaranteed 15-minute response SLA with dedicated TAM",
+      "variants": [
+        {
+          "id": "var-sup-tam",
+          "variant_name": "Senior Staff Engineer TAM",
+          "price_extra": 10000
+        }
+      ]
+    }
+  ],
+  "plans": [
+    {
+      "id": "plan-monthly-std",
+      "name": "Standard Monthly",
+      "billing_period": "MONTHLY",
+      "min_quantity": 1,
+      "auto_close": true,
+      "allow_pause": true,
+      "allow_early_close": true,
+      "allow_renewal": true
+    },
+    {
+      "id": "plan-yearly-std",
+      "name": "Standard Yearly (2 Months Free)",
+      "billing_period": "YEARLY",
+      "min_quantity": 1,
+      "auto_close": false,
+      "allow_pause": true,
+      "allow_early_close": true,
+      "allow_renewal": true
+    },
+    {
+      "id": "plan-monthly-ent",
+      "name": "Enterprise High-Volume Monthly",
+      "billing_period": "MONTHLY",
+      "min_quantity": 10,
+      "auto_close": false,
+      "allow_pause": true,
+      "allow_early_close": true,
+      "allow_renewal": true
+    }
+  ],
+  "taxes": [
+    {
+      "id": "tax-gst-18",
+      "name": "Standard GST (18%)",
+      "rate_percentage": 18,
+      "is_active": true
+    },
+    {
+      "id": "tax-reduced-5",
+      "name": "Reduced Concessional GST (5%)",
+      "rate_percentage": 5,
+      "is_active": true
+    },
+    {
+      "id": "tax-inclusive-18",
+      "name": "All-Inclusive VAT (18%)",
+      "rate_percentage": 18,
+      "is_active": true
+    },
+    {
+      "id": "tax-legacy-vat",
+      "name": "Legacy VAT 12.5% (Archived)",
+      "rate_percentage": 12.5,
+      "is_active": false
+    }
+  ],
+  "discounts": [
+    {
+      "id": "disc-vip20",
+      "code": "VIP20",
+      "type": "PERCENTAGE",
+      "value": 20,
+      "min_quantity": 1,
+      "min_purchase_amount": 10000,
+      "start_date": "2026-01-01T00:00:00Z",
+      "end_date": "2026-12-31T23:59:59Z",
+      "max_uses": 1000,
+      "current_uses": 45,
+      "product_id": null,
+      "is_active": true
+    },
+    {
+      "id": "disc-save500",
+      "code": "SAVE500",
+      "type": "FIXED",
+      "value": 50000,
+      "min_quantity": 1,
+      "min_purchase_amount": 100000,
+      "start_date": "2026-01-01T00:00:00Z",
+      "end_date": "2026-12-31T23:59:59Z",
+      "max_uses": 500,
+      "current_uses": 12,
+      "product_id": null,
+      "is_active": true
+    },
+    {
+      "id": "disc-expired",
+      "code": "SUMMER2025",
+      "type": "PERCENTAGE",
+      "value": 25,
+      "min_quantity": 0,
+      "min_purchase_amount": 0,
+      "start_date": "2025-06-01T00:00:00Z",
+      "end_date": "2025-08-31T23:59:59Z",
+      "max_uses": 100,
+      "current_uses": 30,
+      "product_id": null,
+      "is_active": true
+    },
+    {
+      "id": "disc-future",
+      "code": "BLACKFRIDAY2026",
+      "type": "PERCENTAGE",
+      "value": 40,
+      "min_quantity": 0,
+      "min_purchase_amount": 0,
+      "start_date": "2026-11-20T00:00:00Z",
+      "end_date": "2026-11-30T23:59:59Z",
+      "max_uses": 200,
+      "current_uses": 0,
+      "product_id": null,
+      "is_active": true
+    },
+    {
+      "id": "disc-exhausted",
+      "code": "FIRST10",
+      "type": "FIXED",
+      "value": 10000,
+      "min_quantity": 0,
+      "min_purchase_amount": 0,
+      "start_date": "2026-01-01T00:00:00Z",
+      "end_date": "2026-12-31T23:59:59Z",
+      "max_uses": 10,
+      "current_uses": 10,
+      "product_id": null,
+      "is_active": true
+    },
+    {
+      "id": "disc-prod-odoo",
+      "code": "ODDEV10",
+      "type": "PERCENTAGE",
+      "value": 10,
+      "min_quantity": 1,
+      "min_purchase_amount": 0,
+      "start_date": "2026-01-01T00:00:00Z",
+      "end_date": "2026-12-31T23:59:59Z",
+      "max_uses": 0,
+      "current_uses": 5,
+      "product_id": "prod-erp-002",
+      "is_active": true
+    }
+  ],
+  "customers": [
+    {
+      "id": "cust-uuid-001",
+      "email": "customer1@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-002",
+      "email": "customer2@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-003",
+      "email": "customer3@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-004",
+      "email": "customer4@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-005",
+      "email": "customer5@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-006",
+      "email": "customer6@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-007",
+      "email": "customer7@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-008",
+      "email": "customer8@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-009",
+      "email": "customer9@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-010",
+      "email": "customer10@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-011",
+      "email": "customer11@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-012",
+      "email": "customer12@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-013",
+      "email": "customer13@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-014",
+      "email": "customer14@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-015",
+      "email": "customer15@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-016",
+      "email": "customer16@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-017",
+      "email": "customer17@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-018",
+      "email": "customer18@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-019",
+      "email": "customer19@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-020",
+      "email": "customer20@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-021",
+      "email": "customer21@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-022",
+      "email": "customer22@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-023",
+      "email": "customer23@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-024",
+      "email": "customer24@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-025",
+      "email": "customer25@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-026",
+      "email": "customer26@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-027",
+      "email": "customer27@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-028",
+      "email": "customer28@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-029",
+      "email": "customer29@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-030",
+      "email": "customer30@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-031",
+      "email": "customer31@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-032",
+      "email": "customer32@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-033",
+      "email": "customer33@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-034",
+      "email": "customer34@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-035",
+      "email": "customer35@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-036",
+      "email": "customer36@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-037",
+      "email": "customer37@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-038",
+      "email": "customer38@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-039",
+      "email": "customer39@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-040",
+      "email": "customer40@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-041",
+      "email": "customer41@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-042",
+      "email": "customer42@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-043",
+      "email": "customer43@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-044",
+      "email": "customer44@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-045",
+      "email": "customer45@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-046",
+      "email": "customer46@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-047",
+      "email": "customer47@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-048",
+      "email": "customer48@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-049",
+      "email": "customer49@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-050",
+      "email": "customer50@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-051",
+      "email": "customer51@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-052",
+      "email": "customer52@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-053",
+      "email": "customer53@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-054",
+      "email": "customer54@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-055",
+      "email": "customer55@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-056",
+      "email": "customer56@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-057",
+      "email": "customer57@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-058",
+      "email": "customer58@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-059",
+      "email": "customer59@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-060",
+      "email": "customer60@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-061",
+      "email": "customer61@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-062",
+      "email": "customer62@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-063",
+      "email": "customer63@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-064",
+      "email": "customer64@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-065",
+      "email": "customer65@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-066",
+      "email": "customer66@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-067",
+      "email": "customer67@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-068",
+      "email": "customer68@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-069",
+      "email": "customer69@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-070",
+      "email": "customer70@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-071",
+      "email": "customer71@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-072",
+      "email": "customer72@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-073",
+      "email": "customer73@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-074",
+      "email": "customer74@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-075",
+      "email": "customer75@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-076",
+      "email": "customer76@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-077",
+      "email": "customer77@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-078",
+      "email": "customer78@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-079",
+      "email": "customer79@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-080",
+      "email": "customer80@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-081",
+      "email": "customer81@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-082",
+      "email": "customer82@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-083",
+      "email": "customer83@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-084",
+      "email": "customer84@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-085",
+      "email": "customer85@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-086",
+      "email": "customer86@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-087",
+      "email": "customer87@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-088",
+      "email": "customer88@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-089",
+      "email": "customer89@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-090",
+      "email": "customer90@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-091",
+      "email": "customer91@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-092",
+      "email": "customer92@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-093",
+      "email": "customer93@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-094",
+      "email": "customer94@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-095",
+      "email": "customer95@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-096",
+      "email": "customer96@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-097",
+      "email": "customer97@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-098",
+      "email": "customer98@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-099",
+      "email": "customer99@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-100",
+      "email": "customer100@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-101",
+      "email": "customer101@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-102",
+      "email": "customer102@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-103",
+      "email": "customer103@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-104",
+      "email": "customer104@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-105",
+      "email": "customer105@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-106",
+      "email": "customer106@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-107",
+      "email": "customer107@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-108",
+      "email": "customer108@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-109",
+      "email": "customer109@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-110",
+      "email": "customer110@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-111",
+      "email": "customer111@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-112",
+      "email": "customer112@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-113",
+      "email": "customer113@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-114",
+      "email": "customer114@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    },
+    {
+      "id": "cust-uuid-115",
+      "email": "customer115@brightloop-client.com",
+      "role": "CUSTOMER",
+      "is_verified": true,
+      "is_active": true
+    }
+  ],
+  "subscriptions": [
+    {
+      "id": "sub-uuid-001",
+      "subscription_number": "SUB-2026-001",
+      "customer_id": "cust-uuid-001",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-01-17T00:00:00.000Z",
+      "next_billing_date": "2026-02-17T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-001-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-apac",
+          "quantity": 1,
+          "unit_price": 17000,
+          "tax_rate": 18,
+          "subtotal": 17000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-002",
+      "subscription_number": "SUB-2026-002",
+      "customer_id": "cust-uuid-002",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-01-19T00:00:00.000Z",
+      "next_billing_date": "2027-01-19T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-002-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 2,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 270000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-003",
+      "subscription_number": "SUB-2026-003",
+      "customer_id": "cust-uuid-003",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-01-21T00:00:00.000Z",
+      "next_billing_date": "2026-02-21T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-003-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 10,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 270000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-004",
+      "subscription_number": "SUB-2026-004",
+      "customer_id": "cust-uuid-004",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-01-23T00:00:00.000Z",
+      "next_billing_date": "2026-02-23T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-004-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 4,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 140000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-005",
+      "subscription_number": "SUB-2026-005",
+      "customer_id": "cust-uuid-005",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-01-25T00:00:00.000Z",
+      "next_billing_date": "2027-01-25T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": "disc-vip20",
+      "lines": [
+        {
+          "id": "subline-005-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-us",
+          "quantity": 5,
+          "unit_price": 18500,
+          "tax_rate": 18,
+          "subtotal": 92500
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-006",
+      "subscription_number": "SUB-2026-006",
+      "customer_id": "cust-uuid-006",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-01-27T00:00:00.000Z",
+      "next_billing_date": "2026-02-27T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-006-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 10,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 1350000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-007",
+      "subscription_number": "SUB-2026-007",
+      "customer_id": "cust-uuid-007",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-01-29T00:00:00.000Z",
+      "next_billing_date": "2026-03-01T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-007-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 2,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 54000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-008",
+      "subscription_number": "SUB-2026-008",
+      "customer_id": "cust-uuid-008",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-01-31T00:00:00.000Z",
+      "next_billing_date": "2027-01-31T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-008-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 3,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 105000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-009",
+      "subscription_number": "SUB-2026-009",
+      "customer_id": "cust-uuid-009",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-02-02T00:00:00.000Z",
+      "next_billing_date": "2026-03-02T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-009-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-self",
+          "quantity": 10,
+          "unit_price": 13000,
+          "tax_rate": 18,
+          "subtotal": 130000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-010",
+      "subscription_number": "SUB-2026-010",
+      "customer_id": "cust-uuid-010",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-02-04T00:00:00.000Z",
+      "next_billing_date": "2026-03-04T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": "disc-vip20",
+      "lines": [
+        {
+          "id": "subline-010-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 5,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 675000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-011",
+      "subscription_number": "SUB-2026-011",
+      "customer_id": "cust-uuid-011",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-02-06T00:00:00.000Z",
+      "next_billing_date": "2027-02-06T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-011-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 1,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 27000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-012",
+      "subscription_number": "SUB-2026-012",
+      "customer_id": "cust-uuid-012",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-02-08T00:00:00.000Z",
+      "next_billing_date": "2026-03-08T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-012-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 10,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 350000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-013",
+      "subscription_number": "SUB-2026-013",
+      "customer_id": "cust-uuid-013",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-02-10T00:00:00.000Z",
+      "next_billing_date": "2026-03-10T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-013-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-apac",
+          "quantity": 3,
+          "unit_price": 17000,
+          "tax_rate": 18,
+          "subtotal": 51000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-014",
+      "subscription_number": "SUB-2026-014",
+      "customer_id": "cust-uuid-014",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-02-12T00:00:00.000Z",
+      "next_billing_date": "2027-02-12T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-014-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 4,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 540000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-015",
+      "subscription_number": "SUB-2026-015",
+      "customer_id": "cust-uuid-015",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-02-14T00:00:00.000Z",
+      "next_billing_date": "2026-03-14T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": "disc-vip20",
+      "lines": [
+        {
+          "id": "subline-015-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 10,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 270000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-016",
+      "subscription_number": "SUB-2026-016",
+      "customer_id": "cust-uuid-016",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-02-16T00:00:00.000Z",
+      "next_billing_date": "2026-03-16T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-016-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 1,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 35000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-017",
+      "subscription_number": "SUB-2026-017",
+      "customer_id": "cust-uuid-017",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-02-18T00:00:00.000Z",
+      "next_billing_date": "2027-02-18T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-017-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-us",
+          "quantity": 2,
+          "unit_price": 18500,
+          "tax_rate": 18,
+          "subtotal": 37000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-018",
+      "subscription_number": "SUB-2026-018",
+      "customer_id": "cust-uuid-018",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-02-20T00:00:00.000Z",
+      "next_billing_date": "2026-03-20T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-018-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 10,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 1350000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-019",
+      "subscription_number": "SUB-2026-019",
+      "customer_id": "cust-uuid-019",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-02-22T00:00:00.000Z",
+      "next_billing_date": "2026-03-22T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-019-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 4,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 108000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-020",
+      "subscription_number": "SUB-2026-020",
+      "customer_id": "cust-uuid-020",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-02-24T00:00:00.000Z",
+      "next_billing_date": "2027-02-24T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": "disc-vip20",
+      "lines": [
+        {
+          "id": "subline-020-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 5,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 175000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-021",
+      "subscription_number": "SUB-2026-021",
+      "customer_id": "cust-uuid-021",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-02-26T00:00:00.000Z",
+      "next_billing_date": "2026-03-26T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-021-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-self",
+          "quantity": 10,
+          "unit_price": 13000,
+          "tax_rate": 18,
+          "subtotal": 130000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-022",
+      "subscription_number": "SUB-2026-022",
+      "customer_id": "cust-uuid-022",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-02-28T00:00:00.000Z",
+      "next_billing_date": "2026-03-28T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-022-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 2,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 270000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-023",
+      "subscription_number": "SUB-2026-023",
+      "customer_id": "cust-uuid-023",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-03-02T00:00:00.000Z",
+      "next_billing_date": "2027-03-02T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-023-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 3,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 81000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-024",
+      "subscription_number": "SUB-2026-024",
+      "customer_id": "cust-uuid-024",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-03-04T00:00:00.000Z",
+      "next_billing_date": "2026-04-04T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-024-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 10,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 350000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-025",
+      "subscription_number": "SUB-2026-025",
+      "customer_id": "cust-uuid-025",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-03-06T00:00:00.000Z",
+      "next_billing_date": "2026-04-06T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": "disc-vip20",
+      "lines": [
+        {
+          "id": "subline-025-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-apac",
+          "quantity": 5,
+          "unit_price": 17000,
+          "tax_rate": 18,
+          "subtotal": 85000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-026",
+      "subscription_number": "SUB-2026-026",
+      "customer_id": "cust-uuid-026",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-03-08T00:00:00.000Z",
+      "next_billing_date": "2027-03-08T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-026-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 1,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 135000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-027",
+      "subscription_number": "SUB-2026-027",
+      "customer_id": "cust-uuid-027",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-03-10T00:00:00.000Z",
+      "next_billing_date": "2026-04-10T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-027-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 10,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 270000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-028",
+      "subscription_number": "SUB-2026-028",
+      "customer_id": "cust-uuid-028",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-03-12T00:00:00.000Z",
+      "next_billing_date": "2026-04-12T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-028-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 3,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 105000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-029",
+      "subscription_number": "SUB-2026-029",
+      "customer_id": "cust-uuid-029",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-03-14T00:00:00.000Z",
+      "next_billing_date": "2027-03-14T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-029-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-us",
+          "quantity": 4,
+          "unit_price": 18500,
+          "tax_rate": 18,
+          "subtotal": 74000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-030",
+      "subscription_number": "SUB-2026-030",
+      "customer_id": "cust-uuid-030",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-03-16T00:00:00.000Z",
+      "next_billing_date": "2026-04-16T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": "disc-vip20",
+      "lines": [
+        {
+          "id": "subline-030-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 10,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 1350000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-031",
+      "subscription_number": "SUB-2026-031",
+      "customer_id": "cust-uuid-031",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-03-18T00:00:00.000Z",
+      "next_billing_date": "2026-04-18T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-031-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 1,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 27000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-032",
+      "subscription_number": "SUB-2026-032",
+      "customer_id": "cust-uuid-032",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-03-20T00:00:00.000Z",
+      "next_billing_date": "2027-03-20T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-032-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 2,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 70000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-033",
+      "subscription_number": "SUB-2026-033",
+      "customer_id": "cust-uuid-033",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-03-22T00:00:00.000Z",
+      "next_billing_date": "2026-04-22T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-033-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-self",
+          "quantity": 10,
+          "unit_price": 13000,
+          "tax_rate": 18,
+          "subtotal": 130000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-034",
+      "subscription_number": "SUB-2026-034",
+      "customer_id": "cust-uuid-034",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-03-24T00:00:00.000Z",
+      "next_billing_date": "2026-04-24T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-034-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 4,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 540000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-035",
+      "subscription_number": "SUB-2026-035",
+      "customer_id": "cust-uuid-035",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-03-26T00:00:00.000Z",
+      "next_billing_date": "2027-03-26T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": "disc-vip20",
+      "lines": [
+        {
+          "id": "subline-035-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 5,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 135000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-036",
+      "subscription_number": "SUB-2026-036",
+      "customer_id": "cust-uuid-036",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-03-28T00:00:00.000Z",
+      "next_billing_date": "2026-04-28T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-036-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 10,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 350000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-037",
+      "subscription_number": "SUB-2026-037",
+      "customer_id": "cust-uuid-037",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-03-30T00:00:00.000Z",
+      "next_billing_date": "2026-04-30T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-037-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-apac",
+          "quantity": 2,
+          "unit_price": 17000,
+          "tax_rate": 18,
+          "subtotal": 34000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-038",
+      "subscription_number": "SUB-2026-038",
+      "customer_id": "cust-uuid-038",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-04-01T00:00:00.000Z",
+      "next_billing_date": "2027-04-01T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-038-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 3,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 405000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-039",
+      "subscription_number": "SUB-2026-039",
+      "customer_id": "cust-uuid-039",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-04-03T00:00:00.000Z",
+      "next_billing_date": "2026-05-03T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-039-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 10,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 270000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-040",
+      "subscription_number": "SUB-2026-040",
+      "customer_id": "cust-uuid-040",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-04-05T00:00:00.000Z",
+      "next_billing_date": "2026-05-05T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": "disc-vip20",
+      "lines": [
+        {
+          "id": "subline-040-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 5,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 175000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-041",
+      "subscription_number": "SUB-2026-041",
+      "customer_id": "cust-uuid-041",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-04-07T00:00:00.000Z",
+      "next_billing_date": "2027-04-07T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-041-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-us",
+          "quantity": 1,
+          "unit_price": 18500,
+          "tax_rate": 18,
+          "subtotal": 18500
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-042",
+      "subscription_number": "SUB-2026-042",
+      "customer_id": "cust-uuid-042",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-04-09T00:00:00.000Z",
+      "next_billing_date": "2026-05-09T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-042-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 10,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 1350000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-043",
+      "subscription_number": "SUB-2026-043",
+      "customer_id": "cust-uuid-043",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-04-11T00:00:00.000Z",
+      "next_billing_date": "2026-05-11T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-043-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 3,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 81000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-044",
+      "subscription_number": "SUB-2026-044",
+      "customer_id": "cust-uuid-044",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-04-13T00:00:00.000Z",
+      "next_billing_date": "2027-04-13T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-044-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 4,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 140000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-045",
+      "subscription_number": "SUB-2026-045",
+      "customer_id": "cust-uuid-045",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-04-15T00:00:00.000Z",
+      "next_billing_date": "2026-05-15T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": "disc-vip20",
+      "lines": [
+        {
+          "id": "subline-045-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-self",
+          "quantity": 10,
+          "unit_price": 13000,
+          "tax_rate": 18,
+          "subtotal": 130000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-046",
+      "subscription_number": "SUB-2026-046",
+      "customer_id": "cust-uuid-046",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-04-17T00:00:00.000Z",
+      "next_billing_date": "2026-05-17T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-046-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 1,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 135000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-047",
+      "subscription_number": "SUB-2026-047",
+      "customer_id": "cust-uuid-047",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-04-19T00:00:00.000Z",
+      "next_billing_date": "2027-04-19T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-047-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 2,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 54000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-048",
+      "subscription_number": "SUB-2026-048",
+      "customer_id": "cust-uuid-048",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-04-21T00:00:00.000Z",
+      "next_billing_date": "2026-05-21T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-048-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 10,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 350000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-049",
+      "subscription_number": "SUB-2026-049",
+      "customer_id": "cust-uuid-049",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-04-23T00:00:00.000Z",
+      "next_billing_date": "2026-05-23T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-049-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-apac",
+          "quantity": 4,
+          "unit_price": 17000,
+          "tax_rate": 18,
+          "subtotal": 68000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-050",
+      "subscription_number": "SUB-2026-050",
+      "customer_id": "cust-uuid-050",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-04-25T00:00:00.000Z",
+      "next_billing_date": "2027-04-25T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": "disc-vip20",
+      "lines": [
+        {
+          "id": "subline-050-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 5,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 675000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-051",
+      "subscription_number": "SUB-2026-051",
+      "customer_id": "cust-uuid-051",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-04-27T00:00:00.000Z",
+      "next_billing_date": "2026-05-27T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-051-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 10,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 270000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-052",
+      "subscription_number": "SUB-2026-052",
+      "customer_id": "cust-uuid-052",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-04-29T00:00:00.000Z",
+      "next_billing_date": "2026-05-29T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-052-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 2,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 70000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-053",
+      "subscription_number": "SUB-2026-053",
+      "customer_id": "cust-uuid-053",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-05-01T00:00:00.000Z",
+      "next_billing_date": "2027-05-01T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-053-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-us",
+          "quantity": 3,
+          "unit_price": 18500,
+          "tax_rate": 18,
+          "subtotal": 55500
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-054",
+      "subscription_number": "SUB-2026-054",
+      "customer_id": "cust-uuid-054",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-05-03T00:00:00.000Z",
+      "next_billing_date": "2026-06-03T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-054-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 10,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 1350000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-055",
+      "subscription_number": "SUB-2026-055",
+      "customer_id": "cust-uuid-055",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-05-05T00:00:00.000Z",
+      "next_billing_date": "2026-06-05T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": "disc-vip20",
+      "lines": [
+        {
+          "id": "subline-055-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 5,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 135000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-056",
+      "subscription_number": "SUB-2026-056",
+      "customer_id": "cust-uuid-056",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-05-07T00:00:00.000Z",
+      "next_billing_date": "2027-05-07T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-056-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 1,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 35000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-057",
+      "subscription_number": "SUB-2026-057",
+      "customer_id": "cust-uuid-057",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-05-09T00:00:00.000Z",
+      "next_billing_date": "2026-06-09T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-057-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-self",
+          "quantity": 10,
+          "unit_price": 13000,
+          "tax_rate": 18,
+          "subtotal": 130000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-058",
+      "subscription_number": "SUB-2026-058",
+      "customer_id": "cust-uuid-058",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-05-11T00:00:00.000Z",
+      "next_billing_date": "2026-06-11T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-058-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 3,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 405000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-059",
+      "subscription_number": "SUB-2026-059",
+      "customer_id": "cust-uuid-059",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-05-13T00:00:00.000Z",
+      "next_billing_date": "2027-05-13T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-059-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 4,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 108000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-060",
+      "subscription_number": "SUB-2026-060",
+      "customer_id": "cust-uuid-060",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-05-15T00:00:00.000Z",
+      "next_billing_date": "2026-06-15T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": "disc-vip20",
+      "lines": [
+        {
+          "id": "subline-060-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 10,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 350000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-061",
+      "subscription_number": "SUB-2026-061",
+      "customer_id": "cust-uuid-061",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-05-17T00:00:00.000Z",
+      "next_billing_date": "2026-06-17T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-061-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-apac",
+          "quantity": 1,
+          "unit_price": 17000,
+          "tax_rate": 18,
+          "subtotal": 17000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-062",
+      "subscription_number": "SUB-2026-062",
+      "customer_id": "cust-uuid-062",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-05-19T00:00:00.000Z",
+      "next_billing_date": "2027-05-19T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-062-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 2,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 270000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-063",
+      "subscription_number": "SUB-2026-063",
+      "customer_id": "cust-uuid-063",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-05-21T00:00:00.000Z",
+      "next_billing_date": "2026-06-21T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-063-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 10,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 270000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-064",
+      "subscription_number": "SUB-2026-064",
+      "customer_id": "cust-uuid-064",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-05-23T00:00:00.000Z",
+      "next_billing_date": "2026-06-23T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-064-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 4,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 140000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-065",
+      "subscription_number": "SUB-2026-065",
+      "customer_id": "cust-uuid-065",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-05-25T00:00:00.000Z",
+      "next_billing_date": "2027-05-25T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": "disc-vip20",
+      "lines": [
+        {
+          "id": "subline-065-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-us",
+          "quantity": 5,
+          "unit_price": 18500,
+          "tax_rate": 18,
+          "subtotal": 92500
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-066",
+      "subscription_number": "SUB-2026-066",
+      "customer_id": "cust-uuid-066",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-05-27T00:00:00.000Z",
+      "next_billing_date": "2026-06-27T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-066-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 10,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 1350000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-067",
+      "subscription_number": "SUB-2026-067",
+      "customer_id": "cust-uuid-067",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-05-29T00:00:00.000Z",
+      "next_billing_date": "2026-06-29T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-067-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 2,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 54000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-068",
+      "subscription_number": "SUB-2026-068",
+      "customer_id": "cust-uuid-068",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-05-31T00:00:00.000Z",
+      "next_billing_date": "2027-05-31T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-068-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 3,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 105000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-069",
+      "subscription_number": "SUB-2026-069",
+      "customer_id": "cust-uuid-069",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-06-02T00:00:00.000Z",
+      "next_billing_date": "2026-07-02T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-069-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-self",
+          "quantity": 10,
+          "unit_price": 13000,
+          "tax_rate": 18,
+          "subtotal": 130000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-070",
+      "subscription_number": "SUB-2026-070",
+      "customer_id": "cust-uuid-070",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-06-04T00:00:00.000Z",
+      "next_billing_date": "2026-07-04T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": "disc-vip20",
+      "lines": [
+        {
+          "id": "subline-070-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 5,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 675000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-071",
+      "subscription_number": "SUB-2026-071",
+      "customer_id": "cust-uuid-071",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-06-06T00:00:00.000Z",
+      "next_billing_date": "2027-06-06T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-071-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 1,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 27000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-072",
+      "subscription_number": "SUB-2026-072",
+      "customer_id": "cust-uuid-072",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-06-08T00:00:00.000Z",
+      "next_billing_date": "2026-07-08T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-072-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 10,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 350000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-073",
+      "subscription_number": "SUB-2026-073",
+      "customer_id": "cust-uuid-073",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-06-10T00:00:00.000Z",
+      "next_billing_date": "2026-07-10T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-073-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-apac",
+          "quantity": 3,
+          "unit_price": 17000,
+          "tax_rate": 18,
+          "subtotal": 51000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-074",
+      "subscription_number": "SUB-2026-074",
+      "customer_id": "cust-uuid-074",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-06-12T00:00:00.000Z",
+      "next_billing_date": "2027-06-12T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-074-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 4,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 540000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-075",
+      "subscription_number": "SUB-2026-075",
+      "customer_id": "cust-uuid-075",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-06-14T00:00:00.000Z",
+      "next_billing_date": "2026-07-14T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": "disc-vip20",
+      "lines": [
+        {
+          "id": "subline-075-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 10,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 270000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-076",
+      "subscription_number": "SUB-2026-076",
+      "customer_id": "cust-uuid-076",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-06-16T00:00:00.000Z",
+      "next_billing_date": "2026-07-16T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-076-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 1,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 35000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-077",
+      "subscription_number": "SUB-2026-077",
+      "customer_id": "cust-uuid-077",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-06-18T00:00:00.000Z",
+      "next_billing_date": "2027-06-18T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-077-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-us",
+          "quantity": 2,
+          "unit_price": 18500,
+          "tax_rate": 18,
+          "subtotal": 37000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-078",
+      "subscription_number": "SUB-2026-078",
+      "customer_id": "cust-uuid-078",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-06-20T00:00:00.000Z",
+      "next_billing_date": "2026-07-20T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-078-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 10,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 1350000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-079",
+      "subscription_number": "SUB-2026-079",
+      "customer_id": "cust-uuid-079",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-06-22T00:00:00.000Z",
+      "next_billing_date": "2026-07-22T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-079-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 4,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 108000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-080",
+      "subscription_number": "SUB-2026-080",
+      "customer_id": "cust-uuid-080",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-06-24T00:00:00.000Z",
+      "next_billing_date": "2027-06-24T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": "disc-vip20",
+      "lines": [
+        {
+          "id": "subline-080-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 5,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 175000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-081",
+      "subscription_number": "SUB-2026-081",
+      "customer_id": "cust-uuid-081",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-06-26T00:00:00.000Z",
+      "next_billing_date": "2026-07-26T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-081-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-self",
+          "quantity": 10,
+          "unit_price": 13000,
+          "tax_rate": 18,
+          "subtotal": 130000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-082",
+      "subscription_number": "SUB-2026-082",
+      "customer_id": "cust-uuid-082",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-06-28T00:00:00.000Z",
+      "next_billing_date": "2026-07-28T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-082-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 2,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 270000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-083",
+      "subscription_number": "SUB-2026-083",
+      "customer_id": "cust-uuid-083",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-06-30T00:00:00.000Z",
+      "next_billing_date": "2027-06-30T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-083-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 3,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 81000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-084",
+      "subscription_number": "SUB-2026-084",
+      "customer_id": "cust-uuid-084",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-07-02T00:00:00.000Z",
+      "next_billing_date": "2026-08-02T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-084-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 10,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 350000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-085",
+      "subscription_number": "SUB-2026-085",
+      "customer_id": "cust-uuid-085",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-07-04T00:00:00.000Z",
+      "next_billing_date": "2026-08-04T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": "disc-vip20",
+      "lines": [
+        {
+          "id": "subline-085-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-apac",
+          "quantity": 5,
+          "unit_price": 17000,
+          "tax_rate": 18,
+          "subtotal": 85000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-086",
+      "subscription_number": "SUB-2026-086",
+      "customer_id": "cust-uuid-086",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-07-06T00:00:00.000Z",
+      "next_billing_date": "2027-07-06T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-086-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 1,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 135000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-087",
+      "subscription_number": "SUB-2026-087",
+      "customer_id": "cust-uuid-087",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-07-08T00:00:00.000Z",
+      "next_billing_date": "2026-08-08T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-087-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 10,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 270000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-088",
+      "subscription_number": "SUB-2026-088",
+      "customer_id": "cust-uuid-088",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-07-10T00:00:00.000Z",
+      "next_billing_date": "2026-08-10T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-088-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 3,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 105000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-089",
+      "subscription_number": "SUB-2026-089",
+      "customer_id": "cust-uuid-089",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-07-12T00:00:00.000Z",
+      "next_billing_date": "2027-07-12T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-089-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-us",
+          "quantity": 4,
+          "unit_price": 18500,
+          "tax_rate": 18,
+          "subtotal": 74000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-090",
+      "subscription_number": "SUB-2026-090",
+      "customer_id": "cust-uuid-090",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-07-14T00:00:00.000Z",
+      "next_billing_date": "2026-08-14T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": "disc-vip20",
+      "lines": [
+        {
+          "id": "subline-090-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 10,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 1350000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-091",
+      "subscription_number": "SUB-2026-091",
+      "customer_id": "cust-uuid-091",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-07-16T00:00:00.000Z",
+      "next_billing_date": "2026-08-16T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-091-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 1,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 27000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-092",
+      "subscription_number": "SUB-2026-092",
+      "customer_id": "cust-uuid-092",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-07-18T00:00:00.000Z",
+      "next_billing_date": "2027-07-18T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-092-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 2,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 70000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-093",
+      "subscription_number": "SUB-2026-093",
+      "customer_id": "cust-uuid-093",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-07-20T00:00:00.000Z",
+      "next_billing_date": "2026-08-20T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-093-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-self",
+          "quantity": 10,
+          "unit_price": 13000,
+          "tax_rate": 18,
+          "subtotal": 130000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-094",
+      "subscription_number": "SUB-2026-094",
+      "customer_id": "cust-uuid-094",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-07-22T00:00:00.000Z",
+      "next_billing_date": "2026-08-22T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-094-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 4,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 540000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-095",
+      "subscription_number": "SUB-2026-095",
+      "customer_id": "cust-uuid-095",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-07-24T00:00:00.000Z",
+      "next_billing_date": "2027-07-24T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": "disc-vip20",
+      "lines": [
+        {
+          "id": "subline-095-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 5,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 135000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-096",
+      "subscription_number": "SUB-2026-096",
+      "customer_id": "cust-uuid-096",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-07-26T00:00:00.000Z",
+      "next_billing_date": "2026-08-26T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-096-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 10,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 350000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-097",
+      "subscription_number": "SUB-2026-097",
+      "customer_id": "cust-uuid-097",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-07-28T00:00:00.000Z",
+      "next_billing_date": "2026-08-28T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-097-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-apac",
+          "quantity": 2,
+          "unit_price": 17000,
+          "tax_rate": 18,
+          "subtotal": 34000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-098",
+      "subscription_number": "SUB-2026-098",
+      "customer_id": "cust-uuid-098",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-07-30T00:00:00.000Z",
+      "next_billing_date": "2027-07-30T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-098-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 3,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 405000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-099",
+      "subscription_number": "SUB-2026-099",
+      "customer_id": "cust-uuid-099",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-08-01T00:00:00.000Z",
+      "next_billing_date": "2026-09-01T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-099-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 10,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 270000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-100",
+      "subscription_number": "SUB-2026-100",
+      "customer_id": "cust-uuid-100",
+      "plan_id": "plan-monthly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-08-03T00:00:00.000Z",
+      "next_billing_date": "2026-09-03T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": "disc-vip20",
+      "lines": [
+        {
+          "id": "subline-100-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 5,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 175000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-101",
+      "subscription_number": "SUB-2026-101",
+      "customer_id": "cust-uuid-101",
+      "plan_id": "plan-yearly-std",
+      "status": "ACTIVE",
+      "start_date": "2026-08-05T00:00:00.000Z",
+      "next_billing_date": "2027-08-05T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-101-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-us",
+          "quantity": 1,
+          "unit_price": 18500,
+          "tax_rate": 18,
+          "subtotal": 18500
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-102",
+      "subscription_number": "SUB-2026-102",
+      "customer_id": "cust-uuid-102",
+      "plan_id": "plan-monthly-ent",
+      "status": "ACTIVE",
+      "start_date": "2026-08-07T00:00:00.000Z",
+      "next_billing_date": "2026-09-07T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-102-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 10,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 1350000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-103",
+      "subscription_number": "SUB-2026-103",
+      "customer_id": "cust-uuid-103",
+      "plan_id": "plan-monthly-std",
+      "status": "QUOTATION",
+      "start_date": "2026-08-09T00:00:00.000Z",
+      "next_billing_date": "2026-09-09T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-103-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 3,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 81000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-104",
+      "subscription_number": "SUB-2026-104",
+      "customer_id": "cust-uuid-104",
+      "plan_id": "plan-yearly-std",
+      "status": "QUOTATION",
+      "start_date": "2026-08-11T00:00:00.000Z",
+      "next_billing_date": "2027-08-11T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-104-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 4,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 140000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-105",
+      "subscription_number": "SUB-2026-105",
+      "customer_id": "cust-uuid-105",
+      "plan_id": "plan-monthly-ent",
+      "status": "QUOTATION",
+      "start_date": "2026-08-13T00:00:00.000Z",
+      "next_billing_date": "2026-09-13T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": "disc-vip20",
+      "lines": [
+        {
+          "id": "subline-105-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-self",
+          "quantity": 10,
+          "unit_price": 13000,
+          "tax_rate": 18,
+          "subtotal": 130000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-106",
+      "subscription_number": "SUB-2026-106",
+      "customer_id": "cust-uuid-106",
+      "plan_id": "plan-monthly-std",
+      "status": "QUOTATION",
+      "start_date": "2026-08-15T00:00:00.000Z",
+      "next_billing_date": "2026-09-15T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-106-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 1,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 135000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-107",
+      "subscription_number": "SUB-2026-107",
+      "customer_id": "cust-uuid-107",
+      "plan_id": "plan-yearly-std",
+      "status": "PAUSED",
+      "start_date": "2026-08-17T00:00:00.000Z",
+      "next_billing_date": "2027-08-17T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-107-1",
+          "product_id": "prod-addon-ai-003",
+          "variant_id": "var-ai-unlimited",
+          "quantity": 2,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "subtotal": 54000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-108",
+      "subscription_number": "SUB-2026-108",
+      "customer_id": "cust-uuid-108",
+      "plan_id": "plan-monthly-ent",
+      "status": "PAUSED",
+      "start_date": "2026-08-19T00:00:00.000Z",
+      "next_billing_date": "2026-09-19T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-108-1",
+          "product_id": "prod-svc-support-004",
+          "variant_id": "var-sup-tam",
+          "quantity": 10,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "subtotal": 350000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-109",
+      "subscription_number": "SUB-2026-109",
+      "customer_id": "cust-uuid-109",
+      "plan_id": "plan-monthly-std",
+      "status": "CLOSED",
+      "start_date": "2026-08-21T00:00:00.000Z",
+      "next_billing_date": "2026-09-21T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": null,
+      "lines": [
+        {
+          "id": "subline-109-1",
+          "product_id": "prod-crm-001",
+          "variant_id": "var-crm-apac",
+          "quantity": 4,
+          "unit_price": 17000,
+          "tax_rate": 18,
+          "subtotal": 68000
+        }
+      ]
+    },
+    {
+      "id": "sub-uuid-110",
+      "subscription_number": "SUB-2026-110",
+      "customer_id": "cust-uuid-110",
+      "plan_id": "plan-yearly-std",
+      "status": "CLOSED",
+      "start_date": "2026-08-23T00:00:00.000Z",
+      "next_billing_date": "2027-08-23T00:00:00.000Z",
+      "payment_terms": "NET30",
+      "applied_discount_id": "disc-vip20",
+      "lines": [
+        {
+          "id": "subline-110-1",
+          "product_id": "prod-erp-002",
+          "variant_id": "var-erp-sap",
+          "quantity": 5,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "subtotal": 675000
+        }
+      ]
+    }
+  ],
+  "invoices": [
+    {
+      "id": "inv-paid-001",
+      "invoice_number": "INV-2026-PAID-001",
+      "subscription_id": "sub-uuid-001",
+      "customer_id": "cust-uuid-001",
+      "status": "PAID",
+      "billing_period_start": "2026-08-03T12:00:00.000Z",
+      "billing_period_end": "2026-09-02T12:00:00.000Z",
+      "due_date": "2026-09-02T12:00:00.000Z",
+      "subtotal": 17000,
+      "discount_amount": 0,
+      "tax_amount": 3060,
+      "total_amount": 20060,
+      "amount_paid": 20060,
+      "lines": [
+        {
+          "id": "invline-paid-001-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 1,
+          "unit_price": 17000,
+          "tax_rate": 18,
+          "line_total": 17000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-001",
+          "payment_method": "CREDIT_CARD",
+          "amount": 20060,
+          "payment_date": "2026-08-28T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-002",
+      "invoice_number": "INV-2026-PAID-002",
+      "subscription_id": "sub-uuid-002",
+      "customer_id": "cust-uuid-002",
+      "status": "PAID",
+      "billing_period_start": "2026-08-04T12:00:00.000Z",
+      "billing_period_end": "2026-09-03T12:00:00.000Z",
+      "due_date": "2026-09-03T12:00:00.000Z",
+      "subtotal": 270000,
+      "discount_amount": 0,
+      "tax_amount": 48600,
+      "total_amount": 318600,
+      "amount_paid": 318600,
+      "lines": [
+        {
+          "id": "invline-paid-002-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 2,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 270000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-002",
+          "payment_method": "BANK_TRANSFER",
+          "amount": 318600,
+          "payment_date": "2026-08-29T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-003",
+      "invoice_number": "INV-2026-PAID-003",
+      "subscription_id": "sub-uuid-003",
+      "customer_id": "cust-uuid-003",
+      "status": "PAID",
+      "billing_period_start": "2026-08-05T12:00:00.000Z",
+      "billing_period_end": "2026-09-04T12:00:00.000Z",
+      "due_date": "2026-09-04T12:00:00.000Z",
+      "subtotal": 270000,
+      "discount_amount": 27000,
+      "tax_amount": 43740,
+      "total_amount": 286740,
+      "amount_paid": 286740,
+      "lines": [
+        {
+          "id": "invline-paid-003-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 270000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-003",
+          "payment_method": "CREDIT_CARD",
+          "amount": 286740,
+          "payment_date": "2026-08-30T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-004",
+      "invoice_number": "INV-2026-PAID-004",
+      "subscription_id": "sub-uuid-004",
+      "customer_id": "cust-uuid-004",
+      "status": "PAID",
+      "billing_period_start": "2026-08-06T12:00:00.000Z",
+      "billing_period_end": "2026-09-05T12:00:00.000Z",
+      "due_date": "2026-09-05T12:00:00.000Z",
+      "subtotal": 140000,
+      "discount_amount": 0,
+      "tax_amount": 25200,
+      "total_amount": 165200,
+      "amount_paid": 165200,
+      "lines": [
+        {
+          "id": "invline-paid-004-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 4,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 140000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-004",
+          "payment_method": "BANK_TRANSFER",
+          "amount": 165200,
+          "payment_date": "2026-08-31T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-005",
+      "invoice_number": "INV-2026-PAID-005",
+      "subscription_id": "sub-uuid-005",
+      "customer_id": "cust-uuid-005",
+      "status": "PAID",
+      "billing_period_start": "2026-08-07T12:00:00.000Z",
+      "billing_period_end": "2026-09-06T12:00:00.000Z",
+      "due_date": "2026-09-06T12:00:00.000Z",
+      "subtotal": 92500,
+      "discount_amount": 0,
+      "tax_amount": 16650,
+      "total_amount": 109150,
+      "amount_paid": 109150,
+      "lines": [
+        {
+          "id": "invline-paid-005-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 5,
+          "unit_price": 18500,
+          "tax_rate": 18,
+          "line_total": 92500
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-005",
+          "payment_method": "CREDIT_CARD",
+          "amount": 109150,
+          "payment_date": "2026-09-01T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-006",
+      "invoice_number": "INV-2026-PAID-006",
+      "subscription_id": "sub-uuid-006",
+      "customer_id": "cust-uuid-006",
+      "status": "PAID",
+      "billing_period_start": "2026-08-08T12:00:00.000Z",
+      "billing_period_end": "2026-09-07T12:00:00.000Z",
+      "due_date": "2026-09-07T12:00:00.000Z",
+      "subtotal": 1350000,
+      "discount_amount": 135000,
+      "tax_amount": 218700,
+      "total_amount": 1433700,
+      "amount_paid": 1433700,
+      "lines": [
+        {
+          "id": "invline-paid-006-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 1350000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-006",
+          "payment_method": "BANK_TRANSFER",
+          "amount": 1433700,
+          "payment_date": "2026-09-02T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-007",
+      "invoice_number": "INV-2026-PAID-007",
+      "subscription_id": "sub-uuid-007",
+      "customer_id": "cust-uuid-007",
+      "status": "PAID",
+      "billing_period_start": "2026-08-09T12:00:00.000Z",
+      "billing_period_end": "2026-09-08T12:00:00.000Z",
+      "due_date": "2026-09-08T12:00:00.000Z",
+      "subtotal": 54000,
+      "discount_amount": 0,
+      "tax_amount": 9720,
+      "total_amount": 63720,
+      "amount_paid": 63720,
+      "lines": [
+        {
+          "id": "invline-paid-007-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 2,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 54000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-007",
+          "payment_method": "CREDIT_CARD",
+          "amount": 63720,
+          "payment_date": "2026-09-03T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-008",
+      "invoice_number": "INV-2026-PAID-008",
+      "subscription_id": "sub-uuid-008",
+      "customer_id": "cust-uuid-008",
+      "status": "PAID",
+      "billing_period_start": "2026-08-10T12:00:00.000Z",
+      "billing_period_end": "2026-09-09T12:00:00.000Z",
+      "due_date": "2026-09-09T12:00:00.000Z",
+      "subtotal": 105000,
+      "discount_amount": 0,
+      "tax_amount": 18900,
+      "total_amount": 123900,
+      "amount_paid": 123900,
+      "lines": [
+        {
+          "id": "invline-paid-008-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 3,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 105000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-008",
+          "payment_method": "BANK_TRANSFER",
+          "amount": 123900,
+          "payment_date": "2026-09-04T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-009",
+      "invoice_number": "INV-2026-PAID-009",
+      "subscription_id": "sub-uuid-009",
+      "customer_id": "cust-uuid-009",
+      "status": "PAID",
+      "billing_period_start": "2026-08-11T12:00:00.000Z",
+      "billing_period_end": "2026-09-10T12:00:00.000Z",
+      "due_date": "2026-09-10T12:00:00.000Z",
+      "subtotal": 130000,
+      "discount_amount": 13000,
+      "tax_amount": 21060,
+      "total_amount": 138060,
+      "amount_paid": 138060,
+      "lines": [
+        {
+          "id": "invline-paid-009-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 13000,
+          "tax_rate": 18,
+          "line_total": 130000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-009",
+          "payment_method": "CREDIT_CARD",
+          "amount": 138060,
+          "payment_date": "2026-09-05T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-010",
+      "invoice_number": "INV-2026-PAID-010",
+      "subscription_id": "sub-uuid-010",
+      "customer_id": "cust-uuid-010",
+      "status": "PAID",
+      "billing_period_start": "2026-08-12T12:00:00.000Z",
+      "billing_period_end": "2026-09-11T12:00:00.000Z",
+      "due_date": "2026-09-11T12:00:00.000Z",
+      "subtotal": 675000,
+      "discount_amount": 0,
+      "tax_amount": 121500,
+      "total_amount": 796500,
+      "amount_paid": 796500,
+      "lines": [
+        {
+          "id": "invline-paid-010-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 5,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 675000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-010",
+          "payment_method": "BANK_TRANSFER",
+          "amount": 796500,
+          "payment_date": "2026-09-06T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-011",
+      "invoice_number": "INV-2026-PAID-011",
+      "subscription_id": "sub-uuid-011",
+      "customer_id": "cust-uuid-011",
+      "status": "PAID",
+      "billing_period_start": "2026-08-13T12:00:00.000Z",
+      "billing_period_end": "2026-09-12T12:00:00.000Z",
+      "due_date": "2026-09-12T12:00:00.000Z",
+      "subtotal": 27000,
+      "discount_amount": 0,
+      "tax_amount": 4860,
+      "total_amount": 31860,
+      "amount_paid": 31860,
+      "lines": [
+        {
+          "id": "invline-paid-011-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 1,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 27000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-011",
+          "payment_method": "CREDIT_CARD",
+          "amount": 31860,
+          "payment_date": "2026-09-07T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-012",
+      "invoice_number": "INV-2026-PAID-012",
+      "subscription_id": "sub-uuid-012",
+      "customer_id": "cust-uuid-012",
+      "status": "PAID",
+      "billing_period_start": "2026-08-14T12:00:00.000Z",
+      "billing_period_end": "2026-09-13T12:00:00.000Z",
+      "due_date": "2026-09-13T12:00:00.000Z",
+      "subtotal": 350000,
+      "discount_amount": 35000,
+      "tax_amount": 56700,
+      "total_amount": 371700,
+      "amount_paid": 371700,
+      "lines": [
+        {
+          "id": "invline-paid-012-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 350000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-012",
+          "payment_method": "BANK_TRANSFER",
+          "amount": 371700,
+          "payment_date": "2026-09-08T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-013",
+      "invoice_number": "INV-2026-PAID-013",
+      "subscription_id": "sub-uuid-013",
+      "customer_id": "cust-uuid-013",
+      "status": "PAID",
+      "billing_period_start": "2026-08-15T12:00:00.000Z",
+      "billing_period_end": "2026-09-14T12:00:00.000Z",
+      "due_date": "2026-09-14T12:00:00.000Z",
+      "subtotal": 51000,
+      "discount_amount": 0,
+      "tax_amount": 9180,
+      "total_amount": 60180,
+      "amount_paid": 60180,
+      "lines": [
+        {
+          "id": "invline-paid-013-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 3,
+          "unit_price": 17000,
+          "tax_rate": 18,
+          "line_total": 51000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-013",
+          "payment_method": "CREDIT_CARD",
+          "amount": 60180,
+          "payment_date": "2026-09-09T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-014",
+      "invoice_number": "INV-2026-PAID-014",
+      "subscription_id": "sub-uuid-014",
+      "customer_id": "cust-uuid-014",
+      "status": "PAID",
+      "billing_period_start": "2026-08-16T12:00:00.000Z",
+      "billing_period_end": "2026-09-15T12:00:00.000Z",
+      "due_date": "2026-09-15T12:00:00.000Z",
+      "subtotal": 540000,
+      "discount_amount": 0,
+      "tax_amount": 97200,
+      "total_amount": 637200,
+      "amount_paid": 637200,
+      "lines": [
+        {
+          "id": "invline-paid-014-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 4,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 540000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-014",
+          "payment_method": "BANK_TRANSFER",
+          "amount": 637200,
+          "payment_date": "2026-09-10T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-015",
+      "invoice_number": "INV-2026-PAID-015",
+      "subscription_id": "sub-uuid-015",
+      "customer_id": "cust-uuid-015",
+      "status": "PAID",
+      "billing_period_start": "2026-08-17T12:00:00.000Z",
+      "billing_period_end": "2026-09-16T12:00:00.000Z",
+      "due_date": "2026-09-16T12:00:00.000Z",
+      "subtotal": 270000,
+      "discount_amount": 27000,
+      "tax_amount": 43740,
+      "total_amount": 286740,
+      "amount_paid": 286740,
+      "lines": [
+        {
+          "id": "invline-paid-015-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 270000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-015",
+          "payment_method": "CREDIT_CARD",
+          "amount": 286740,
+          "payment_date": "2026-09-11T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-016",
+      "invoice_number": "INV-2026-PAID-016",
+      "subscription_id": "sub-uuid-016",
+      "customer_id": "cust-uuid-016",
+      "status": "PAID",
+      "billing_period_start": "2026-08-18T12:00:00.000Z",
+      "billing_period_end": "2026-09-17T12:00:00.000Z",
+      "due_date": "2026-09-17T12:00:00.000Z",
+      "subtotal": 35000,
+      "discount_amount": 0,
+      "tax_amount": 6300,
+      "total_amount": 41300,
+      "amount_paid": 41300,
+      "lines": [
+        {
+          "id": "invline-paid-016-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 1,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 35000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-016",
+          "payment_method": "BANK_TRANSFER",
+          "amount": 41300,
+          "payment_date": "2026-09-12T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-017",
+      "invoice_number": "INV-2026-PAID-017",
+      "subscription_id": "sub-uuid-017",
+      "customer_id": "cust-uuid-017",
+      "status": "PAID",
+      "billing_period_start": "2026-08-19T12:00:00.000Z",
+      "billing_period_end": "2026-09-18T12:00:00.000Z",
+      "due_date": "2026-09-18T12:00:00.000Z",
+      "subtotal": 37000,
+      "discount_amount": 0,
+      "tax_amount": 6660,
+      "total_amount": 43660,
+      "amount_paid": 43660,
+      "lines": [
+        {
+          "id": "invline-paid-017-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 2,
+          "unit_price": 18500,
+          "tax_rate": 18,
+          "line_total": 37000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-017",
+          "payment_method": "CREDIT_CARD",
+          "amount": 43660,
+          "payment_date": "2026-09-13T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-018",
+      "invoice_number": "INV-2026-PAID-018",
+      "subscription_id": "sub-uuid-018",
+      "customer_id": "cust-uuid-018",
+      "status": "PAID",
+      "billing_period_start": "2026-08-20T12:00:00.000Z",
+      "billing_period_end": "2026-09-19T12:00:00.000Z",
+      "due_date": "2026-09-19T12:00:00.000Z",
+      "subtotal": 1350000,
+      "discount_amount": 135000,
+      "tax_amount": 218700,
+      "total_amount": 1433700,
+      "amount_paid": 1433700,
+      "lines": [
+        {
+          "id": "invline-paid-018-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 1350000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-018",
+          "payment_method": "BANK_TRANSFER",
+          "amount": 1433700,
+          "payment_date": "2026-09-14T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-019",
+      "invoice_number": "INV-2026-PAID-019",
+      "subscription_id": "sub-uuid-019",
+      "customer_id": "cust-uuid-019",
+      "status": "PAID",
+      "billing_period_start": "2026-08-21T12:00:00.000Z",
+      "billing_period_end": "2026-09-20T12:00:00.000Z",
+      "due_date": "2026-09-20T12:00:00.000Z",
+      "subtotal": 108000,
+      "discount_amount": 0,
+      "tax_amount": 19440,
+      "total_amount": 127440,
+      "amount_paid": 127440,
+      "lines": [
+        {
+          "id": "invline-paid-019-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 4,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 108000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-019",
+          "payment_method": "CREDIT_CARD",
+          "amount": 127440,
+          "payment_date": "2026-09-15T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-020",
+      "invoice_number": "INV-2026-PAID-020",
+      "subscription_id": "sub-uuid-020",
+      "customer_id": "cust-uuid-020",
+      "status": "PAID",
+      "billing_period_start": "2026-08-22T12:00:00.000Z",
+      "billing_period_end": "2026-09-21T12:00:00.000Z",
+      "due_date": "2026-09-21T12:00:00.000Z",
+      "subtotal": 175000,
+      "discount_amount": 0,
+      "tax_amount": 31500,
+      "total_amount": 206500,
+      "amount_paid": 206500,
+      "lines": [
+        {
+          "id": "invline-paid-020-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 5,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 175000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-020",
+          "payment_method": "BANK_TRANSFER",
+          "amount": 206500,
+          "payment_date": "2026-09-16T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-021",
+      "invoice_number": "INV-2026-PAID-021",
+      "subscription_id": "sub-uuid-021",
+      "customer_id": "cust-uuid-021",
+      "status": "PAID",
+      "billing_period_start": "2026-08-23T12:00:00.000Z",
+      "billing_period_end": "2026-09-22T12:00:00.000Z",
+      "due_date": "2026-09-22T12:00:00.000Z",
+      "subtotal": 130000,
+      "discount_amount": 13000,
+      "tax_amount": 21060,
+      "total_amount": 138060,
+      "amount_paid": 138060,
+      "lines": [
+        {
+          "id": "invline-paid-021-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 13000,
+          "tax_rate": 18,
+          "line_total": 130000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-021",
+          "payment_method": "CREDIT_CARD",
+          "amount": 138060,
+          "payment_date": "2026-09-17T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-022",
+      "invoice_number": "INV-2026-PAID-022",
+      "subscription_id": "sub-uuid-022",
+      "customer_id": "cust-uuid-022",
+      "status": "PAID",
+      "billing_period_start": "2026-08-24T12:00:00.000Z",
+      "billing_period_end": "2026-09-23T12:00:00.000Z",
+      "due_date": "2026-09-23T12:00:00.000Z",
+      "subtotal": 270000,
+      "discount_amount": 0,
+      "tax_amount": 48600,
+      "total_amount": 318600,
+      "amount_paid": 318600,
+      "lines": [
+        {
+          "id": "invline-paid-022-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 2,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 270000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-022",
+          "payment_method": "BANK_TRANSFER",
+          "amount": 318600,
+          "payment_date": "2026-09-18T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-023",
+      "invoice_number": "INV-2026-PAID-023",
+      "subscription_id": "sub-uuid-023",
+      "customer_id": "cust-uuid-023",
+      "status": "PAID",
+      "billing_period_start": "2026-08-25T12:00:00.000Z",
+      "billing_period_end": "2026-09-24T12:00:00.000Z",
+      "due_date": "2026-09-24T12:00:00.000Z",
+      "subtotal": 81000,
+      "discount_amount": 0,
+      "tax_amount": 14580,
+      "total_amount": 95580,
+      "amount_paid": 95580,
+      "lines": [
+        {
+          "id": "invline-paid-023-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 3,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 81000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-023",
+          "payment_method": "CREDIT_CARD",
+          "amount": 95580,
+          "payment_date": "2026-09-19T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-024",
+      "invoice_number": "INV-2026-PAID-024",
+      "subscription_id": "sub-uuid-024",
+      "customer_id": "cust-uuid-024",
+      "status": "PAID",
+      "billing_period_start": "2026-08-26T12:00:00.000Z",
+      "billing_period_end": "2026-09-25T12:00:00.000Z",
+      "due_date": "2026-09-25T12:00:00.000Z",
+      "subtotal": 350000,
+      "discount_amount": 35000,
+      "tax_amount": 56700,
+      "total_amount": 371700,
+      "amount_paid": 371700,
+      "lines": [
+        {
+          "id": "invline-paid-024-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 350000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-024",
+          "payment_method": "BANK_TRANSFER",
+          "amount": 371700,
+          "payment_date": "2026-09-20T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-025",
+      "invoice_number": "INV-2026-PAID-025",
+      "subscription_id": "sub-uuid-025",
+      "customer_id": "cust-uuid-025",
+      "status": "PAID",
+      "billing_period_start": "2026-08-27T12:00:00.000Z",
+      "billing_period_end": "2026-09-26T12:00:00.000Z",
+      "due_date": "2026-09-26T12:00:00.000Z",
+      "subtotal": 85000,
+      "discount_amount": 0,
+      "tax_amount": 15300,
+      "total_amount": 100300,
+      "amount_paid": 100300,
+      "lines": [
+        {
+          "id": "invline-paid-025-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 5,
+          "unit_price": 17000,
+          "tax_rate": 18,
+          "line_total": 85000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-025",
+          "payment_method": "CREDIT_CARD",
+          "amount": 100300,
+          "payment_date": "2026-09-21T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-026",
+      "invoice_number": "INV-2026-PAID-026",
+      "subscription_id": "sub-uuid-026",
+      "customer_id": "cust-uuid-026",
+      "status": "PAID",
+      "billing_period_start": "2026-08-28T12:00:00.000Z",
+      "billing_period_end": "2026-09-27T12:00:00.000Z",
+      "due_date": "2026-09-27T12:00:00.000Z",
+      "subtotal": 135000,
+      "discount_amount": 0,
+      "tax_amount": 24300,
+      "total_amount": 159300,
+      "amount_paid": 159300,
+      "lines": [
+        {
+          "id": "invline-paid-026-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 1,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 135000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-026",
+          "payment_method": "BANK_TRANSFER",
+          "amount": 159300,
+          "payment_date": "2026-09-22T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-027",
+      "invoice_number": "INV-2026-PAID-027",
+      "subscription_id": "sub-uuid-027",
+      "customer_id": "cust-uuid-027",
+      "status": "PAID",
+      "billing_period_start": "2026-08-29T12:00:00.000Z",
+      "billing_period_end": "2026-09-28T12:00:00.000Z",
+      "due_date": "2026-09-28T12:00:00.000Z",
+      "subtotal": 270000,
+      "discount_amount": 27000,
+      "tax_amount": 43740,
+      "total_amount": 286740,
+      "amount_paid": 286740,
+      "lines": [
+        {
+          "id": "invline-paid-027-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 270000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-027",
+          "payment_method": "CREDIT_CARD",
+          "amount": 286740,
+          "payment_date": "2026-09-23T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-028",
+      "invoice_number": "INV-2026-PAID-028",
+      "subscription_id": "sub-uuid-028",
+      "customer_id": "cust-uuid-028",
+      "status": "PAID",
+      "billing_period_start": "2026-08-30T12:00:00.000Z",
+      "billing_period_end": "2026-09-29T12:00:00.000Z",
+      "due_date": "2026-09-29T12:00:00.000Z",
+      "subtotal": 105000,
+      "discount_amount": 0,
+      "tax_amount": 18900,
+      "total_amount": 123900,
+      "amount_paid": 123900,
+      "lines": [
+        {
+          "id": "invline-paid-028-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 3,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 105000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-028",
+          "payment_method": "BANK_TRANSFER",
+          "amount": 123900,
+          "payment_date": "2026-09-24T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-029",
+      "invoice_number": "INV-2026-PAID-029",
+      "subscription_id": "sub-uuid-029",
+      "customer_id": "cust-uuid-029",
+      "status": "PAID",
+      "billing_period_start": "2026-08-31T12:00:00.000Z",
+      "billing_period_end": "2026-09-30T12:00:00.000Z",
+      "due_date": "2026-09-30T12:00:00.000Z",
+      "subtotal": 74000,
+      "discount_amount": 0,
+      "tax_amount": 13320,
+      "total_amount": 87320,
+      "amount_paid": 87320,
+      "lines": [
+        {
+          "id": "invline-paid-029-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 4,
+          "unit_price": 18500,
+          "tax_rate": 18,
+          "line_total": 74000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-029",
+          "payment_method": "CREDIT_CARD",
+          "amount": 87320,
+          "payment_date": "2026-09-25T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-030",
+      "invoice_number": "INV-2026-PAID-030",
+      "subscription_id": "sub-uuid-030",
+      "customer_id": "cust-uuid-030",
+      "status": "PAID",
+      "billing_period_start": "2026-09-01T12:00:00.000Z",
+      "billing_period_end": "2026-10-01T12:00:00.000Z",
+      "due_date": "2026-10-01T12:00:00.000Z",
+      "subtotal": 1350000,
+      "discount_amount": 135000,
+      "tax_amount": 218700,
+      "total_amount": 1433700,
+      "amount_paid": 1433700,
+      "lines": [
+        {
+          "id": "invline-paid-030-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 1350000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-030",
+          "payment_method": "BANK_TRANSFER",
+          "amount": 1433700,
+          "payment_date": "2026-09-26T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-031",
+      "invoice_number": "INV-2026-PAID-031",
+      "subscription_id": "sub-uuid-031",
+      "customer_id": "cust-uuid-031",
+      "status": "PAID",
+      "billing_period_start": "2026-09-02T12:00:00.000Z",
+      "billing_period_end": "2026-10-02T12:00:00.000Z",
+      "due_date": "2026-10-02T12:00:00.000Z",
+      "subtotal": 27000,
+      "discount_amount": 0,
+      "tax_amount": 4860,
+      "total_amount": 31860,
+      "amount_paid": 31860,
+      "lines": [
+        {
+          "id": "invline-paid-031-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 1,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 27000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-031",
+          "payment_method": "CREDIT_CARD",
+          "amount": 31860,
+          "payment_date": "2026-09-27T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-032",
+      "invoice_number": "INV-2026-PAID-032",
+      "subscription_id": "sub-uuid-032",
+      "customer_id": "cust-uuid-032",
+      "status": "PAID",
+      "billing_period_start": "2026-09-03T12:00:00.000Z",
+      "billing_period_end": "2026-10-03T12:00:00.000Z",
+      "due_date": "2026-10-03T12:00:00.000Z",
+      "subtotal": 70000,
+      "discount_amount": 0,
+      "tax_amount": 12600,
+      "total_amount": 82600,
+      "amount_paid": 82600,
+      "lines": [
+        {
+          "id": "invline-paid-032-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 2,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 70000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-032",
+          "payment_method": "BANK_TRANSFER",
+          "amount": 82600,
+          "payment_date": "2026-09-28T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-033",
+      "invoice_number": "INV-2026-PAID-033",
+      "subscription_id": "sub-uuid-033",
+      "customer_id": "cust-uuid-033",
+      "status": "PAID",
+      "billing_period_start": "2026-09-04T12:00:00.000Z",
+      "billing_period_end": "2026-10-04T12:00:00.000Z",
+      "due_date": "2026-10-04T12:00:00.000Z",
+      "subtotal": 130000,
+      "discount_amount": 13000,
+      "tax_amount": 21060,
+      "total_amount": 138060,
+      "amount_paid": 138060,
+      "lines": [
+        {
+          "id": "invline-paid-033-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 13000,
+          "tax_rate": 18,
+          "line_total": 130000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-033",
+          "payment_method": "CREDIT_CARD",
+          "amount": 138060,
+          "payment_date": "2026-09-29T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-034",
+      "invoice_number": "INV-2026-PAID-034",
+      "subscription_id": "sub-uuid-034",
+      "customer_id": "cust-uuid-034",
+      "status": "PAID",
+      "billing_period_start": "2026-09-05T12:00:00.000Z",
+      "billing_period_end": "2026-10-05T12:00:00.000Z",
+      "due_date": "2026-10-05T12:00:00.000Z",
+      "subtotal": 540000,
+      "discount_amount": 0,
+      "tax_amount": 97200,
+      "total_amount": 637200,
+      "amount_paid": 637200,
+      "lines": [
+        {
+          "id": "invline-paid-034-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 4,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 540000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-034",
+          "payment_method": "BANK_TRANSFER",
+          "amount": 637200,
+          "payment_date": "2026-09-30T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-035",
+      "invoice_number": "INV-2026-PAID-035",
+      "subscription_id": "sub-uuid-035",
+      "customer_id": "cust-uuid-035",
+      "status": "PAID",
+      "billing_period_start": "2026-09-06T12:00:00.000Z",
+      "billing_period_end": "2026-10-06T12:00:00.000Z",
+      "due_date": "2026-10-06T12:00:00.000Z",
+      "subtotal": 135000,
+      "discount_amount": 0,
+      "tax_amount": 24300,
+      "total_amount": 159300,
+      "amount_paid": 159300,
+      "lines": [
+        {
+          "id": "invline-paid-035-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 5,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 135000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-035",
+          "payment_method": "CREDIT_CARD",
+          "amount": 159300,
+          "payment_date": "2026-10-01T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-036",
+      "invoice_number": "INV-2026-PAID-036",
+      "subscription_id": "sub-uuid-036",
+      "customer_id": "cust-uuid-036",
+      "status": "PAID",
+      "billing_period_start": "2026-09-07T12:00:00.000Z",
+      "billing_period_end": "2026-10-07T12:00:00.000Z",
+      "due_date": "2026-10-07T12:00:00.000Z",
+      "subtotal": 350000,
+      "discount_amount": 35000,
+      "tax_amount": 56700,
+      "total_amount": 371700,
+      "amount_paid": 371700,
+      "lines": [
+        {
+          "id": "invline-paid-036-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 350000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-036",
+          "payment_method": "BANK_TRANSFER",
+          "amount": 371700,
+          "payment_date": "2026-10-02T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-037",
+      "invoice_number": "INV-2026-PAID-037",
+      "subscription_id": "sub-uuid-037",
+      "customer_id": "cust-uuid-037",
+      "status": "PAID",
+      "billing_period_start": "2026-09-08T12:00:00.000Z",
+      "billing_period_end": "2026-10-08T12:00:00.000Z",
+      "due_date": "2026-10-08T12:00:00.000Z",
+      "subtotal": 34000,
+      "discount_amount": 0,
+      "tax_amount": 6120,
+      "total_amount": 40120,
+      "amount_paid": 40120,
+      "lines": [
+        {
+          "id": "invline-paid-037-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 2,
+          "unit_price": 17000,
+          "tax_rate": 18,
+          "line_total": 34000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-037",
+          "payment_method": "CREDIT_CARD",
+          "amount": 40120,
+          "payment_date": "2026-10-03T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-038",
+      "invoice_number": "INV-2026-PAID-038",
+      "subscription_id": "sub-uuid-038",
+      "customer_id": "cust-uuid-038",
+      "status": "PAID",
+      "billing_period_start": "2026-09-09T12:00:00.000Z",
+      "billing_period_end": "2026-10-09T12:00:00.000Z",
+      "due_date": "2026-10-09T12:00:00.000Z",
+      "subtotal": 405000,
+      "discount_amount": 0,
+      "tax_amount": 72900,
+      "total_amount": 477900,
+      "amount_paid": 477900,
+      "lines": [
+        {
+          "id": "invline-paid-038-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 3,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 405000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-038",
+          "payment_method": "BANK_TRANSFER",
+          "amount": 477900,
+          "payment_date": "2026-10-04T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-039",
+      "invoice_number": "INV-2026-PAID-039",
+      "subscription_id": "sub-uuid-039",
+      "customer_id": "cust-uuid-039",
+      "status": "PAID",
+      "billing_period_start": "2026-09-10T12:00:00.000Z",
+      "billing_period_end": "2026-10-10T12:00:00.000Z",
+      "due_date": "2026-10-10T12:00:00.000Z",
+      "subtotal": 270000,
+      "discount_amount": 27000,
+      "tax_amount": 43740,
+      "total_amount": 286740,
+      "amount_paid": 286740,
+      "lines": [
+        {
+          "id": "invline-paid-039-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 270000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-039",
+          "payment_method": "CREDIT_CARD",
+          "amount": 286740,
+          "payment_date": "2026-10-05T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-paid-040",
+      "invoice_number": "INV-2026-PAID-040",
+      "subscription_id": "sub-uuid-040",
+      "customer_id": "cust-uuid-040",
+      "status": "PAID",
+      "billing_period_start": "2026-09-11T12:00:00.000Z",
+      "billing_period_end": "2026-10-11T12:00:00.000Z",
+      "due_date": "2026-10-11T12:00:00.000Z",
+      "subtotal": 175000,
+      "discount_amount": 0,
+      "tax_amount": 31500,
+      "total_amount": 206500,
+      "amount_paid": 206500,
+      "lines": [
+        {
+          "id": "invline-paid-040-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 5,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 175000
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-uuid-040",
+          "payment_method": "BANK_TRANSFER",
+          "amount": 206500,
+          "payment_date": "2026-10-06T12:00:00.000Z",
+          "notes": "Full payment received and settled automatically."
+        }
+      ]
+    },
+    {
+      "id": "inv-overdue-001",
+      "invoice_number": "INV-2026-OVERDUE-001",
+      "subscription_id": "sub-uuid-041",
+      "customer_id": "cust-uuid-041",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-09-25T12:00:00.000Z",
+      "billing_period_end": "2026-10-25T12:00:00.000Z",
+      "due_date": "2026-10-25T12:00:00.000Z",
+      "subtotal": 18500,
+      "discount_amount": 0,
+      "tax_amount": 3330,
+      "total_amount": 21830,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-001-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 1,
+          "unit_price": 18500,
+          "tax_rate": 18,
+          "line_total": 18500
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-002",
+      "invoice_number": "INV-2026-OVERDUE-002",
+      "subscription_id": "sub-uuid-042",
+      "customer_id": "cust-uuid-042",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-09-24T12:00:00.000Z",
+      "billing_period_end": "2026-10-24T12:00:00.000Z",
+      "due_date": "2026-10-24T12:00:00.000Z",
+      "subtotal": 1350000,
+      "discount_amount": 0,
+      "tax_amount": 243000,
+      "total_amount": 1593000,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-002-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 1350000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-003",
+      "invoice_number": "INV-2026-OVERDUE-003",
+      "subscription_id": "sub-uuid-043",
+      "customer_id": "cust-uuid-043",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-09-23T12:00:00.000Z",
+      "billing_period_end": "2026-10-23T12:00:00.000Z",
+      "due_date": "2026-10-23T12:00:00.000Z",
+      "subtotal": 81000,
+      "discount_amount": 0,
+      "tax_amount": 14580,
+      "total_amount": 95580,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-003-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 3,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 81000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-004",
+      "invoice_number": "INV-2026-OVERDUE-004",
+      "subscription_id": "sub-uuid-044",
+      "customer_id": "cust-uuid-044",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-09-22T12:00:00.000Z",
+      "billing_period_end": "2026-10-22T12:00:00.000Z",
+      "due_date": "2026-10-22T12:00:00.000Z",
+      "subtotal": 140000,
+      "discount_amount": 0,
+      "tax_amount": 25200,
+      "total_amount": 165200,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-004-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 4,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 140000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-005",
+      "invoice_number": "INV-2026-OVERDUE-005",
+      "subscription_id": "sub-uuid-045",
+      "customer_id": "cust-uuid-045",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-09-21T12:00:00.000Z",
+      "billing_period_end": "2026-10-21T12:00:00.000Z",
+      "due_date": "2026-10-21T12:00:00.000Z",
+      "subtotal": 130000,
+      "discount_amount": 0,
+      "tax_amount": 23400,
+      "total_amount": 153400,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-005-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 13000,
+          "tax_rate": 18,
+          "line_total": 130000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-006",
+      "invoice_number": "INV-2026-OVERDUE-006",
+      "subscription_id": "sub-uuid-046",
+      "customer_id": "cust-uuid-046",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-09-20T12:00:00.000Z",
+      "billing_period_end": "2026-10-20T12:00:00.000Z",
+      "due_date": "2026-10-20T12:00:00.000Z",
+      "subtotal": 135000,
+      "discount_amount": 0,
+      "tax_amount": 24300,
+      "total_amount": 159300,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-006-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 1,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 135000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-007",
+      "invoice_number": "INV-2026-OVERDUE-007",
+      "subscription_id": "sub-uuid-047",
+      "customer_id": "cust-uuid-047",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-09-19T12:00:00.000Z",
+      "billing_period_end": "2026-10-19T12:00:00.000Z",
+      "due_date": "2026-10-19T12:00:00.000Z",
+      "subtotal": 54000,
+      "discount_amount": 0,
+      "tax_amount": 9720,
+      "total_amount": 63720,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-007-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 2,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 54000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-008",
+      "invoice_number": "INV-2026-OVERDUE-008",
+      "subscription_id": "sub-uuid-048",
+      "customer_id": "cust-uuid-048",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-09-18T12:00:00.000Z",
+      "billing_period_end": "2026-10-18T12:00:00.000Z",
+      "due_date": "2026-10-18T12:00:00.000Z",
+      "subtotal": 350000,
+      "discount_amount": 0,
+      "tax_amount": 63000,
+      "total_amount": 413000,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-008-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 350000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-009",
+      "invoice_number": "INV-2026-OVERDUE-009",
+      "subscription_id": "sub-uuid-049",
+      "customer_id": "cust-uuid-049",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-09-17T12:00:00.000Z",
+      "billing_period_end": "2026-10-17T12:00:00.000Z",
+      "due_date": "2026-10-17T12:00:00.000Z",
+      "subtotal": 68000,
+      "discount_amount": 0,
+      "tax_amount": 12240,
+      "total_amount": 80240,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-009-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 4,
+          "unit_price": 17000,
+          "tax_rate": 18,
+          "line_total": 68000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-010",
+      "invoice_number": "INV-2026-OVERDUE-010",
+      "subscription_id": "sub-uuid-050",
+      "customer_id": "cust-uuid-050",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-09-16T12:00:00.000Z",
+      "billing_period_end": "2026-10-16T12:00:00.000Z",
+      "due_date": "2026-10-16T12:00:00.000Z",
+      "subtotal": 675000,
+      "discount_amount": 0,
+      "tax_amount": 121500,
+      "total_amount": 796500,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-010-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 5,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 675000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-011",
+      "invoice_number": "INV-2026-OVERDUE-011",
+      "subscription_id": "sub-uuid-051",
+      "customer_id": "cust-uuid-051",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-09-15T12:00:00.000Z",
+      "billing_period_end": "2026-10-15T12:00:00.000Z",
+      "due_date": "2026-10-15T12:00:00.000Z",
+      "subtotal": 270000,
+      "discount_amount": 0,
+      "tax_amount": 48600,
+      "total_amount": 318600,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-011-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 270000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-012",
+      "invoice_number": "INV-2026-OVERDUE-012",
+      "subscription_id": "sub-uuid-052",
+      "customer_id": "cust-uuid-052",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-09-14T12:00:00.000Z",
+      "billing_period_end": "2026-10-14T12:00:00.000Z",
+      "due_date": "2026-10-14T12:00:00.000Z",
+      "subtotal": 70000,
+      "discount_amount": 0,
+      "tax_amount": 12600,
+      "total_amount": 82600,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-012-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 2,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 70000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-013",
+      "invoice_number": "INV-2026-OVERDUE-013",
+      "subscription_id": "sub-uuid-053",
+      "customer_id": "cust-uuid-053",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-09-13T12:00:00.000Z",
+      "billing_period_end": "2026-10-13T12:00:00.000Z",
+      "due_date": "2026-10-13T12:00:00.000Z",
+      "subtotal": 55500,
+      "discount_amount": 0,
+      "tax_amount": 9990,
+      "total_amount": 65490,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-013-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 3,
+          "unit_price": 18500,
+          "tax_rate": 18,
+          "line_total": 55500
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-014",
+      "invoice_number": "INV-2026-OVERDUE-014",
+      "subscription_id": "sub-uuid-054",
+      "customer_id": "cust-uuid-054",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-09-12T12:00:00.000Z",
+      "billing_period_end": "2026-10-12T12:00:00.000Z",
+      "due_date": "2026-10-12T12:00:00.000Z",
+      "subtotal": 1350000,
+      "discount_amount": 0,
+      "tax_amount": 243000,
+      "total_amount": 1593000,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-014-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 1350000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-015",
+      "invoice_number": "INV-2026-OVERDUE-015",
+      "subscription_id": "sub-uuid-055",
+      "customer_id": "cust-uuid-055",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-09-11T12:00:00.000Z",
+      "billing_period_end": "2026-10-11T12:00:00.000Z",
+      "due_date": "2026-10-11T12:00:00.000Z",
+      "subtotal": 135000,
+      "discount_amount": 0,
+      "tax_amount": 24300,
+      "total_amount": 159300,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-015-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 5,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 135000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-016",
+      "invoice_number": "INV-2026-OVERDUE-016",
+      "subscription_id": "sub-uuid-056",
+      "customer_id": "cust-uuid-056",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-08-30T12:00:00.000Z",
+      "billing_period_end": "2026-09-29T12:00:00.000Z",
+      "due_date": "2026-09-29T12:00:00.000Z",
+      "subtotal": 35000,
+      "discount_amount": 0,
+      "tax_amount": 6300,
+      "total_amount": 41300,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-016-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 1,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 35000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-017",
+      "invoice_number": "INV-2026-OVERDUE-017",
+      "subscription_id": "sub-uuid-057",
+      "customer_id": "cust-uuid-057",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-08-28T12:00:00.000Z",
+      "billing_period_end": "2026-09-27T12:00:00.000Z",
+      "due_date": "2026-09-27T12:00:00.000Z",
+      "subtotal": 130000,
+      "discount_amount": 0,
+      "tax_amount": 23400,
+      "total_amount": 153400,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-017-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 13000,
+          "tax_rate": 18,
+          "line_total": 130000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-018",
+      "invoice_number": "INV-2026-OVERDUE-018",
+      "subscription_id": "sub-uuid-058",
+      "customer_id": "cust-uuid-058",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-08-26T12:00:00.000Z",
+      "billing_period_end": "2026-09-25T12:00:00.000Z",
+      "due_date": "2026-09-25T12:00:00.000Z",
+      "subtotal": 405000,
+      "discount_amount": 0,
+      "tax_amount": 72900,
+      "total_amount": 477900,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-018-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 3,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 405000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-019",
+      "invoice_number": "INV-2026-OVERDUE-019",
+      "subscription_id": "sub-uuid-059",
+      "customer_id": "cust-uuid-059",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-08-24T12:00:00.000Z",
+      "billing_period_end": "2026-09-23T12:00:00.000Z",
+      "due_date": "2026-09-23T12:00:00.000Z",
+      "subtotal": 108000,
+      "discount_amount": 0,
+      "tax_amount": 19440,
+      "total_amount": 127440,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-019-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 4,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 108000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-020",
+      "invoice_number": "INV-2026-OVERDUE-020",
+      "subscription_id": "sub-uuid-060",
+      "customer_id": "cust-uuid-060",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-08-22T12:00:00.000Z",
+      "billing_period_end": "2026-09-21T12:00:00.000Z",
+      "due_date": "2026-09-21T12:00:00.000Z",
+      "subtotal": 350000,
+      "discount_amount": 0,
+      "tax_amount": 63000,
+      "total_amount": 413000,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-020-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 350000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-021",
+      "invoice_number": "INV-2026-OVERDUE-021",
+      "subscription_id": "sub-uuid-061",
+      "customer_id": "cust-uuid-061",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-08-20T12:00:00.000Z",
+      "billing_period_end": "2026-09-19T12:00:00.000Z",
+      "due_date": "2026-09-19T12:00:00.000Z",
+      "subtotal": 17000,
+      "discount_amount": 0,
+      "tax_amount": 3060,
+      "total_amount": 20060,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-021-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 1,
+          "unit_price": 17000,
+          "tax_rate": 18,
+          "line_total": 17000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-022",
+      "invoice_number": "INV-2026-OVERDUE-022",
+      "subscription_id": "sub-uuid-062",
+      "customer_id": "cust-uuid-062",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-08-18T12:00:00.000Z",
+      "billing_period_end": "2026-09-17T12:00:00.000Z",
+      "due_date": "2026-09-17T12:00:00.000Z",
+      "subtotal": 270000,
+      "discount_amount": 0,
+      "tax_amount": 48600,
+      "total_amount": 318600,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-022-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 2,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 270000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-023",
+      "invoice_number": "INV-2026-OVERDUE-023",
+      "subscription_id": "sub-uuid-063",
+      "customer_id": "cust-uuid-063",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-08-16T12:00:00.000Z",
+      "billing_period_end": "2026-09-15T12:00:00.000Z",
+      "due_date": "2026-09-15T12:00:00.000Z",
+      "subtotal": 270000,
+      "discount_amount": 0,
+      "tax_amount": 48600,
+      "total_amount": 318600,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-023-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 270000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-024",
+      "invoice_number": "INV-2026-OVERDUE-024",
+      "subscription_id": "sub-uuid-064",
+      "customer_id": "cust-uuid-064",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-08-14T12:00:00.000Z",
+      "billing_period_end": "2026-09-13T12:00:00.000Z",
+      "due_date": "2026-09-13T12:00:00.000Z",
+      "subtotal": 140000,
+      "discount_amount": 0,
+      "tax_amount": 25200,
+      "total_amount": 165200,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-024-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 4,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 140000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-025",
+      "invoice_number": "INV-2026-OVERDUE-025",
+      "subscription_id": "sub-uuid-065",
+      "customer_id": "cust-uuid-065",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-08-12T12:00:00.000Z",
+      "billing_period_end": "2026-09-11T12:00:00.000Z",
+      "due_date": "2026-09-11T12:00:00.000Z",
+      "subtotal": 92500,
+      "discount_amount": 0,
+      "tax_amount": 16650,
+      "total_amount": 109150,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-025-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 5,
+          "unit_price": 18500,
+          "tax_rate": 18,
+          "line_total": 92500
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-026",
+      "invoice_number": "INV-2026-OVERDUE-026",
+      "subscription_id": "sub-uuid-066",
+      "customer_id": "cust-uuid-066",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-07-30T12:00:00.000Z",
+      "billing_period_end": "2026-08-29T12:00:00.000Z",
+      "due_date": "2026-08-29T12:00:00.000Z",
+      "subtotal": 1350000,
+      "discount_amount": 0,
+      "tax_amount": 243000,
+      "total_amount": 1593000,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-026-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 1350000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-027",
+      "invoice_number": "INV-2026-OVERDUE-027",
+      "subscription_id": "sub-uuid-067",
+      "customer_id": "cust-uuid-067",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-07-27T12:00:00.000Z",
+      "billing_period_end": "2026-08-26T12:00:00.000Z",
+      "due_date": "2026-08-26T12:00:00.000Z",
+      "subtotal": 54000,
+      "discount_amount": 0,
+      "tax_amount": 9720,
+      "total_amount": 63720,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-027-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 2,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 54000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-028",
+      "invoice_number": "INV-2026-OVERDUE-028",
+      "subscription_id": "sub-uuid-068",
+      "customer_id": "cust-uuid-068",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-07-24T12:00:00.000Z",
+      "billing_period_end": "2026-08-23T12:00:00.000Z",
+      "due_date": "2026-08-23T12:00:00.000Z",
+      "subtotal": 105000,
+      "discount_amount": 0,
+      "tax_amount": 18900,
+      "total_amount": 123900,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-028-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 3,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 105000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-029",
+      "invoice_number": "INV-2026-OVERDUE-029",
+      "subscription_id": "sub-uuid-069",
+      "customer_id": "cust-uuid-069",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-07-21T12:00:00.000Z",
+      "billing_period_end": "2026-08-20T12:00:00.000Z",
+      "due_date": "2026-08-20T12:00:00.000Z",
+      "subtotal": 130000,
+      "discount_amount": 0,
+      "tax_amount": 23400,
+      "total_amount": 153400,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-029-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 13000,
+          "tax_rate": 18,
+          "line_total": 130000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-030",
+      "invoice_number": "INV-2026-OVERDUE-030",
+      "subscription_id": "sub-uuid-070",
+      "customer_id": "cust-uuid-070",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-07-18T12:00:00.000Z",
+      "billing_period_end": "2026-08-17T12:00:00.000Z",
+      "due_date": "2026-08-17T12:00:00.000Z",
+      "subtotal": 675000,
+      "discount_amount": 0,
+      "tax_amount": 121500,
+      "total_amount": 796500,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-030-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 5,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 675000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-031",
+      "invoice_number": "INV-2026-OVERDUE-031",
+      "subscription_id": "sub-uuid-071",
+      "customer_id": "cust-uuid-071",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-07-15T12:00:00.000Z",
+      "billing_period_end": "2026-08-14T12:00:00.000Z",
+      "due_date": "2026-08-14T12:00:00.000Z",
+      "subtotal": 27000,
+      "discount_amount": 0,
+      "tax_amount": 4860,
+      "total_amount": 31860,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-031-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 1,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 27000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-032",
+      "invoice_number": "INV-2026-OVERDUE-032",
+      "subscription_id": "sub-uuid-072",
+      "customer_id": "cust-uuid-072",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-07-12T12:00:00.000Z",
+      "billing_period_end": "2026-08-11T12:00:00.000Z",
+      "due_date": "2026-08-11T12:00:00.000Z",
+      "subtotal": 350000,
+      "discount_amount": 0,
+      "tax_amount": 63000,
+      "total_amount": 413000,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-032-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 350000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-033",
+      "invoice_number": "INV-2026-OVERDUE-033",
+      "subscription_id": "sub-uuid-073",
+      "customer_id": "cust-uuid-073",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-07-09T12:00:00.000Z",
+      "billing_period_end": "2026-08-08T12:00:00.000Z",
+      "due_date": "2026-08-08T12:00:00.000Z",
+      "subtotal": 51000,
+      "discount_amount": 0,
+      "tax_amount": 9180,
+      "total_amount": 60180,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-033-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 3,
+          "unit_price": 17000,
+          "tax_rate": 18,
+          "line_total": 51000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-034",
+      "invoice_number": "INV-2026-OVERDUE-034",
+      "subscription_id": "sub-uuid-074",
+      "customer_id": "cust-uuid-074",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-07-06T12:00:00.000Z",
+      "billing_period_end": "2026-08-05T12:00:00.000Z",
+      "due_date": "2026-08-05T12:00:00.000Z",
+      "subtotal": 540000,
+      "discount_amount": 0,
+      "tax_amount": 97200,
+      "total_amount": 637200,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-034-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 4,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 540000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-overdue-035",
+      "invoice_number": "INV-2026-OVERDUE-035",
+      "subscription_id": "sub-uuid-075",
+      "customer_id": "cust-uuid-075",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-07-03T12:00:00.000Z",
+      "billing_period_end": "2026-08-02T12:00:00.000Z",
+      "due_date": "2026-08-02T12:00:00.000Z",
+      "subtotal": 270000,
+      "discount_amount": 0,
+      "tax_amount": 48600,
+      "total_amount": 318600,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-overdue-035-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 270000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-001",
+      "invoice_number": "INV-2026-CURR-001",
+      "subscription_id": "sub-uuid-076",
+      "customer_id": "cust-uuid-076",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-10-30T12:00:00.000Z",
+      "billing_period_end": "2026-11-29T12:00:00.000Z",
+      "due_date": "2026-11-29T12:00:00.000Z",
+      "subtotal": 35000,
+      "discount_amount": 0,
+      "tax_amount": 6300,
+      "total_amount": 41300,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-001-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 1,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 35000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-002",
+      "invoice_number": "INV-2026-CURR-002",
+      "subscription_id": "sub-uuid-077",
+      "customer_id": "cust-uuid-077",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-10-29T12:00:00.000Z",
+      "billing_period_end": "2026-11-28T12:00:00.000Z",
+      "due_date": "2026-11-28T12:00:00.000Z",
+      "subtotal": 37000,
+      "discount_amount": 0,
+      "tax_amount": 6660,
+      "total_amount": 43660,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-002-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 2,
+          "unit_price": 18500,
+          "tax_rate": 18,
+          "line_total": 37000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-003",
+      "invoice_number": "INV-2026-CURR-003",
+      "subscription_id": "sub-uuid-078",
+      "customer_id": "cust-uuid-078",
+      "status": "DRAFT",
+      "billing_period_start": "2026-10-28T12:00:00.000Z",
+      "billing_period_end": "2026-11-27T12:00:00.000Z",
+      "due_date": "2026-11-27T12:00:00.000Z",
+      "subtotal": 1350000,
+      "discount_amount": 0,
+      "tax_amount": 243000,
+      "total_amount": 1593000,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-003-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 1350000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-004",
+      "invoice_number": "INV-2026-CURR-004",
+      "subscription_id": "sub-uuid-079",
+      "customer_id": "cust-uuid-079",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-10-27T12:00:00.000Z",
+      "billing_period_end": "2026-11-26T12:00:00.000Z",
+      "due_date": "2026-11-26T12:00:00.000Z",
+      "subtotal": 108000,
+      "discount_amount": 5000,
+      "tax_amount": 18540,
+      "total_amount": 121540,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-004-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 4,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 108000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-005",
+      "invoice_number": "INV-2026-CURR-005",
+      "subscription_id": "sub-uuid-080",
+      "customer_id": "cust-uuid-080",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-10-26T12:00:00.000Z",
+      "billing_period_end": "2026-11-25T12:00:00.000Z",
+      "due_date": "2026-11-25T12:00:00.000Z",
+      "subtotal": 175000,
+      "discount_amount": 0,
+      "tax_amount": 31500,
+      "total_amount": 206500,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-005-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 5,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 175000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-006",
+      "invoice_number": "INV-2026-CURR-006",
+      "subscription_id": "sub-uuid-081",
+      "customer_id": "cust-uuid-081",
+      "status": "DRAFT",
+      "billing_period_start": "2026-10-25T12:00:00.000Z",
+      "billing_period_end": "2026-11-24T12:00:00.000Z",
+      "due_date": "2026-11-24T12:00:00.000Z",
+      "subtotal": 130000,
+      "discount_amount": 0,
+      "tax_amount": 23400,
+      "total_amount": 153400,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-006-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 13000,
+          "tax_rate": 18,
+          "line_total": 130000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-007",
+      "invoice_number": "INV-2026-CURR-007",
+      "subscription_id": "sub-uuid-082",
+      "customer_id": "cust-uuid-082",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-10-24T12:00:00.000Z",
+      "billing_period_end": "2026-11-23T12:00:00.000Z",
+      "due_date": "2026-11-23T12:00:00.000Z",
+      "subtotal": 270000,
+      "discount_amount": 0,
+      "tax_amount": 48600,
+      "total_amount": 318600,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-007-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 2,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 270000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-008",
+      "invoice_number": "INV-2026-CURR-008",
+      "subscription_id": "sub-uuid-083",
+      "customer_id": "cust-uuid-083",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-10-23T12:00:00.000Z",
+      "billing_period_end": "2026-11-22T12:00:00.000Z",
+      "due_date": "2026-11-22T12:00:00.000Z",
+      "subtotal": 81000,
+      "discount_amount": 5000,
+      "tax_amount": 13680,
+      "total_amount": 89680,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-008-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 3,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 81000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-009",
+      "invoice_number": "INV-2026-CURR-009",
+      "subscription_id": "sub-uuid-084",
+      "customer_id": "cust-uuid-084",
+      "status": "DRAFT",
+      "billing_period_start": "2026-10-22T12:00:00.000Z",
+      "billing_period_end": "2026-11-21T12:00:00.000Z",
+      "due_date": "2026-11-21T12:00:00.000Z",
+      "subtotal": 350000,
+      "discount_amount": 0,
+      "tax_amount": 63000,
+      "total_amount": 413000,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-009-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 350000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-010",
+      "invoice_number": "INV-2026-CURR-010",
+      "subscription_id": "sub-uuid-085",
+      "customer_id": "cust-uuid-085",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-10-31T12:00:00.000Z",
+      "billing_period_end": "2026-11-30T12:00:00.000Z",
+      "due_date": "2026-11-30T12:00:00.000Z",
+      "subtotal": 85000,
+      "discount_amount": 0,
+      "tax_amount": 15300,
+      "total_amount": 100300,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-010-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 5,
+          "unit_price": 17000,
+          "tax_rate": 18,
+          "line_total": 85000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-011",
+      "invoice_number": "INV-2026-CURR-011",
+      "subscription_id": "sub-uuid-086",
+      "customer_id": "cust-uuid-086",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-10-30T12:00:00.000Z",
+      "billing_period_end": "2026-11-29T12:00:00.000Z",
+      "due_date": "2026-11-29T12:00:00.000Z",
+      "subtotal": 135000,
+      "discount_amount": 0,
+      "tax_amount": 24300,
+      "total_amount": 159300,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-011-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 1,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 135000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-012",
+      "invoice_number": "INV-2026-CURR-012",
+      "subscription_id": "sub-uuid-087",
+      "customer_id": "cust-uuid-087",
+      "status": "DRAFT",
+      "billing_period_start": "2026-10-29T12:00:00.000Z",
+      "billing_period_end": "2026-11-28T12:00:00.000Z",
+      "due_date": "2026-11-28T12:00:00.000Z",
+      "subtotal": 270000,
+      "discount_amount": 5000,
+      "tax_amount": 47700,
+      "total_amount": 312700,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-012-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 270000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-013",
+      "invoice_number": "INV-2026-CURR-013",
+      "subscription_id": "sub-uuid-088",
+      "customer_id": "cust-uuid-088",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-10-28T12:00:00.000Z",
+      "billing_period_end": "2026-11-27T12:00:00.000Z",
+      "due_date": "2026-11-27T12:00:00.000Z",
+      "subtotal": 105000,
+      "discount_amount": 0,
+      "tax_amount": 18900,
+      "total_amount": 123900,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-013-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 3,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 105000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-014",
+      "invoice_number": "INV-2026-CURR-014",
+      "subscription_id": "sub-uuid-089",
+      "customer_id": "cust-uuid-089",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-10-27T12:00:00.000Z",
+      "billing_period_end": "2026-11-26T12:00:00.000Z",
+      "due_date": "2026-11-26T12:00:00.000Z",
+      "subtotal": 74000,
+      "discount_amount": 0,
+      "tax_amount": 13320,
+      "total_amount": 87320,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-014-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 4,
+          "unit_price": 18500,
+          "tax_rate": 18,
+          "line_total": 74000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-015",
+      "invoice_number": "INV-2026-CURR-015",
+      "subscription_id": "sub-uuid-090",
+      "customer_id": "cust-uuid-090",
+      "status": "DRAFT",
+      "billing_period_start": "2026-10-26T12:00:00.000Z",
+      "billing_period_end": "2026-11-25T12:00:00.000Z",
+      "due_date": "2026-11-25T12:00:00.000Z",
+      "subtotal": 1350000,
+      "discount_amount": 0,
+      "tax_amount": 243000,
+      "total_amount": 1593000,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-015-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 1350000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-016",
+      "invoice_number": "INV-2026-CURR-016",
+      "subscription_id": "sub-uuid-091",
+      "customer_id": "cust-uuid-091",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-10-25T12:00:00.000Z",
+      "billing_period_end": "2026-11-24T12:00:00.000Z",
+      "due_date": "2026-11-24T12:00:00.000Z",
+      "subtotal": 27000,
+      "discount_amount": 5000,
+      "tax_amount": 3960,
+      "total_amount": 25960,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-016-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 1,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 27000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-017",
+      "invoice_number": "INV-2026-CURR-017",
+      "subscription_id": "sub-uuid-092",
+      "customer_id": "cust-uuid-092",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-10-24T12:00:00.000Z",
+      "billing_period_end": "2026-11-23T12:00:00.000Z",
+      "due_date": "2026-11-23T12:00:00.000Z",
+      "subtotal": 70000,
+      "discount_amount": 0,
+      "tax_amount": 12600,
+      "total_amount": 82600,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-017-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 2,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 70000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-018",
+      "invoice_number": "INV-2026-CURR-018",
+      "subscription_id": "sub-uuid-093",
+      "customer_id": "cust-uuid-093",
+      "status": "DRAFT",
+      "billing_period_start": "2026-10-23T12:00:00.000Z",
+      "billing_period_end": "2026-11-22T12:00:00.000Z",
+      "due_date": "2026-11-22T12:00:00.000Z",
+      "subtotal": 130000,
+      "discount_amount": 0,
+      "tax_amount": 23400,
+      "total_amount": 153400,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-018-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 13000,
+          "tax_rate": 18,
+          "line_total": 130000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-019",
+      "invoice_number": "INV-2026-CURR-019",
+      "subscription_id": "sub-uuid-094",
+      "customer_id": "cust-uuid-094",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-10-22T12:00:00.000Z",
+      "billing_period_end": "2026-11-21T12:00:00.000Z",
+      "due_date": "2026-11-21T12:00:00.000Z",
+      "subtotal": 540000,
+      "discount_amount": 0,
+      "tax_amount": 97200,
+      "total_amount": 637200,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-019-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 4,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 540000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-020",
+      "invoice_number": "INV-2026-CURR-020",
+      "subscription_id": "sub-uuid-095",
+      "customer_id": "cust-uuid-095",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-10-31T12:00:00.000Z",
+      "billing_period_end": "2026-11-30T12:00:00.000Z",
+      "due_date": "2026-11-30T12:00:00.000Z",
+      "subtotal": 135000,
+      "discount_amount": 5000,
+      "tax_amount": 23400,
+      "total_amount": 153400,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-020-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 5,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 135000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-021",
+      "invoice_number": "INV-2026-CURR-021",
+      "subscription_id": "sub-uuid-096",
+      "customer_id": "cust-uuid-096",
+      "status": "DRAFT",
+      "billing_period_start": "2026-10-30T12:00:00.000Z",
+      "billing_period_end": "2026-11-29T12:00:00.000Z",
+      "due_date": "2026-11-29T12:00:00.000Z",
+      "subtotal": 350000,
+      "discount_amount": 0,
+      "tax_amount": 63000,
+      "total_amount": 413000,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-021-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 350000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-022",
+      "invoice_number": "INV-2026-CURR-022",
+      "subscription_id": "sub-uuid-097",
+      "customer_id": "cust-uuid-097",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-10-29T12:00:00.000Z",
+      "billing_period_end": "2026-11-28T12:00:00.000Z",
+      "due_date": "2026-11-28T12:00:00.000Z",
+      "subtotal": 34000,
+      "discount_amount": 0,
+      "tax_amount": 6120,
+      "total_amount": 40120,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-022-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 2,
+          "unit_price": 17000,
+          "tax_rate": 18,
+          "line_total": 34000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-023",
+      "invoice_number": "INV-2026-CURR-023",
+      "subscription_id": "sub-uuid-098",
+      "customer_id": "cust-uuid-098",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-10-28T12:00:00.000Z",
+      "billing_period_end": "2026-11-27T12:00:00.000Z",
+      "due_date": "2026-11-27T12:00:00.000Z",
+      "subtotal": 405000,
+      "discount_amount": 0,
+      "tax_amount": 72900,
+      "total_amount": 477900,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-023-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 3,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 405000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-024",
+      "invoice_number": "INV-2026-CURR-024",
+      "subscription_id": "sub-uuid-099",
+      "customer_id": "cust-uuid-099",
+      "status": "DRAFT",
+      "billing_period_start": "2026-10-27T12:00:00.000Z",
+      "billing_period_end": "2026-11-26T12:00:00.000Z",
+      "due_date": "2026-11-26T12:00:00.000Z",
+      "subtotal": 270000,
+      "discount_amount": 5000,
+      "tax_amount": 47700,
+      "total_amount": 312700,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-024-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 270000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-025",
+      "invoice_number": "INV-2026-CURR-025",
+      "subscription_id": "sub-uuid-100",
+      "customer_id": "cust-uuid-100",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-10-26T12:00:00.000Z",
+      "billing_period_end": "2026-11-25T12:00:00.000Z",
+      "due_date": "2026-11-25T12:00:00.000Z",
+      "subtotal": 175000,
+      "discount_amount": 0,
+      "tax_amount": 31500,
+      "total_amount": 206500,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-025-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 5,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 175000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-026",
+      "invoice_number": "INV-2026-CURR-026",
+      "subscription_id": "sub-uuid-101",
+      "customer_id": "cust-uuid-101",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-10-25T12:00:00.000Z",
+      "billing_period_end": "2026-11-24T12:00:00.000Z",
+      "due_date": "2026-11-24T12:00:00.000Z",
+      "subtotal": 18500,
+      "discount_amount": 0,
+      "tax_amount": 3330,
+      "total_amount": 21830,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-026-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 1,
+          "unit_price": 18500,
+          "tax_rate": 18,
+          "line_total": 18500
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-027",
+      "invoice_number": "INV-2026-CURR-027",
+      "subscription_id": "sub-uuid-102",
+      "customer_id": "cust-uuid-102",
+      "status": "DRAFT",
+      "billing_period_start": "2026-10-24T12:00:00.000Z",
+      "billing_period_end": "2026-11-23T12:00:00.000Z",
+      "due_date": "2026-11-23T12:00:00.000Z",
+      "subtotal": 1350000,
+      "discount_amount": 0,
+      "tax_amount": 243000,
+      "total_amount": 1593000,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-027-1",
+          "product_name": "Brightloop ERP Enterprise",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 135000,
+          "tax_rate": 18,
+          "line_total": 1350000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-028",
+      "invoice_number": "INV-2026-CURR-028",
+      "subscription_id": "sub-uuid-103",
+      "customer_id": "cust-uuid-103",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-10-23T12:00:00.000Z",
+      "billing_period_end": "2026-11-22T12:00:00.000Z",
+      "due_date": "2026-11-22T12:00:00.000Z",
+      "subtotal": 81000,
+      "discount_amount": 5000,
+      "tax_amount": 13680,
+      "total_amount": 89680,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-028-1",
+          "product_name": "Brightloop AI Copilot Add-on",
+          "variant_name": "",
+          "quantity": 3,
+          "unit_price": 27000,
+          "tax_rate": 18,
+          "line_total": 81000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-029",
+      "invoice_number": "INV-2026-CURR-029",
+      "subscription_id": "sub-uuid-104",
+      "customer_id": "cust-uuid-104",
+      "status": "CONFIRMED",
+      "billing_period_start": "2026-10-22T12:00:00.000Z",
+      "billing_period_end": "2026-11-21T12:00:00.000Z",
+      "due_date": "2026-11-21T12:00:00.000Z",
+      "subtotal": 140000,
+      "discount_amount": 0,
+      "tax_amount": 25200,
+      "total_amount": 165200,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-029-1",
+          "product_name": "24/7 Dedicated Support SLA",
+          "variant_name": "",
+          "quantity": 4,
+          "unit_price": 35000,
+          "tax_rate": 18,
+          "line_total": 140000
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "inv-current-030",
+      "invoice_number": "INV-2026-CURR-030",
+      "subscription_id": "sub-uuid-105",
+      "customer_id": "cust-uuid-105",
+      "status": "DRAFT",
+      "billing_period_start": "2026-10-31T12:00:00.000Z",
+      "billing_period_end": "2026-11-30T12:00:00.000Z",
+      "due_date": "2026-11-30T12:00:00.000Z",
+      "subtotal": 130000,
+      "discount_amount": 0,
+      "tax_amount": 23400,
+      "total_amount": 153400,
+      "amount_paid": 0,
+      "lines": [
+        {
+          "id": "invline-curr-030-1",
+          "product_name": "Brightloop CRM Core",
+          "variant_name": "",
+          "quantity": 10,
+          "unit_price": 13000,
+          "tax_rate": 18,
+          "line_total": 130000
+        }
+      ],
+      "payments": []
+    }
+  ]
+}
