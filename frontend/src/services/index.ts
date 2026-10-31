@@ -236,7 +236,7 @@ export const dashboardService = {
     return res.data
   },
   getRevenueChart: async (period?: string): Promise<RevenueDataPoint[]> => {
-    if (ENV.USE_MOCK) return mockDashboardService.getRevenueChart()
+    if (ENV.USE_MOCK) return mockDashboardService.getRevenueChart(period)
     const res = await apiClient.get<RevenueDataPoint[]>('/finance/reports', { params: { period } })
     return res.data
   },
