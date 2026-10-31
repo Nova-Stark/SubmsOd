@@ -133,7 +133,17 @@ export const AppShell: React.FC = () => {
               <span className="text-white/70 text-[11px] hidden sm:inline">Switch Role:</span>
               <select
                 value={role}
-                onChange={(e) => switchRoleMock(e.target.value as UserRole)}
+                onChange={(e) => {
+                  const newRole = e.target.value as UserRole
+                  switchRoleMock(newRole)
+                  if (newRole === 'ADMIN') {
+                    navigate('/admin/dashboard')
+                  } else if (newRole === 'STAFF') {
+                    navigate('/staff/subscriptions')
+                  } else {
+                    navigate('/portal/subscriptions')
+                  }
+                }}
                 className="bg-transparent text-white text-xs font-semibold focus:outline-none cursor-pointer"
                 aria-label="Role Switcher for prototype review"
               >
