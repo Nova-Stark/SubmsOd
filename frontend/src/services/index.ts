@@ -217,6 +217,11 @@ export const invoiceService = {
     const res = await apiClient.get<PaginatedResponse<Payment>>('/payments', { params })
     return res.data
   },
+  generateInvoiceFromSubscription: async (subscriptionId: string): Promise<Invoice> => {
+    if (ENV.USE_MOCK) return mockInvoiceService.generateInvoiceFromSubscription(subscriptionId)
+    const res = await apiClient.post<Invoice>(`/subscriptions/${subscriptionId}/generate-invoice`)
+    return res.data
+  },
   runBatchBilling: async (): Promise<BillingRunResult> => {
     if (ENV.USE_MOCK) return mockInvoiceService.runBatchBilling()
     const res = await apiClient.post<BillingRunResult>('/billing/run')

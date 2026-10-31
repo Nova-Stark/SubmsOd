@@ -60,12 +60,11 @@ export const SubscriptionDetailView: React.FC = () => {
     if (!subscription) return
     setIsGeneratingInvoice(true)
     try {
-      // In mock, batch billing or generate-from-subscription
-      const res = await invoiceService.runBatchBilling()
-      success(`Invoice generated for ${subscription.subscriptionNumber}! (${res.created} created)`)
+      const inv = await invoiceService.generateInvoiceFromSubscription(subscription.id)
+      success(`Invoice ${inv.invoiceNumber} generated for ${subscription.subscriptionNumber}!`)
       navigate('/staff/invoices')
-    } catch {
-      toastError('Failed to generate invoice.')
+    } catch (err: unknown) {
+      toastError((err as { message?: string })?.message || 'Failed to generate invoice.')
     } finally {
       setIsGeneratingInvoice(false)
     }

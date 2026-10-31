@@ -86,9 +86,17 @@ export const InvoiceListView: React.FC = () => {
   const paymentMutation = useMutation({
     mutationFn: () => {
       if (!paymentInvoiceId) throw new Error('No invoice selected')
+      const target = selectedInvoice?.id === paymentInvoiceId ? selectedInvoice : invoices.find((i) => i.id === paymentInvoiceId)
+      const amountInPaise = Math.round(parseFloat(payAmount) * 100)
+      if (isNaN(amountInPaise) || amountInPaise <= 0) {
+        throw new Error('Payment amount must be greater than zero.')
+      }
+      if (target && amountInPaise > target.amountDue) {
+        throw new Error(`Payment cannot exceed outstanding balance of ${formatCurrency(target.amountDue)}.`)
+      }
       return invoiceService.recordPayment(paymentInvoiceId, {
         method: payMethod,
-        amount: Math.round(parseFloat(payAmount) * 100),
+        amount: amountInPaise,
         date: payDate,
         note: payNote || undefined,
       })
@@ -311,14 +319,20 @@ export const InvoiceListView: React.FC = () => {
                 <option value="CASH">Cash</option>
               </select>
             </div>
-            <Input
-              label="Amount (₹)"
-              type="number"
-              step="0.01"
-              min="0.01"
-              value={payAmount}
-              onChange={(e) => setPayAmount(e.target.value)}
-            />
+            <div>
+              <Input
+                label={`Amount (₹) — Max Due: ${selectedInvoice ? formatCurrency(selectedInvoice.amountDue) : ''}`}
+                type="number"
+                step="0.01"
+                min="0.01"
+                max={selectedInvoice ? (selectedInvoice.amountDue / 100).toFixed(2) : undefined}
+                value={payAmount}
+                onChange={(e) => setPayAmount(e.target.value)}
+              />
+              {selectedInvoice && Math.round(parseFloat(payAmount || '0') * 100) > selectedInvoice.amountDue && (
+                <p className="text-[11px] text-rose-500 mt-1 font-medium">Amount exceeds outstanding balance.</p>
+              )}
+            </div>
             <Input
               label="Payment Date"
               type="date"
@@ -338,7 +352,7 @@ export const InvoiceListView: React.FC = () => {
                 variant="primary"
                 isLoading={paymentMutation.isPending}
                 onClick={() => paymentMutation.mutate()}
-                disabled={!payAmount || parseFloat(payAmount) <= 0}
+                disabled={!payAmount || parseFloat(payAmount) <= 0 || (!!selectedInvoice && Math.round(parseFloat(payAmount) * 100) > selectedInvoice.amountDue)}
               >
                 <CreditCard className="w-4 h-4" /> Record Payment
               </Button>

@@ -644,6 +644,14 @@ export const mockInvoiceService = {
     const inv = db.invoices.find((i) => i.id === invoiceId)
     if (!inv) throw { code: 'NOT_FOUND', message: 'Invoice not found' } as ApiError
 
+    if (payment.amount <= 0) {
+      throw { code: 'INVALID_AMOUNT', message: 'Payment amount must be greater than zero.' } as ApiError
+    }
+
+    if (payment.amount > inv.amountDue) {
+      throw { code: 'OVERPAYMENT_NOT_ALLOWED', message: `Payment amount cannot exceed outstanding balance of ₹${(inv.amountDue / 100).toFixed(2)}.` } as ApiError
+    }
+
     const newPayment: Payment = {
       ...payment,
       id: `pay_${Date.now()}`,
@@ -690,6 +698,76 @@ export const mockInvoiceService = {
         totalPages: Math.ceil(filtered.length / limit) || 1,
       },
     }
+  },
+
+  async generateInvoiceFromSubscription(subscriptionId: string): Promise<Invoice> {
+    await delay(300)
+    const db = getMockDb()
+    const sub = db.subscriptions.find((s) => s.id === subscriptionId)
+    if (!sub) {
+      throw { code: 'NOT_FOUND', message: 'Subscription contract not found.' } as ApiError
+    }
+
+    if (sub.status !== 'ACTIVE' && sub.status !== 'CONFIRMED') {
+      throw { code: 'INVALID_STATE', message: 'Invoices can only be generated for Active or Confirmed subscriptions.' } as ApiError
+    }
+
+    // Check idempotency: check if an un-cancelled invoice was already generated for this sub this month
+    const currentMonth = new Date().toISOString().substring(0, 7)
+    const existing = db.invoices.find(
+      (i) => i.subscriptionId === sub.id && i.issueDate.startsWith(currentMonth) && i.status !== 'CANCELLED'
+    )
+    if (existing) {
+      throw {
+        code: 'DUPLICATE_INVOICE',
+        message: `An invoice has already been generated for this subscription this billing period (${existing.invoiceNumber}).`,
+      } as ApiError
+    }
+
+    const invCount = db.invoices.length + 1
+    const invNumber = `INV/2026/${String(invCount).padStart(5, '0')}`
+    const customer = db.customers.find((c) => c.id === sub.customerId)
+    const dueDate = new Date()
+    dueDate.setDate(dueDate.getDate() + 30)
+
+    const newInv: Invoice = {
+      id: `inv_sub_${Date.now()}`,
+      invoiceNumber: invNumber,
+      subscriptionId: sub.id,
+      subscriptionNumber: sub.subscriptionNumber,
+      customerId: sub.customerId,
+      customerName: sub.customerName,
+      customerEmail: sub.customerEmail || customer?.email || 'billing@brightloop.com',
+      customerAddress: customer?.address,
+      gstin: customer?.gstin,
+      status: 'CONFIRMED',
+      issueDate: new Date().toISOString().split('T')[0],
+      dueDate: dueDate.toISOString().split('T')[0],
+      isOverdue: false,
+      subtotal: sub.subtotal,
+      taxAmount: sub.taxTotal,
+      discountAmount: sub.discountTotal,
+      totalAmount: sub.totalAmount,
+      amountPaid: 0,
+      amountDue: sub.totalAmount,
+      currency: sub.currency,
+      payments: [],
+      lines: sub.lines.map((l) => ({
+        id: `invline_${l.id}`,
+        description: `${l.productName} ${l.variantName ? `(${l.variantName})` : ''}`,
+        qty: l.qty,
+        unitPrice: l.unitPrice,
+        taxRate: l.taxRate || 1800,
+        amount: l.totalAmount,
+      })),
+      notes: `Generated from subscription ${sub.subscriptionNumber}. Payment terms: ${sub.paymentTerms}.`,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    }
+
+    db.invoices.unshift(newInv)
+    saveMockDb(db)
+    return newInv
   },
 
   async runBatchBilling(): Promise<BillingRunResult> {
