@@ -210,7 +210,7 @@ export const FinanceDashboardView: React.FC = () => {
                       />
                     </div>
                     <span className="text-[10px] text-slate-500 font-medium truncate w-full text-center">
-                      {dp.period.split(' ')[0]?.substring(0, 3)}
+                      {chartPeriod === 'daily' ? dp.period : dp.period.split(' ')[0]}
                     </span>
                   </div>
                 ))}

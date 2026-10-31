@@ -877,8 +877,19 @@ export const mockDashboardService = {
     }
   },
 
-  async getRevenueChart(): Promise<RevenueDataPoint[]> {
-    await delay()
+  async getRevenueChart(period?: string): Promise<RevenueDataPoint[]> {
+    await delay(150)
+    if (period === 'daily') {
+      return [
+        { period: '25 Oct', revenue: 1120000, projected: 1200000 },
+        { period: '26 Oct', revenue: 980000, projected: 1100000 },
+        { period: '27 Oct', revenue: 1450000, projected: 1300000 },
+        { period: '28 Oct', revenue: 1890000, projected: 1600000 },
+        { period: '29 Oct', revenue: 1340000, projected: 1400000 },
+        { period: '30 Oct', revenue: 1720000, projected: 1650000 },
+        { period: '31 Oct', revenue: 2150000, projected: 1900000 },
+      ]
+    }
     return [
       { period: 'May 2026', revenue: 18500000, projected: 19000000 },
       { period: 'Jun 2026', revenue: 22100000, projected: 21500000 },
