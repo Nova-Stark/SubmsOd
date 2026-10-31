@@ -53,17 +53,24 @@
   - Itemized lines, GST calculation, payments history list.
   - 1-click **Print / Download Receipt** action triggering print stylesheet.
 
+### Hour 5–6: Finance Lead Dashboard (Admin Only)
+- **Executive KPI Cards** (`/admin/dashboard`):
+  - Active Subscriptions, Total Revenue Collected (with period trends), Outstanding AR, Overdue Invoices.
+  - Compact Indian notation formatters (e.g. `₹3.48 Cr`, `₹5.20 L`).
+  - Real-time Monthly Recurring Revenue (MRR) indicator.
+- **Interactive Revenue Chart**:
+  - Toggle between Monthly and Daily views.
+  - Dynamic dual bars comparing Actual Revenue vs Projected Revenue.
+- **Overdue Invoices Chasing Table**:
+  - Sub-second retrieval with server-side pagination.
+  - Debounced search filter by customer or invoice number.
+  - Direct overdue debt amounts formatted in INR.
+
 ---
 
 ## 2. Next Up on the Schedule
 
-### Hour 5–6: Finance Lead Dashboard (Admin Only) (Current Task)
-- `/admin/dashboard`:
-  - KPI Cards: Active Subscriptions, Revenue Collected, Outstanding AR, Overdue Invoices.
-  - Visual Revenue Chart (historical & projected).
-  - Debounced multi-filters & server-side paginated overdue invoice chasing table (<2s performance).
-
-### Hour 6–7: Invoice Operations, Settlement, Admin Rules & Polish
+### Hour 6–7: Invoice Operations, Settlement, Admin Rules & Polish (Current Task)
 - `/staff/invoices` & `/staff/invoices/:id`: Invoice status transitions (`Draft` ➔ `Confirmed` ➔ `Paid`), print-friendly receipt view.
 - Record Payment modal (Method: Bank Transfer / UPI / Card / Cash, Amount, Date, Note).
 - Admin Discounts & Tax rules managers (`/admin/discounts`, `/admin/taxes`).
@@ -75,6 +82,6 @@
 1. Work **only** in `frontend/`, never push to repo root.
 2. Run `git pull --rebase` before every commit.
 3. Verify git identity is `Bal Govind B <balgovindb2006@gmail.com>`.
-4. Commit small and often with conventional commit messages (e.g. `feat(portal): ...`).
+4. Commit small and often with conventional commit messages (e.g. `feat(dashboard): ...`).
 5. Print a one-line summary after each commit for the team leader.
 6. Zero AI-slop: Odoo-inspired enterprise styling, high contrast, clean typography.

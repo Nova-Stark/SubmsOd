@@ -43,8 +43,9 @@ const CustomerInvoicesView = lazy(() =>
 )
 
 // Placeholders for subsequent hours
-const FinanceDashboardPlaceholder = lazy(() =>
-  import('@/features/dashboard/FinanceDashboardPlaceholder').then((m) => ({ default: m.FinanceDashboardPlaceholder }))
+// Finance Lead Dashboard (Hour 5-6)
+const FinanceDashboardView = lazy(() =>
+  import('@/features/dashboard/FinanceDashboardView').then((m) => ({ default: m.FinanceDashboardView }))
 )
 const InvoicesPlaceholder = lazy(() =>
   import('@/features/invoices/InvoicesPlaceholder').then((m) => ({ default: m.InvoicesPlaceholder }))
@@ -94,7 +95,7 @@ export const AppRoutes: React.FC = () => {
 
           {/* Admin-only Routes (Finance Lead & System Controls) */}
           <Route element={<RoleGuard allowedRoles={['ADMIN']} />}>
-            <Route path="/admin/dashboard" element={<Suspense fallback={<RouteFallback />}><FinanceDashboardPlaceholder /></Suspense>} />
+            <Route path="/admin/dashboard" element={<Suspense fallback={<RouteFallback />}><FinanceDashboardView /></Suspense>} />
             <Route path="/admin/products/new" element={<Suspense fallback={<RouteFallback />}><ProductCatalogView /></Suspense>} />
             <Route path="/admin/plans/new" element={<Suspense fallback={<RouteFallback />}><PlanManagerView /></Suspense>} />
             <Route path="/admin/discounts" element={<Suspense fallback={<RouteFallback />}><DiscountsPlaceholder /></Suspense>} />
