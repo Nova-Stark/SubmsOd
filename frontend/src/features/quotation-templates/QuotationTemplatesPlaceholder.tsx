@@ -19,3 +19,4 @@ export const QuotationTemplatesPlaceholder: React.FC = () => {
     </div>
   )
 }
+

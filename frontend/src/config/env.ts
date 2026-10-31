@@ -4,3 +4,4 @@ export const ENV = {
   AUTH_STORAGE: (import.meta.env.VITE_AUTH_STORAGE || 'cookie') as 'cookie' | 'localStorage',
   DEFAULT_CURRENCY: import.meta.env.VITE_DEFAULT_CURRENCY || 'INR',
 } as const
+

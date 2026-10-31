@@ -40,3 +40,4 @@ export interface CreateStaffDto {
   password: string
   name?: string
 }
+

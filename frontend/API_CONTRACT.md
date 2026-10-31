@@ -512,3 +512,4 @@ Status Codes: `400 Bad Request`, `401 Unauthorized`, `403 Forbidden`, `404 Not F
 - **`GET /api/v1/analytics/overdue-invoices`**
   - **Query Params:** `page`, `limit`, `days_bucket=1-30|31-60|60+`
   - Server-side paginated list optimized for sub-second retrieval.
+

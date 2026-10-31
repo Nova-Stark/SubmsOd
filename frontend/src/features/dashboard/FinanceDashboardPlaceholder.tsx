@@ -19,3 +19,4 @@ export const FinanceDashboardPlaceholder: React.FC = () => {
     </div>
   )
 }
+

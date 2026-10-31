@@ -10,3 +10,4 @@ export const CURRENCY_CONFIG = {
 } as const
 
 export type CurrencyCode = typeof CURRENCY_CONFIG.code
+

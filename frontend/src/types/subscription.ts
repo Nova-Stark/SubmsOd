@@ -72,3 +72,4 @@ export interface QuotationTemplate {
   lines: QuotationTemplateLine[]
   createdAt: string
 }
+
