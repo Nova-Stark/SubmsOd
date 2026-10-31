@@ -32,6 +32,14 @@ func InitDB(dbPath string) *gorm.DB {
 		log.Fatalf("failed to connect database: %v", err)
 	}
 
+	// Optimize SQLite for high concurrency (prevent SQLITE_BUSY / lock friction)
+	sqlDB, err := DB.DB()
+	if err == nil {
+		sqlDB.SetMaxOpenConns(1)
+		DB.Exec("PRAGMA journal_mode = WAL;")
+		DB.Exec("PRAGMA busy_timeout = 5000;")
+	}
+
 	// Auto migrate tables
 	err = DB.AutoMigrate(
 		&models.User{},

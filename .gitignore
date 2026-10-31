@@ -1,6 +1,8 @@
 .codegraph/
 .agents/
 *.db
+*.db-shm
+*.db-wal
 *.exe
 
 # Node & TypeScript artifacts
@@ -9,4 +11,3 @@ dist/
 coverage/
 *.log
 .env
-
