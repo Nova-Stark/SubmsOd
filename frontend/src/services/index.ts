@@ -24,6 +24,21 @@ import { Invoice, InvoiceStatus, Payment } from '@/types/invoice'
 import { FinanceKpis, RevenueDataPoint, BillingRunResult } from '@/types/dashboard'
 import { PaginatedResponse } from '@/types/api'
 
+function wrapPaginated<T>(resData: any): PaginatedResponse<T> {
+  if (Array.isArray(resData)) {
+    return {
+      data: resData,
+      meta: {
+        page: 1,
+        limit: resData.length || 20,
+        total: resData.length,
+        totalPages: 1,
+      },
+    }
+  }
+  return resData
+}
+
 // Unified Services: seamless toggle via ENV.USE_MOCK
 export const authService = {
   login: async (dto: LoginDto): Promise<AuthResponse> => {
@@ -70,8 +85,8 @@ export const authService = {
 export const customerService = {
   listCustomers: async (params?: { search?: string; page?: number; limit?: number }): Promise<PaginatedResponse<Customer>> => {
     if (ENV.USE_MOCK) return mockCustomerService.listCustomers(params)
-    const res = await apiClient.get<PaginatedResponse<Customer>>('/customers', { params })
-    return res.data
+    const res = await apiClient.get<any>('/customers', { params })
+    return wrapPaginated<Customer>(res.data)
   },
   createCustomer: async (customer: Omit<Customer, 'id' | 'activeSubscriptionsCount' | 'createdAt'>): Promise<Customer> => {
     if (ENV.USE_MOCK) return mockCustomerService.createCustomer(customer)
@@ -141,8 +156,8 @@ export const subscriptionService = {
     limit?: number
   }): Promise<PaginatedResponse<Subscription>> => {
     if (ENV.USE_MOCK) return mockSubscriptionService.listSubscriptions(params)
-    const res = await apiClient.get<PaginatedResponse<Subscription>>('/subscriptions', { params })
-    return res.data
+    const res = await apiClient.get<any>('/subscriptions', { params })
+    return wrapPaginated<Subscription>(res.data)
   },
   getSubscription: async (id: string): Promise<Subscription> => {
     if (ENV.USE_MOCK) return mockSubscriptionService.getSubscription(id)
@@ -193,8 +208,8 @@ export const invoiceService = {
     limit?: number
   }): Promise<PaginatedResponse<Invoice>> => {
     if (ENV.USE_MOCK) return mockInvoiceService.listInvoices(params)
-    const res = await apiClient.get<PaginatedResponse<Invoice>>('/invoices', { params })
-    return res.data
+    const res = await apiClient.get<any>('/invoices', { params })
+    return wrapPaginated<Invoice>(res.data)
   },
   getInvoice: async (id: string): Promise<Invoice> => {
     if (ENV.USE_MOCK) return mockInvoiceService.getInvoice(id)
@@ -214,8 +229,8 @@ export const invoiceService = {
   },
   listPayments: async (params?: { method?: string; page?: number; limit?: number }): Promise<PaginatedResponse<Payment>> => {
     if (ENV.USE_MOCK) return mockInvoiceService.listPayments(params)
-    const res = await apiClient.get<PaginatedResponse<Payment>>('/payments', { params })
-    return res.data
+    const res = await apiClient.get<any>('/payments', { params })
+    return wrapPaginated<Payment>(res.data)
   },
   generateInvoiceFromSubscription: async (subscriptionId: string): Promise<Invoice> => {
     if (ENV.USE_MOCK) return mockInvoiceService.generateInvoiceFromSubscription(subscriptionId)
@@ -241,4 +256,3 @@ export const dashboardService = {
     return res.data
   },
 }
-

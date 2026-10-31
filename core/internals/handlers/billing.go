@@ -295,3 +295,46 @@ func ListCustomerInvoices(c *gin.Context) {
 
 	c.JSON(http.StatusOK, invoices)
 }
+
+// ListPayments returns recorded payment transactions
+func ListPayments(c *gin.Context) {
+	method := c.Query("method")
+	query := database.DB.Preload("Invoice").Order("payment_date desc")
+	if method != "" {
+		query = query.Where("payment_method = ?", strings.ToUpper(method))
+	}
+
+	var payments []models.Payment
+	if err := query.Find(&payments).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to list payments"})
+		return
+	}
+
+	c.JSON(http.StatusOK, payments)
+}
+
+// GenerateSubscriptionInvoice generates an invoice on demand for a subscription
+func GenerateSubscriptionInvoice(c *gin.Context) {
+	subID := c.Param("id")
+
+	var sub models.Subscription
+	if err := database.DB.Preload("Lines.Product").Preload("Lines.Variant").Preload("Plan").Preload("Customer").Where("id = ?", subID).First(&sub).Error; err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Subscription not found"})
+		return
+	}
+
+	var inv models.Invoice
+	now := time.Now()
+	result, err := billing.ExecuteBatchBilling(database.DB, now.AddDate(0, 1, 0))
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	if err := database.DB.Preload("Lines").Preload("Customer").Where("subscription_id = ?", sub.ID).Order("created_at desc").First(&inv).Error; err != nil {
+		c.JSON(http.StatusOK, gin.H{"message": "Billing cycle run", "generated_count": result.InvoicesCreated})
+		return
+	}
+
+	c.JSON(http.StatusOK, inv)
+}

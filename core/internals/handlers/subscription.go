@@ -166,6 +166,88 @@ func CreateDraftFromTemplate(c *gin.Context) {
 	c.JSON(http.StatusCreated, sub)
 }
 
+type ConvertTemplateRequest struct {
+	CustomerID string     `json:"customer_id"`
+	CustomerId string     `json:"customerId"`
+	PlanID     string     `json:"plan_id"`
+	PlanId     string     `json:"planId"`
+	StartDate  *time.Time `json:"start_date"`
+	StartDateC *time.Time `json:"startDate"`
+}
+
+// ConvertQuotationTemplate converts a template directly via URL param :id
+func ConvertQuotationTemplate(c *gin.Context) {
+	templateID := c.Param("id")
+
+	var template models.QuotationTemplate
+	if err := database.DB.Preload("Lines").Where("id = ?", templateID).First(&template).Error; err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Quotation template not found"})
+		return
+	}
+
+	var req ConvertTemplateRequest
+	_ = c.ShouldBindJSON(&req)
+
+	cid := req.CustomerID
+	if cid == "" {
+		cid = req.CustomerId
+	}
+
+	var customer models.User
+	if cid != "" {
+		_ = database.DB.Where("id = ?", cid).First(&customer)
+	}
+	if customer.ID == "" {
+		_ = database.DB.Where("role = ?", models.RoleCustomer).First(&customer)
+	}
+
+	pid := req.PlanID
+	if pid == "" {
+		pid = req.PlanId
+	}
+	var plan models.Plan
+	if pid != "" {
+		_ = database.DB.Where("id = ?", pid).First(&plan)
+	}
+	if plan.ID == "" {
+		_ = database.DB.First(&plan)
+	}
+
+	startDate := time.Now()
+	if req.StartDate != nil {
+		startDate = *req.StartDate
+	} else if req.StartDateC != nil {
+		startDate = *req.StartDateC
+	}
+
+	sub := models.Subscription{
+		CustomerID:      customer.ID,
+		PlanID:          plan.ID,
+		Status:          models.StatusDraft,
+		StartDate:       startDate,
+		NextBillingDate: startDate,
+		PaymentTerms:    "NET30",
+	}
+
+	for _, l := range template.Lines {
+		sub.Lines = append(sub.Lines, models.SubscriptionLine{
+			ProductID: l.ProductID,
+			VariantID: l.VariantID,
+			Quantity:  l.Quantity,
+			UnitPrice: l.UnitPrice,
+			Subtotal:  l.UnitPrice * int64(l.Quantity),
+		})
+	}
+
+	if err := database.DB.Create(&sub).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to convert template to subscription"})
+		return
+	}
+
+	database.DB.Preload("Lines.Product").Preload("Plan").Preload("Customer").Where("id = ?", sub.ID).First(&sub)
+	c.JSON(http.StatusCreated, sub)
+}
+
 // Custom Draft Subscription
 
 type CreateSubscriptionRequest struct {

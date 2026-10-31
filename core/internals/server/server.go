@@ -13,6 +13,9 @@ import (
 func NewRouter() *gin.Engine {
 	r := gin.Default()
 
+	// CORS middleware for Vite frontend
+	r.Use(middleware.CORSMiddleware())
+
 	// Health check
 	r.GET("/health", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
@@ -36,6 +39,7 @@ func NewRouter() *gin.Engine {
 		protected := api.Group("")
 		protected.Use(middleware.AuthMiddleware())
 		{
+			protected.GET("/auth/me", handlers.GetMe)
 			protected.DELETE("/users/me", handlers.DeleteMe)
 
 			// Catalog Read (Staff, Admin, Customer)
@@ -72,15 +76,22 @@ func NewRouter() *gin.Engine {
 			internal := protected.Group("")
 			internal.Use(middleware.RequireRole(string(models.RoleAdmin), string(models.RoleStaff)))
 			{
+				// Staff & Customers management
+				internal.GET("/staff", handlers.ListStaff)
+				internal.GET("/customers", handlers.ListCustomers)
+				internal.POST("/customers", handlers.CreateCustomer)
+
 				// Subscriptions
 				internal.GET("/quotation-templates", handlers.ListQuotationTemplates)
 				internal.POST("/quotation-templates", handlers.CreateQuotationTemplate)
+				internal.POST("/quotation-templates/:id/convert", handlers.ConvertQuotationTemplate)
 				internal.POST("/quotations/from-template", handlers.CreateDraftFromTemplate)
 
 				internal.GET("/subscriptions", handlers.ListSubscriptions)
 				internal.POST("/subscriptions", handlers.CreateSubscriptionDraft)
 				internal.POST("/subscriptions/:id/send-quote", handlers.SendQuote)
 				internal.POST("/subscriptions/:id/activate", handlers.ActivateSubscription)
+				internal.POST("/subscriptions/:id/generate-invoice", handlers.GenerateSubscriptionInvoice)
 
 				// Billing & Invoices
 				internal.POST("/billing/run", handlers.TriggerBatchBilling)
@@ -88,10 +99,13 @@ func NewRouter() *gin.Engine {
 				internal.POST("/invoices/:id/confirm", handlers.ConfirmInvoice)
 				internal.POST("/invoices/:id/cancel", handlers.CancelInvoice)
 				internal.POST("/invoices/:id/payments", handlers.LogPayment)
+				internal.GET("/payments", handlers.ListPayments)
 
 				// Finance Analytics & Ledger
 				internal.GET("/finance/summary", handlers.GetFinanceSummary)
 				internal.GET("/finance/reports", handlers.GetFinanceReports)
+				internal.GET("/analytics/kpis", handlers.GetFinanceSummary)
+				internal.GET("/analytics/revenue-chart", handlers.GetFinanceReports)
 			}
 
 			// Admin-only operations
