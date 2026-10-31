@@ -19,3 +19,4 @@ export const DiscountsPlaceholder: React.FC = () => {
     </div>
   )
 }
+

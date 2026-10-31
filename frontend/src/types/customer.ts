@@ -9,3 +9,4 @@ export interface Customer {
   activeSubscriptionsCount: number
   createdAt: string
 }
+

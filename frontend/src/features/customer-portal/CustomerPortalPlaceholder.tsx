@@ -19,3 +19,4 @@ export const CustomerPortalPlaceholder: React.FC = () => {
     </div>
   )
 }
+

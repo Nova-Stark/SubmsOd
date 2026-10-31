@@ -28,3 +28,4 @@ export const SubscriptionsPlaceholder: React.FC = () => {
     </div>
   )
 }
+

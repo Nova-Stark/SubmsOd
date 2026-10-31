@@ -20,3 +20,4 @@ export const RoleGuard: React.FC<RoleGuardProps> = ({ allowedRoles }) => {
 
   return <Outlet />
 }
+

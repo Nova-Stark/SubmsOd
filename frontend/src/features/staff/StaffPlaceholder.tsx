@@ -19,3 +19,4 @@ export const StaffPlaceholder: React.FC = () => {
     </div>
   )
 }
+

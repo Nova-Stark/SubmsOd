@@ -24,3 +24,4 @@ export const NotFound404Page: React.FC = () => {
     </div>
   )
 }
+

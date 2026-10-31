@@ -78,3 +78,4 @@ export const PasswordStrengthChecklist: React.FC<PasswordStrengthChecklistProps>
     </div>
   )
 }
+

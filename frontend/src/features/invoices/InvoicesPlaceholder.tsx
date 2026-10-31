@@ -19,3 +19,4 @@ export const InvoicesPlaceholder: React.FC = () => {
     </div>
   )
 }
+

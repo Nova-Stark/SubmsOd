@@ -52,3 +52,4 @@ export const passwordValidationSchema = z
   .regex(/[A-Z]/, 'Must contain at least 1 uppercase letter')
   .regex(/[a-z]/, 'Must contain at least 1 lowercase letter')
   .regex(/[^A-Za-z0-9]/, 'Must contain at least 1 special character')
+

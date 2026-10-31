@@ -64,3 +64,4 @@ export interface DiscountRule {
   target: 'SUBSCRIPTION' | 'PRODUCT'
   targetProductIds?: string[]
 }
+
