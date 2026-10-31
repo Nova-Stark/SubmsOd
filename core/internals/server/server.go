@@ -38,11 +38,28 @@ func NewRouter() *gin.Engine {
 		{
 			protected.DELETE("/users/me", handlers.DeleteMe)
 
-			// Admin only routes
+			// Catalog Read (Staff, Admin, Customer)
+			catalogGroup := protected.Group("/catalog")
+			{
+				catalogGroup.GET("/products", handlers.ListProducts)
+				catalogGroup.GET("/plans", handlers.ListPlans)
+				catalogGroup.GET("/discounts", handlers.ListDiscounts)
+				catalogGroup.POST("/discounts/validate", handlers.ValidateDiscount)
+				catalogGroup.GET("/taxes", handlers.ListTaxes)
+			}
+
+			// Admin-only operations
 			admin := protected.Group("/admin")
 			admin.Use(middleware.RequireRole(string(models.RoleAdmin)))
 			{
 				admin.POST("/staff", handlers.CreateStaff)
+
+				// Catalog Management
+				admin.POST("/catalog/products", handlers.CreateProduct)
+				admin.POST("/catalog/products/:id/variants", handlers.AddProductVariant)
+				admin.POST("/catalog/plans", handlers.CreatePlan)
+				admin.POST("/catalog/discounts", handlers.CreateDiscount)
+				admin.POST("/catalog/taxes", handlers.CreateTax)
 			}
 		}
 	}
